@@ -2,8 +2,8 @@ const Profile = require('../models/Profiles')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const profilesControllers= {
-    loadNewProfile: async (req, res) => {
+const profileControllers= {
+    createProfile: async (req, res) => {
         var {name, avatar, kids, myList, userId} = req.body
         var response;
         var error;
@@ -28,7 +28,31 @@ const profilesControllers= {
             response: {token: response, name: profileSaved.name, avatar: profileSaved.avatar, kids: profileSaved.kids, myList: profileSaved.myList},
             error: error
         }) 
+    },
+
+    loadAllProfiles: async (req, res) => {
+        const allProfiles = await Profile.find()
+        res.json({success: true, response: allProfiles})
+    },
+
+    loadProfileId: async (req, res) => {
+        const idLoader = req.params._id
+        const uniqueProfile = await Profile.findOne({_id:idLoader})
+        res.json({success: true, response: uniqueProfile})
+    },
+
+    updateProfile: async (req,res) => {
+        const idUpdate = req.params._id
+        const profile = await Profile.findOneAndUpdate({_id: idUpdate},req.body,{new:true})
+        res.json({response: profile, success: true})
+    },
+
+    deleteProfile: async (req,res) => {
+        const idDelete = req.params._id
+        const deleteProfile = await Profile.findOneAndDelete({_id: idDelete})
+        res.json({response:deleteProfile, success:true})
     }
+
 }
 
-module.exports = profilesControllers
+module.exports = profileControllers
