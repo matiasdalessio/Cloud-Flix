@@ -7,8 +7,7 @@ const usersControllers= {
         var {email, password, country, premium} = req.body
         var response;
         var error;
-        var userSaved;
-        
+        var userSaved;        
         var emailExist = await User.findOne({email})
         const passwordHasheado = bcryptjs.hashSync(password, 10)
         if(!emailExist) {
@@ -35,7 +34,6 @@ const usersControllers= {
         const {email, password} = req.body
         var response;
         var error;
-
         const userExist = await User.findOne({email})
         if(userExist){
             const passwordEqual = bcryptjs.compareSync(password, userExist.password)
