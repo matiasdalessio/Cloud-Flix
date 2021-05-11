@@ -1,15 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const usersControllers = require('../controllers/usersControllers')
+const usersController = require('../controllers/usersController')
 const audiovisualController = require('../controllers/audiovisualController')
-const seasonControllers = require('../controllers/seasonController')
+const seasonController = require('../controllers/seasonController')
+const profileController = require('../controllers/profileController')
 const validatorAudiovisuals = require('../config/validatorAudiovisuals')
 const validatorUser = require('../config/validator')
 const passport = require('passport')
 
-const { loadNewUser, userLogin, loginForced } = usersControllers
+const { loadNewUser, userLogIn, logInForced } = usersController
 const { getAllAudiovisuals, getSingleAudiovisual, addAudiovisual, deleteAudiovisual, updateAudiovisual, addOrRemoveRate, addComment, modifyOrRemoveComment } = audiovisualController
-const { allSeasons, addSeason, deleteSeason, modifySeason, season  } = seasonControllers
+const { getAllSeasons, addSeason, deleteSeason, modifySeason, getSinleSeason  } = seasonController
+const {createProfile, loadAllProfiles, loadSingleProfile, updateProfile, deleteProfile}= profileController
 
 
 router.route('/audiovisuals')
@@ -32,20 +34,28 @@ router.route('/user/signup')
 .post(validatorUser, loadNewUser)
 
 router.route('/user/login')
-.post(userLogin)
+.post(userLogIn)
 
 router.route('/user/loginForced')
-.get(passport.authenticate('jwt', {session:false}), loginForced)
+.get(passport.authenticate('jwt', {session:false}), logInForced)
 
-router.route('/seasons/:id')
-.get(season)
+router.route('/profile/:id')
+.get(loadSingleProfile)
+.delete(deleteProfile)
+.put(updateProfile)
+
+router.route('/profiles')
+.get(loadAllProfiles)
+.post(createProfile)
+
+router.route('/season/:id')
+.get(getSinleSeason)
 .delete(deleteSeason)
 .put(modifySeason)
 
-router.route('/season')
-.get(allSeasons)
+router.route('/seasons')
+.get(getAllSeasons)
 .post(addSeason)
-
 
 
 

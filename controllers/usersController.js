@@ -1,8 +1,8 @@
-const User = require('../models/Users')
+const User = require('../models/User')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const usersControllers= {
+const usersController= {
     loadNewUser: async (req, res) => {
         var {email, password, country, premium} = req.body
         var response;
@@ -22,14 +22,12 @@ const usersControllers= {
         }else {
             error= 'This email address is already being used'
         }
-
         res.json({
             success: !error ? true : false,
             response: {token: response, email: userSaved.email, premium: userSaved.premium},
             error: error
         }) 
     },
-
     userLogIn: async (req, res) => {
         const {email, password} = req.body
         var response;
@@ -45,17 +43,15 @@ const usersControllers= {
             } 
         } else {
                 error = 'Incorrect username or password'
-            }        
-        
+            }                
         res.json({
             success: !error ? true : false,
             response: response,
             error: error
         })
     },
-
-    LogInForced: (req, res) => {
-        res.json({success: true, response: {email: req.user.email}})
+    logInForced: (req, res) => {
+        res.json({success: true, response: {email: req.user.email, _id: req.user._id}})
     }
 }
-module.exports = usersControllers
+module.exports = usersController
