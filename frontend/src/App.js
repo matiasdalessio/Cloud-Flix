@@ -1,3 +1,4 @@
+import React from 'react'
 import './App.css';
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
 import { connect } from "react-redux"
