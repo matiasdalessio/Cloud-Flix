@@ -13,3 +13,6 @@ router.route('/user/login')
 
 router.route('/user/loginForced')
 .get(passport.authenticate('jwt', {session:false}), usersControllers.loginForced)
+
+/*Profiles*/
+
