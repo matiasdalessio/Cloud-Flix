@@ -1,7 +1,7 @@
 const mongoose = require ('mongoose');
 
 const seasonSchema = new mongoose.Schema({
-    numberSeason:{type: String, required: true},
+    numberSeason:{type: Number, required: true},
     chapters:{type: String, required: true},    
     idAudiovisual: {type: mongoose.Types.ObjectId ,ref:'audiovisual'}
 })
