@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
 import { connect } from "react-redux"
-
 import Home from "./pages/Home"
 import Login from "./pages/LogIn"
 import SignUp from "./pages/SignUp"
@@ -16,7 +15,7 @@ function App({ userLogged }) {
      <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Home } />
-          { userLogged && 
+          { !userLogged && 
             <>
             <Route path="login" component={ Login }  />
             <Route  path="signup" component={ SignUp } />
