@@ -64,6 +64,47 @@ const seasonControllers = {
             response: !err && response,
             err: err
         })
+    },
+
+    modifySeason: async (req,res) => {
+        const id = req.params.id
+
+        var response;
+        var err;
+
+        try {
+            await Itinerary.findOneAndUpdate({_id: id}, {...req.body}, {new: true})
+            const seasons  = await Itinerary.find()
+            response = seasons
+        } catch(error) {
+            err = 'An unexpected error has occurred with our servers'
+        }
+
+        res.json({
+            success: !err ? true : false,
+            response: !err && response,
+            err: err
+        })
+    },
+
+    season: async (req, res) => {
+        const id = req.params.id 
+
+        var response;
+        var err;
+
+        try {
+            const season = await Itinerary.findById(id)
+            response = season
+        } catch(error) {
+            err = 'An unexpected error has occurred with our servers'
+        }
+
+        res.json({
+            success: !err ? true : false,
+            response: !err && response,
+            err: err
+        })
     }
 }
 

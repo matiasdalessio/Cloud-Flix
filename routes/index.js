@@ -7,9 +7,9 @@ const validatorAudiovisuals = require('../config/validatorAudiovisuals')
 const validatorUser = require('../config/validator')
 const passport = require('passport')
 
-const {loadNewUser, userLogin, loginForced} = usersControllers
-const {getAllAudiovisuals, getSingleAudiovisual, addAudiovisual, deleteAudiovisual, updateAudiovisual, addOrRemoveRate, addComment, modifyOrRemoveComment} = audiovisualController
-const { allSeasons, allSeasons, deleteSeason } = seasonControllers
+const { loadNewUser, userLogin, loginForced } = usersControllers
+const { getAllAudiovisuals, getSingleAudiovisual, addAudiovisual, deleteAudiovisual, updateAudiovisual, addOrRemoveRate, addComment, modifyOrRemoveComment } = audiovisualController
+const { allSeasons, addSeason, deleteSeason, modifySeason, season  } = seasonControllers
 
 
 router.route('/audiovisuals')
@@ -38,9 +38,13 @@ router.route('/user/loginForced')
 .get(passport.authenticate('jwt', {session:false}), loginForced)
 
 router.route('/seasons/:id')
-.get(allSeasons)
-.post(allSeasons)
+.get(season)
 .delete(deleteSeason)
+.put(modifySeason)
+
+router.route('/season')
+.get(allSeasons)
+.post(addSeason)
 
 
 
