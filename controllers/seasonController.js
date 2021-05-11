@@ -58,7 +58,7 @@ const seasonControllers = {
         var response;
         var err;
         try {
-            await Seasons.findOneAndDelete({_id: id})
+            await Season.findOneAndDelete({_id: id})
             const seasons = await Season.find()
             response = seasons 
         } catch(error) {
