@@ -3,9 +3,9 @@ const mongoose = require ('mongoose');
 const profileSchema = new mongoose.Schema({
     name:{type: String, required: true},
     avatar:{type: String, required: true},
-    kids:{type: String, required: true},
-    myList:{type: String , required: true},
-    idUser: {type: mongoose.Types.ObjectId ,ref:'user'}    
+    kids:{type: Boolean, required: true},
+    myList:[{audiovisualId:{type: mongoose.Types.ObjectId ,ref:'audivisual'}}],
+    userId: {type: mongoose.Types.ObjectId ,ref:'user'}    
 })
 
 const Profile = mongoose.model('profile',profileSchema);
