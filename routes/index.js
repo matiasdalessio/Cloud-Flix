@@ -1,8 +1,12 @@
-emanuel
+const express = require('express')
+const router = express.Router()
+const seasonControllers = require('../controllers/seasonController')
 
-matias
+const { allSeasons, allSeasons, deleteSeason } = seasonControllers
 
-matias
+router.route('/seasons')
+.get(allSeasons)
+.post(allSeasons)
+.delete(deleteSeason)
 
-dupuy
-muñoz
+module.exports = router
