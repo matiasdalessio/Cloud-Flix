@@ -1,13 +1,15 @@
-<<<<<<< HEAD
-Julio
+const express = require('express')
+const router = express.Router()
+const usersControllers = require('../controllers/usersControllers')
+const validador = require('../config/validator')
+const passport = require('passport')
 
-Julio
+/*Users*/
+router.route('/user/signup')
+.post(validador, usersControllers.loadNewUser)
 
-Julio
-=======
-matias
+router.route('/user/login')
+.post(usersControllers.userLogin)
 
-matias
-
-matias
->>>>>>> 6ba19f9b053d804360608b29a908d120359dbbae
+router.route('/user/loginForced')
+.get(passport.authenticate('jwt', {session:false}), usersControllers.loginForced)
