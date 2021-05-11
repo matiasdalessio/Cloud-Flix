@@ -58,8 +58,6 @@ router.route('/seasons')
 .post(addSeason)
 
 
-
-
 module.exports = router
 
 
