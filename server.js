@@ -5,8 +5,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-require("dotenv").config()
 require("./config/database")
+require("dotenv").config()
+
 
 
 app.use("/api", require("./routes/index"))
