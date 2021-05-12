@@ -27,24 +27,24 @@ const profileControllers= {
             error: error
         }) 
     },
-    loadAllProfiles: async (req, res) => {
+    getAllProfiles: async (req, res) => {
         const allProfiles = await Profile.find()
         res.json({success: true, response: allProfiles})
     },
-    loadSingleProfile: async (req, res) => {
-        const idLoader = req.params._id
-        const singleProfile = await Profile.findOne({_id:idLoader})
+    getSingleProfile: async (req, res) => {
+        const profileId = req.params.id
+        const singleProfile = await Profile.findOne({_id:profileId})
         res.json({success: true, response: singleProfile})
     },
     updateProfile: async (req,res) => {
-        const idUpdate = req.params._id
-        const profile = await Profile.findOneAndUpdate({_id: idUpdate},req.body,{new:true})
-        res.json({response: profile, success: true})
+        const profileId = req.params.id
+        const modifiedProfile = await Profile.findOneAndUpdate({_id: profileId},req.body,{new:true})
+        res.json({response: modifiedProfile, success: true})
     },
     deleteProfile: async (req,res) => {
-        const idDelete = req.params._id
-        const deleteProfile = await Profile.findOneAndDelete({_id: idDelete})
-        res.json({response:deleteProfile, success:true})
+        const profileId = req.params.id
+        const deletedProfile = await Profile.findOneAndDelete({_id: profileId})
+        res.json({response:deletedProfile, success:true})
     }
 }
 
