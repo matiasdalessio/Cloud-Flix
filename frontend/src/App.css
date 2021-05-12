@@ -61,7 +61,7 @@ a {
     left: 0;
     width: 100%;
     z-index: 99;
-    background-color: #000000;
+    background-color: #00000067;
 }
 
 .nav {
@@ -124,7 +124,7 @@ a.movie-item:hover {
     position: absolute;
     top: 0;
     left: 0;
-    width: 60%;
+    width: 50%;
     height: 100%;
     background-color: var(--main-color);
     transition: 0.3s ease-in-out;
@@ -133,7 +133,6 @@ a.movie-item:hover {
 .btn-hover:hover::before {
     width: 100%;
 }
-
 .btn i,
 .btn span {
     z-index: 1;
@@ -142,17 +141,6 @@ a.movie-item:hover {
 .btn i {
     margin-right: 1rem;
 }
-.containerCarrousel{
-    width: 98vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    background-color: #151515;
-    position: absolute;
-}
-
 .hamburger-menu {
     --size: 30px;
     height: var(--size);
@@ -163,7 +151,6 @@ a.movie-item:hover {
     display: none;
     align-items: center;
 }
-
 .hamburger {
     position: relative;
 }
@@ -575,10 +562,10 @@ footer .content {
     display:inline;
     font-size:1em;
     border-radius: 8em;
-    border:0.1em solid rgba(218,208,190,1);
+    border:0.3em solid rgba(218,208,190,1);
     box-shadow:0 0 0.3em rgba(60,60,60,0.4);
     padding:0.3em;
-    background:black;
+    background:rgba(0, 0, 0, 0);
     border: none;
     display: flex;
     align-items: center;
@@ -588,12 +575,11 @@ footer .content {
     transition:all 0.2s ease-out;
     width:1px;
     border-radius:0;
-    box-shadow:0 0 0.1em rgba(60,60,60,0.3);
     outline: none;
     padding-left:0.3rem;
     margin:0;
     border:0;
-    background-color: black;
+    background:rgba(0, 0, 0, 0);
     color: white;
     opacity:0;
   }
@@ -609,7 +595,7 @@ footer .content {
     display:inline-block;
     color:white;
     text-shadow:0 0 0.1em rgba(60,60,60,0.3);
-    background-color: black;
+    background:rgba(0, 0, 0, 0);
     position: relative;
     left:0.1em;
     cursor: pointer;
