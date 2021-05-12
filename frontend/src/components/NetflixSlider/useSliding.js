@@ -14,6 +14,7 @@ const useSliding = (elementWidth, countElements) => {
 
     setContainerWidth(containerWidth);
     setTotalInViewport(Math.floor(containerWidth / elementWidth));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerRef.current]);
 
   const handlePrev = () => {

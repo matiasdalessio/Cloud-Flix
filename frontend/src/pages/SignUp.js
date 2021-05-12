@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
 import Footer from '../components/Footer'
 import axios from 'axios'
 import {NavLink} from 'react-router-dom'
@@ -33,7 +32,7 @@ const SignUp = (props) => {
     }
 
     const responseGoogle = (response) => {
-        const {email, googleId, country, premium} = response.profileObj
+        const {email, googleId, premium} = response.profileObj
         signUpOk(null, {email, password: googleId, country: "Nothing", premium})         
       }
     

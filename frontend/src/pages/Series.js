@@ -1,7 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
 import seriesAction from "../redux/actions/seriesAction"
-import { NavLink } from "react-router-dom"
 
 class Series extends React.Component{
 

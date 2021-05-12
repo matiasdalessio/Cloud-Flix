@@ -12,7 +12,7 @@ const usersActions ={
             })
             } else {
                 response.data.errores.details.map((error)=>{ 
-                    alert(error.message)
+                   return alert(error.message)
                 })
             }       
         } 
