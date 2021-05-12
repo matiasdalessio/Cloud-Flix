@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import seriesAction from "../redux/actions/seriesAction"
-import { NavLink } from "react-router-dom"
+import Lastest from "../components/Lastest"
 
 class Series extends React.Component{
 
@@ -12,29 +12,38 @@ class Series extends React.Component{
     })}
 
     state={
-        series:[]
+        series:[],
+        action:[],
     }
 
     componentDidMount(){
         this.props.fetchSeries()
         .then( data =>{
-            this.setState({ ...this.state, series: data })
+            this.setState({ ...this.state,
+                 series: data,
+                 action: data.filter( serie => serie.categories.includes( "Action" ) )
+            })
         })
     }
 
- 
+    
+
+
+/* grid series
+this.state.series.map( serie =>{ 
+return <div key={ serie._id } onClick={ () => this.props.history.push("/audiovisual/" + serie._id) } className="serie" style={{  backgroundImage: `url('${ serie.imageURL }')`  }} >
+</div> })
+*/
+
+
     render() {
         return(
             <div className="seriesContainer">
-                {   this.state.series &&
-                    this.state.series.map( serie =>{ 
-                    return <div key={ serie._id } onClick={ () => this.props.history.push("/audiovisual/" + serie._id) } className="serie" style={{  backgroundImage: `url('${ serie.imageURL }')`  }} >
-                    </div> })
+                {  this.state.action &&
+                    <Lastest title={ "Most Populars" } array={ this.state.action } />
                 }
+                    
                 
-            
-
-
             </div>        
         )
     }

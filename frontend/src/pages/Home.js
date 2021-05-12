@@ -12,14 +12,29 @@ class Home extends React.Component{
         behavior:"smooth"
     })}
 
+    array1=[
+        {
+            id: 1,
+            image: '/images/slide1.jpg',
+            imageBg: '/images/slide1b.webp',
+            title: '1983'
+          },
+          {
+            id: 2,
+            image: '/images/slide1.jpg',
+            imageBg: '/images/slide1b.webp',
+            title: '1983'
+          },
+    ]
+
     
     render() {
          
         return(
             <div>
                 <Hero />
-                <Lastest Lastest={'Movies'}/>
-                <Lastest Lastest={'Series'}/>
+                <Lastest title={'Movies'} array={ this.array1 } />
+                <Lastest title={'Series'} array={ this.array1} />
                 <Footer/>
             </div>        
         )
