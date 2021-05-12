@@ -2,25 +2,16 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
-    const [lista, setLista] = useState([])
-
-    const search = (e) => {
-        let value = e.target.value
-        lista.filter( element => element.prueba.toLocaleLowerCase().trim().includes(value))
-    }
-
+    
     return (
         <>
-        <div>
-            <input type="search" placeholder="Search" aria-label="Search" onChange={search}/>
-        </div>
             <footer className="section">
                 <div className="container">
                     <div className="row">
                         <div className="col-4 col-md-6 col-sm-12">
                             <div className="content">
                                 <NavLink className="logo" to="/">
-                                    <i className='bx bx-movie-play bx-tada main-color'></i>Fl<span className="main-color">i</span>x
+                                <i className='bx bx-movie-play bx-tada main-color'></i>Cloud<span className="main-color">Flix</span>
                                 </NavLink>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut veniam ex quos hic id nobis beatae earum sapiente! Quod ipsa exercitationem officiis non error illum minima iusto et. Dolores, quibusdam?</p>
                                 <div className="social-list">
@@ -94,8 +85,7 @@ const Footer = () => {
                 </div>
             </footer>
             <div className="copyright">
-                Copyright 2021 | <a style={{ color: 'blueviolet' }} href="https://www.youtube.com/watch?v=CrZubI4MvC0" target="_blank">
-                    Next Level Team</a>
+                Copyright 2021 | <p className='colorChallengeFooter'> Challenge Grupo 3</p>
             </div>
         </>
     )

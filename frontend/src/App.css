@@ -1,7 +1,10 @@
 :root {
 
-
-    --main-color: #6411ad;
+    /*
+    #E50913 neftlix
+    #6411ad violeta
+    */
+    --main-color: #E50913;
     --body-bg: #181616;
     --box-bg: #221f1f;
     --text-color: #ffffff;
@@ -33,7 +36,6 @@ a {
 }
 
 
-
 .main-color {
     color: var(--main-color);
 }
@@ -41,7 +43,7 @@ a {
 .container {
     max-width: 1920px;
     padding: 0 40px;
-    margin: auto;
+    margin: auto;   
 }
 
 .overlay {
@@ -151,7 +153,6 @@ a.movie-item:hover {
     position: absolute;
 }
 
-
 .hamburger-menu {
     --size: 30px;
     height: var(--size);
@@ -166,7 +167,7 @@ a.movie-item:hover {
 .hamburger {
     position: relative;
 }
-
+.section
 .hamburger,
 .hamburger::before,
 .hamburger::after {
@@ -477,11 +478,6 @@ a.movie-item:hover {
     position: relative;
     font-weight: 700;
 }
-
-.section {
-    padding-top: 80px;
-}
-
 .section-header {
     margin-bottom: 30px;
     padding-left: 20px;
@@ -607,10 +603,13 @@ footer .content {
 }
 
 .copyright {
+    display: flex;
     padding: 10px;
     border-top: 1px solid var(--body-bg);
     background-color: var(--box-bg);
     text-align: center;
+    width: 100%;
+    justify-content: center;
 }
 .searchContainer{
     margin:auto;
@@ -633,7 +632,7 @@ footer .content {
     transition:all 0.2s ease-out;
     width:1px;
     border-radius:0;
-    box-shadow:none;
+    box-shadow:0 0 0.1em rgba(60,60,60,0.3);
     outline: none;
     padding-left:0.3rem;
     margin:0;
@@ -646,6 +645,7 @@ footer .content {
   .searchContainer input:focus {
     width:15em;
     opacity:1;
+    padding-left: 2vw;
   }
   
   .searchContainer label{

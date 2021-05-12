@@ -3,17 +3,18 @@ import './App.css';
 import './munoz.css'
 import "./dupuy.css"
 import './Forni.css'
+import './Cuvillier.css'
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
 
 import Home from "./pages/Home"
-import Login from "./components/LogIn"
+import Login from "./pages/LogIn"
 import SignUp from "./pages/SignUp"
 import Movies from "./pages/Movies"
 import Series from "./pages/Series"
 import Popular from "./pages/Popular"
 import Mylist from "./pages/MyList"
 import Header from './components/Header';
-import Audiovisual from './components/audiovisual';
+import Audiovisual from './pages/Audiovisual';
 
 function App() {
   return (
