@@ -14,12 +14,12 @@ function App() {
      <BrowserRouter>
       <Switch>
         <Route exact path="/" component={ Home } />
-          <Route path="/login" component={ Login }  />
-          <Route path="/signup" component={ SignUp } />
-          <Route path="/movies" component={ Movies } />
-          <Route path="/series" component={ Series }  />
-          <Route path="popular" component={ Popular } />
-          <Route path="/mylist" component={ Mylist } />
+        <Route path="/login" component={ Login }  />
+        <Route path="/signup" component={ SignUp } />
+        <Route path="/movies" component={ Movies } />
+        <Route path="/series" component={ Series }  />
+        <Route path="popular" component={ Popular } />
+        <Route path="/mylist" component={ Mylist } />
         <Redirect to="/" />
       </Switch>
      </BrowserRouter>
