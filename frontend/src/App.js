@@ -26,13 +26,14 @@ class App extends React.Component{
         token: localStorage.getItem('token'),
         ...userData
       }
-      this.props.forcedLoginByLS(userLS)
+      this.props.loginForcedLS(userLS)
     }
   }
   render(){
 
   return (
       <BrowserRouter>
+      {this.props.userlogged && alert("hola" + this.props.userlogged.id)}
         <Header />
         <Switch>
           <Route exact path="/" component={ Home } />
@@ -41,7 +42,7 @@ class App extends React.Component{
           <Route path="/movies" component={ Movies } />
           <Route path="/series" component={ Series }  />
           <Route path="/popular" component={ Popular } />
-          <Route path="/mylist" component={ Mylist } />
+          {!this.props.userLogged &&<Route path="/mylist" component={ Mylist } />}
           <Route path="/audiovisual/:id" component={ Audiovisual } />
          <Redirect to="/" />
         </Switch>

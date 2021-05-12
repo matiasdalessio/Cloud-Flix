@@ -33,7 +33,7 @@ const SignUp = (props) => {
 
     const responseGoogle = (response) => {
         const {email, googleId, premium} = response.profileObj
-        signUpOk(null, {email, password: googleId, country: "Nothing", premium})         
+        signUpOk(null, {email, password: "asd"+googleId, country: "Nothing", premium})         
       }
     
     return(

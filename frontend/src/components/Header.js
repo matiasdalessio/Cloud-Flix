@@ -1,9 +1,15 @@
 import { useState } from "react"
+import { connect } from "react-redux"
 import { Link } from "react-router-dom"
+import usersActions from "../redux/actions/usersActions"
 
-const Header = ()=>{
+const Header = ({userLogged, userLogout})=>{
     const [ visible, setVisible ] = useState(false)
     const [ item, setItem ] = useState("")
+
+    const logOut = () => {
+        userLogout()
+    }
 
  return  <div className="nav-wrapper">
             <div className="container">
@@ -28,12 +34,20 @@ const Header = ()=>{
                         <li><Link to="/popular">Popular</Link></li>
                         <li><Link to="/movies">Movies</Link></li>
                         <li><Link to="/series">Series</Link></li>
-                        <li><Link to="/mylist" >Mylist</Link></li>
-                        <li>
-                            <Link to="/login" className="btn btn-hover">
-                                <span>Log in</span>
-                            </Link>
-                        </li>
+                        {userLogged 
+                        ?   <li><Link to="/mylist" >Mylist</Link></li>
+                        :   null}
+                        {userLogged 
+                        ?   <li>
+                                <Link to="/login" className="btn btn-hover">
+                                    <span onClick={()=> logOut()}>Log out</span>
+                                </Link>
+                            </li>
+                        :   <li>
+                                <Link to="/login" className="btn btn-hover">
+                                    <span>Start!</span>
+                                </Link>
+                            </li>}                        
                     </ul>
                         {/*  Mobile menu */}
                     <div className={ visible ? "hamburger-menu active" : "hamburger-menu" } onClick={ ()=> setVisible( !visible ) } id="hamburger-menu">
@@ -44,4 +58,14 @@ const Header = ()=>{
         </div>
 }
 
-export default Header
+const mapStateToProps = state => {
+    return {
+        userLogged: state.user.userLogged
+    }
+  }
+  const mapDispatchToProps = {
+    userLogout :  usersActions.userLogout,
+  
+  }
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(Header)

@@ -57,7 +57,8 @@ const usersController= {
         })
     },
     logInForced: (req, res) => {
-        res.json({success: true, response: {email: req.user.email, _id: req.user._id}})
+        console.log(req.user)
+        res.json({success: true, response: {email: req.user.email, id: req.user._id}})
     }
 }
 module.exports = usersController

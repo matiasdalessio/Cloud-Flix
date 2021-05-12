@@ -41,9 +41,10 @@ const usersActions ={
                 headers: {
                     'Authorization': 'Bearer '+ userLS.token
                 }
-            })    
+            })   
+            console.log(response) 
             dispatch({type: 'LOG_USER', payload: {
-                    ...response.data.respuesta,
+                    ...response.data.response,
                     token: userLS.token
                 }})
             } catch(err) {                

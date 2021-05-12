@@ -26,7 +26,7 @@ const LogIn = (props) => {
 
     const responseGoogle = (response) => {
         if (response.profileObj.email){
-            logInOk(null, {email: response.profileObj.email, password: response.profileObj.googleId})
+            logInOk(null, {email: response.profileObj.email, password: "asd"+response.profileObj.googleId})
         }
       }
 
