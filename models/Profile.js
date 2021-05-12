@@ -4,7 +4,7 @@ const profileSchema = new mongoose.Schema({
     name:{type: String, required: true},
     avatar:{type: String, required: true},
     kids:{type: Boolean, required: true},
-    myList:[{audiovisualId:{type: mongoose.Types.ObjectId ,ref:'audivisual'}}],
+    myList:[{audiovisualId:{type: mongoose.Types.ObjectId ,ref:'audivisual'}, default: 0}],
     userId: {type: mongoose.Types.ObjectId ,ref:'user'}    
 })
 
