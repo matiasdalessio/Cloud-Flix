@@ -34,7 +34,7 @@ const SignUp = (props) => {
 
     const responseGoogle = (response) => {
         const {email, googleId, country, premium} = response.profileObj
-        signUpOk(null, {email, password: googleId, country: "Nothing", premium})         
+        signUpOk(null, {email, password: googleId, country: "Nothing"})         
       }
     
     return(
@@ -52,7 +52,7 @@ const SignUp = (props) => {
                     })} 
                 </select>
                 <input className='btnSignUp' type="button" value="Sign up!" onClick={signUpOk}></input>
-                <GoogleLogin clientId="860204804144-du4bstlj54sf85itor2r56drhgqp0nuh.apps.googleusercontent.com" 
+                <GoogleLogin clientId="912348770989-k9puv073o95sj858cd3vpah9ua3n9kmv.apps.googleusercontent.com" 
                     buttonText="Sign Up with Google"
                     onSuccess={responseGoogle}
                     onFailure={responseGoogle}
