@@ -30,8 +30,8 @@ const Header = ()=>{
                         <li><Link to="/series">Series</Link></li>
                         <li><Link to="/mylist" >Mylist</Link></li>
                         <li>
-                            <Link to="/signin" className="btn btn-hover">
-                                <span>Sign in</span>
+                            <Link to="/login" className="btn btn-hover">
+                                <span>Log in</span>
                             </Link>
                         </li>
                     </ul>

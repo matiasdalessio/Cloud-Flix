@@ -2,10 +2,11 @@ import React from 'react'
 import './App.css';
 import './munoz.css'
 import "./dupuy.css"
+import './Forni.css'
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
 
 import Home from "./pages/Home"
-import Login from "./pages/LogIn"
+import Login from "./components/LogIn"
 import SignUp from "./pages/SignUp"
 import Movies from "./pages/Movies"
 import Series from "./pages/Series"
@@ -24,7 +25,7 @@ function App() {
           <Route path="/signup" component={ SignUp } />
           <Route path="/movies" component={ Movies } />
           <Route path="/series" component={ Series }  />
-          <Route path="popular" component={ Popular } />
+          <Route path="/popular" component={ Popular } />
           <Route path="/mylist" component={ Mylist } />
           <Route path="/audiovisual/:id" component={ Audiovisual } />
         <Redirect to="/" />

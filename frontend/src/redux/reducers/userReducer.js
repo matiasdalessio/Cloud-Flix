@@ -5,13 +5,14 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
     switch (action.type){
         case 'LOG_USER': 
-            localStorage.setItem('userLogged', JSON.stringify({photoUser: action.payload.photoUser}))
+        console.log(action.payload)
+            localStorage.setItem('userLogged', JSON.stringify({id: action.payload.id}))
             localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
                 userLogged: action.payload
             }
-        case 'SIGNOUT_USER':
+        case 'LOGOUT_USER':
             localStorage.clear()
             return {
                 ...state,
