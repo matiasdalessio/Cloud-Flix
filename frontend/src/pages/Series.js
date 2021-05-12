@@ -1,5 +1,7 @@
 import React from "react"
-
+import { connect } from "react-redux"
+import seriesAction from "../redux/actions/seriesAction"
+import { NavLink } from "react-router-dom"
 
 class Series extends React.Component{
 
@@ -9,15 +11,38 @@ class Series extends React.Component{
         behavior:"smooth"
     })}
 
-    
+    state={
+        series:[]
+    }
+
+    componentDidMount(){
+        this.props.fetchSeries()
+        .then( data =>{
+            this.setState({ ...this.state, series: data })
+        })
+    }
+
+ 
     render() {
-         
         return(
-            <div>
-                    <h1>Series</h1>
+            <div className="seriesContainer">
+                {   this.state.series &&
+                    this.state.series.map( serie =>{ 
+                    return <div key={ serie._id } onClick={ () => this.props.history.push("/audiovisual/" + serie._id) } className="serie" style={{  backgroundImage: `url('${ serie.imageURL }')`  }} >
+                    </div> })
+                }
+                
+            
+
+
             </div>        
         )
     }
 }
 
-export default Series
+const mapDispatchToProps ={
+    fetchSeries:seriesAction.fetchSeries
+}
+
+
+export default connect(null, mapDispatchToProps) (Series)

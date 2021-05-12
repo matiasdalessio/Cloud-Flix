@@ -1,0 +1,19 @@
+
+.seriesContainer{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.serie{
+  width: 15.7rem;
+  height: 20rem;
+  margin: 0.5rem;
+  background-size: cover;
+  display:inline-block;
+  position:relative;
+  cursor: pointer;
+}
+
+
+
+  
