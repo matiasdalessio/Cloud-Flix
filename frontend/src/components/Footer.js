@@ -11,9 +11,6 @@ const Footer = () => {
 
     return (
         <>
-        <div>
-            <input type="search" placeholder="Search" aria-label="Search" onChange={search}/>
-        </div>
             <footer className="section">
                 <div className="container">
                     <div className="row">
@@ -94,8 +91,7 @@ const Footer = () => {
                 </div>
             </footer>
             <div className="copyright">
-                Copyright 2021 | <a style={{ color: 'blueviolet' }} href="https://www.youtube.com/watch?v=CrZubI4MvC0" target="_blank">
-                    Next Level Team</a>
+                Copyright 2021 | <p style={{ color: 'blueviolet' }}> Challenge Grupo 3</p>
             </div>
         </>
     )
