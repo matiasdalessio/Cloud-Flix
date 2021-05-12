@@ -1,8 +1,9 @@
+import React from 'react'
 import './App.css';
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Login from "./pages/LogIn"
-import SignUp from "./pages/SignUp"
+import SignUp from "./components/SignUp"
 import Movies from "./pages/Movies"
 import Series from "./pages/Series"
 import Popular from "./pages/Popular"
@@ -14,7 +15,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={ Home } />
           <Route path="/login" component={ Login }  />
-          <Route  path="/signup" component={ SignUp } />
+          <Route path="/signup" component={ SignUp } />
           <Route path="/movies" component={ Movies } />
           <Route path="/series" component={ Series }  />
           <Route path="popular" component={ Popular } />
