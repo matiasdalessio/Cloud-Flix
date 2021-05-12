@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Header from './Header'
-import Footer from './Footer'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import usersActions from '../redux/actions/usersActions.js'
 import {connect} from 'react-redux'
 import { GoogleLogin } from 'react-google-login';
-import { Form, Button, Col, Row } from 'react-bootstrap';
+// import { Form, Button, Col, Row } from 'react-bootstrap';
 
 
 const SignUp= (props) => {   
@@ -41,7 +41,7 @@ const SignUp= (props) => {
     
     return(
         <div className='signUpContainer' style={{backgroundImage: "url(./assets/fondoForm.jpg)"}}>
-            <Header />  
+            {/* <Header />  
             <Form className='formUsers'>
                 <h1 className='titleLog'>Sign Up</h1>
                 <Form.Row className='inputUsers'>
@@ -101,7 +101,7 @@ const SignUp= (props) => {
                     <NavLink to="/signin"><h2>Sign In!</h2></NavLink> 
                 </div>
                 </Form>
-            <Footer />
+            <Footer /> */}
         </ div>
         )    
 }
