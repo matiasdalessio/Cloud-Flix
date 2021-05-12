@@ -28,8 +28,7 @@ const Header = ()=>{
                         <li><Link to="/popular">Popular</Link></li>
                         <li><Link to="/movies">Movies</Link></li>
                         <li><Link to="/series">Series</Link></li>
-                        <li><Link to="/about" >About</Link></li>
-                        
+                        <li><Link to="/mylist" >Mylist</Link></li>
                         <li>
                             <Link to="/signin" className="btn btn-hover">
                                 <span>Sign in</span>
