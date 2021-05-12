@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Login from "./pages/LogIn"
-import SignUp from "./components/SignUp"
+import SignUp from "./pages/SignUp"
 import Movies from "./pages/Movies"
 import Series from "./pages/Series"
 import Popular from "./pages/Popular"
