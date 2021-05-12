@@ -28,7 +28,8 @@ const SignUp = (props) => {
     const signUpOk = async (e = null, googleUser = null) => {
         e && e.preventDefault()
         let user = e ? newUser : googleUser
-        props.loadUser(user)
+        const respuesta = await props.loadUser(user)
+        
     }
 
     const responseGoogle = (response) => {

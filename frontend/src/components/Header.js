@@ -2,6 +2,7 @@ import { useState } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import usersActions from "../redux/actions/usersActions"
+import { FaPlayCircle } from "react-icons/fa";
 
 const Header = ({userLogged, userLogout})=>{
     const [ visible, setVisible ] = useState(false)
@@ -11,22 +12,22 @@ const Header = ({userLogged, userLogout})=>{
         userLogout()
     }
 
- return  <div className="nav-wrapper">
+ return  <div className="animate__animated animate__fadeInDown nav-wrapper">
             <div className="container">
                 <div className="nav">
                     <Link to="/" className="logo">
-                        <i className='bx bx-movie-play bx-tada main-color'></i>Cloud<span className="main-color">Flix</span>
+                        <i className='bx bx-movie-play bx-tada main-color'></i>Cl<FaPlayCircle className="playIcon"/>ud<span className="main-color">Flix</span>
                     </Link>
                     <ul className={ visible ? "nav-menu active " : "nav-menu" } id="nav-menu">
                     <li>
                             <div className="searchContainer">
                                 <form role="search" >
-                                <label htmlFor="s">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className ="bi bi-search" viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                                </svg>
-                                </label>
-                                <input type="text" onChange={ e => setItem( e.target.value ) } placeholder="Search" className="" id="s" />
+                                    <label htmlFor="s">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className ="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                        </svg>
+                                    </label>
+                                    <input type="text" onChange={ e => setItem( e.target.value ) } placeholder="Search" className="" id="s" />
                                 </form>
                             </div>
                         </li>
@@ -39,7 +40,7 @@ const Header = ({userLogged, userLogout})=>{
                         :   null}
                         {userLogged 
                         ?   <li>
-                                <Link to="/login" className="btn btn-hover">
+                                <Link to="/" className="btn btn-hover">
                                     <span onClick={()=> logOut()}>Log out</span>
                                 </Link>
                             </li>

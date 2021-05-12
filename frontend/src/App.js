@@ -15,7 +15,9 @@ import Mylist from "./pages/MyList"
 import Header from './components/Header';
 import Audiovisual from './pages/Audiovisual';
 import usersActions from './redux/actions/usersActions';
+import './preloader.css'
 import { connect } from 'react-redux';
+import ProfileSelection from './pages/ProfileSelection';
 
 class App extends React.Component{
 
@@ -33,16 +35,16 @@ class App extends React.Component{
 
   return (
       <BrowserRouter>
-      {this.props.userlogged && alert("hola" + this.props.userlogged.id)}
         <Header />
         <Switch>
           <Route exact path="/" component={ Home } />
-          {!this.props.userLogged && <Route path="/signup" component={SignUp} />}
-          {!this.props.userLogged && <Route path="/login" component={Login} />}
+          {!localStorage.getItem('token') && <Route path="/signup" component={SignUp} />}
+          {!localStorage.getItem('token') && <Route path="/login" component={Login} />}
           <Route path="/movies" component={ Movies } />
           <Route path="/series" component={ Series }  />
           <Route path="/popular" component={ Popular } />
-          {!this.props.userLogged &&<Route path="/mylist" component={ Mylist } />}
+          {localStorage.getItem('token') && <Route path="/mylist" component={ Mylist } />}
+          {localStorage.getItem('token') && <Route path="/ProfileSelection" component={ ProfileSelection } />}
           <Route path="/audiovisual/:id" component={ Audiovisual } />
          <Redirect to="/" />
         </Switch>
