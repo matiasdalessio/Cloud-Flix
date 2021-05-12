@@ -9,7 +9,7 @@ const Header = ()=>{
             <div className="container">
                 <div className="nav">
                     <Link to="/" className="logo">
-                        <i className='bx bx-movie-play bx-tada main-color'></i><span className="main-color">C</span>loudFl<span className="main-color">i</span>x
+                        <i className='bx bx-movie-play bx-tada main-color'></i>Cloud<span className="main-color">Flix</span>
                     </Link>
                     <ul className={ visible ? "nav-menu active " : "nav-menu" } id="nav-menu">
                     <li>
@@ -20,7 +20,7 @@ const Header = ()=>{
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                 </svg>
                                 </label>
-                                <input type="text" onChange={ e => setItem( e.target.value ) } placeholder="search" className="" id="s" />
+                                <input type="text" onChange={ e => setItem( e.target.value ) } placeholder="Search" className="" id="s" />
                                 </form>
                             </div>
                         </li>

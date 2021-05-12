@@ -607,10 +607,13 @@ footer .content {
 }
 
 .copyright {
+    display: flex;
     padding: 10px;
     border-top: 1px solid var(--body-bg);
     background-color: var(--box-bg);
     text-align: center;
+    width: 100%;
+    justify-content: center;
 }
 .searchContainer{
     margin:auto;
@@ -633,7 +636,7 @@ footer .content {
     transition:all 0.2s ease-out;
     width:1px;
     border-radius:0;
-    box-shadow:none;
+    box-shadow:0 0 0.1em rgba(60,60,60,0.3);
     outline: none;
     padding-left:0.3rem;
     margin:0;
@@ -646,6 +649,7 @@ footer .content {
   .searchContainer input:focus {
     width:15em;
     opacity:1;
+    padding-left: 2vw;
   }
   
   .searchContainer label{
