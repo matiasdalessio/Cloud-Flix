@@ -31,7 +31,7 @@ const Header = ()=>{
                         <li><Link to="/mylist" >Mylist</Link></li>
                         <li>
                             <Link to="/signin" className="btn btn-hover">
-                                <span>Sign in</span>
+                                <span>Log in</span>
                             </Link>
                         </li>
                     </ul>

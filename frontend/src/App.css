@@ -1,7 +1,7 @@
 :root {
 
 
-    --main-color: #6411ad;
+    --main-color: #E50914;
     --body-bg: #181616;
     --box-bg: #221f1f;
     --text-color: #ffffff;
@@ -122,7 +122,7 @@ a.movie-item:hover {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%;
+    width: 60%;
     height: 100%;
     background-color: var(--main-color);
     transition: 0.3s ease-in-out;
@@ -214,27 +214,6 @@ a.movie-item:hover {
     overflow: hidden;
 }
 
-.hero-slide-item .divCarousel1{
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.hero-slide-item .divCarousel3 {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.hero-slide-item .divCarousel2  {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
 .hero-slide-item-content {
     position: absolute;
     top: 0;
@@ -307,29 +286,6 @@ a.movie-item:hover {
     margin-top: var(--space-top);
 }
 
-.carousel-nav-center {
-    position: relative;
-}
-
-.carousel-nav-center .owl-nav button i {
-    font-size: 3rem;
-}
-
-.carousel-nav-center .owl-nav button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.carousel-nav-center .owl-nav .owl-prev {
-    position: absolute;
-    left: 5px;
-}
-
-.carousel-nav-center .owl-nav .owl-next {
-    position: absolute;
-    right: 5px;
-}
 
 .row {
     display: flex;
