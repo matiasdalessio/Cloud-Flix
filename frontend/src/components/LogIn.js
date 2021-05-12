@@ -21,8 +21,8 @@ const LogInUsers = (props) => {
     
     const logInOk = async (e = null, userGoogle = null) => {
         e && e.preventDefault()
-        let usuario = e ? userLog : userGoogle
-        props.loguearUsuario(usuario)
+        let user = e ? userLog : userGoogle
+        props.loguearUsuario(user)
     }
 
     const responseGoogle = (response) => {

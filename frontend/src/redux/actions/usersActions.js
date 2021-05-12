@@ -2,7 +2,7 @@ import axios from 'axios'
 import 'react-toastify/dist/ReactToastify.css';
 
 const usersActions ={
-    cargarUsuario: (newUser) => {
+    loadUser: (newUser) => {
         return async (dispatch, getstate) => {
             const response = await axios.post('http://localhost:4000/api/user/signup', newUser)
             if(response.data.success){
@@ -17,7 +17,7 @@ const usersActions ={
             }       
         } 
     },
-    loguearUsuario: (userLog) => {
+    userLogged: (userLog) => {
         return async (dispatch, getstate) => {
             const response = await axios.post('http://localhost:4000/api/user/signin', userLog)
             if(response.data.success){
@@ -29,21 +29,21 @@ const usersActions ={
             }            
        }
     },
-    desloguearUsuario: () => {
+    userLogout: () => {
         return(dispatch, getstate) => {
             dispatch({type: 'SIGNOUT_USER'})
         }
     },
-    loginForzadoPorLS: (userLS) => {
+    loginForcedLS: (userLS) => {
         return async (dispatch, getState) => {
             try {
-                const respuesta = await axios.get('http://localhost:4000/api/user/signinForzado', {
+                const response = await axios.get('http://localhost:4000/api/user/signinForzado', {
                 headers: {
                     'Authorization': 'Bearer '+ userLS.token
                 }
             })    
             dispatch({type: 'LOG_USER', payload: {
-                    ...respuesta.data.respuesta,
+                    ...response.data.respuesta,
                     token: userLS.token
                 }})
             } catch(err) {                
