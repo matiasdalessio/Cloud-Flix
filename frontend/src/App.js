@@ -20,7 +20,7 @@ function App() {
           <Route path="/signup" component={ SignUp } />
           <Route path="/movies" component={ Movies } />
           <Route path="/series" component={ Series }  />
-          <Route path="popular" component={ Popular } />
+          <Route path="/popular" component={ Popular } />
           <Route path="/mylist" component={ Mylist } />
         <Redirect to="/" />
       </Switch>

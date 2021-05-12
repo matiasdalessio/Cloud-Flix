@@ -9,7 +9,7 @@ const Header = ()=>{
             <div className="container">
                 <div className="nav">
                     <Link to="/" className="logo">
-                        <i className='bx bx-movie-play bx-tada main-color'></i>Fl<span className="main-color">i</span>x
+                        <i className='bx bx-movie-play bx-tada main-color'></i><span className="main-color">C</span>loudFl<span className="main-color">i</span>x
                     </Link>
                     <ul className={ visible ? "nav-menu active " : "nav-menu" } id="nav-menu">
                     <li>

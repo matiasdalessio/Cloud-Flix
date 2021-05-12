@@ -11,16 +11,13 @@ const Footer = () => {
 
     return (
         <>
-        <div>
-            <input type="search" placeholder="Search" aria-label="Search" onChange={search}/>
-        </div>
             <footer className="section">
                 <div className="container">
                     <div className="row">
                         <div className="col-4 col-md-6 col-sm-12">
                             <div className="content">
                                 <NavLink className="logo" to="/">
-                                    <i className='bx bx-movie-play bx-tada main-color'></i>Fl<span className="main-color">i</span>x
+                                    <i className='bx bx-movie-play bx-tada main-color'></i><span className="main-color">C</span>loudFl<span className="main-color">i</span>x
                                 </NavLink>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut veniam ex quos hic id nobis beatae earum sapiente! Quod ipsa exercitationem officiis non error illum minima iusto et. Dolores, quibusdam?</p>
                                 <div className="social-list">
