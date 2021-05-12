@@ -1,5 +1,5 @@
 import React from "react"
-import Footer from "../components/Footer"
+import Carrousel from "../components/Carrousel"
 
 
 class Home extends React.Component{
@@ -14,10 +14,9 @@ class Home extends React.Component{
     render() {
          
         return(
-            <>
-                <h1>Home</h1>
-                <Footer />
-            </>        
+            <div>
+                    <Carrousel />
+            </div>        
         )
     }
 }

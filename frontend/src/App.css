@@ -258,6 +258,16 @@ img {
     padding: 0 40px;
     margin: auto;
 }
+.containerCarrousel{
+    width: 98vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: #151515;
+    position: absolute;
+}
 
 .overlay {
     position: absolute;
@@ -892,5 +902,7 @@ footer .content {
 .col-12 {
     width: 100%;
 } */
+
+
 
 
