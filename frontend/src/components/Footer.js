@@ -85,7 +85,7 @@ const Footer = () => {
                 </div>
             </footer>
             <div className="copyright">
-                Copyright 2021 | <p className='colorChallengeFooter'> Challenge Grupo 3</p>
+                Copyright 2021 | <p className='colorChallengeFooter'>Challenge Grupo 3</p>
             </div>
         </>
     )

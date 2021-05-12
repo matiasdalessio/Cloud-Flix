@@ -12,7 +12,6 @@ class Home extends React.Component{
         behavior:"smooth"
     })}
 
-    
     render() {
          
         return(

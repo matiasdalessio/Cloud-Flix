@@ -1,7 +1,5 @@
 import Slider from './NetflixSlider'
 
-
-
 const CarouselMovies = ({movies})=>{
     return (
         <Slider>
