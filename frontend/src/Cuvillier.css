@@ -1,0 +1,21 @@
+.hero-slide-item{
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.section-header {
+    margin: 4vh 0;
+}
+.colorChallengeFooter{
+    color: #E50913;
+    margin-left: 1vw;
+}
+footer{
+    padding-top: 2vh;
+}
+.nav-wrapper{
+    height: 13vh;
+}
+.nav{
+    margin-top: 2vh;
+}

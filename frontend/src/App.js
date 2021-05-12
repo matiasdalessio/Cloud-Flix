@@ -1,5 +1,6 @@
 import React from 'react'
 import './App.css';
+import './Cuvillier.css'
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Login from "./pages/LogIn"

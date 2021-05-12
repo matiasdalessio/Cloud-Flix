@@ -1,6 +1,6 @@
 import React from "react"
-import Carrousel from "../components/Carrousel"
 import Footer from "../components/Footer"
+import Hero from "../components/Hero"
 import Lastest from "../components/Lastest"
 
 
@@ -17,10 +17,10 @@ class Home extends React.Component{
          
         return(
             <div>
-                    <Carrousel />
-                    <Lastest Lastest={'Movies'}/>
-                    <Lastest Lastest={'Series'}/>
-                    <Footer/>
+                <Hero />
+                <Lastest Lastest={'Movies'}/>
+                <Lastest Lastest={'Series'}/>
+                <Footer/>
             </div>        
         )
     }
