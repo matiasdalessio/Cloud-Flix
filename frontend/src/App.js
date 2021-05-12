@@ -1,7 +1,9 @@
 import React from 'react'
 import './App.css';
 import './munoz.css'
+import "./dupuy.css"
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
+
 import Home from "./pages/Home"
 import Login from "./pages/LogIn"
 import SignUp from "./pages/SignUp"
@@ -10,6 +12,7 @@ import Series from "./pages/Series"
 import Popular from "./pages/Popular"
 import Mylist from "./pages/MyList"
 import Header from './components/Header';
+import Audiovisual from './components/audiovisual';
 
 function App() {
   return (
@@ -23,6 +26,7 @@ function App() {
           <Route path="/series" component={ Series }  />
           <Route path="popular" component={ Popular } />
           <Route path="/mylist" component={ Mylist } />
+          <Route path="/audiovisual/:id" component={ Audiovisual } />
         <Redirect to="/" />
       </Switch>
      </BrowserRouter>
