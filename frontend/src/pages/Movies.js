@@ -1,7 +1,14 @@
 import React from "react"
-
+import Footer from "../components/Footer"
+import { connect } from 'react-redux';
+import audiovisualActions from '../redux/actions/audiovisualActions'
+import Movie from "../components/Movie";
 
 class Movies extends React.Component{
+
+    componentDidMount = () => {
+        this.props.fetchMovies()
+    }
 
     toTop= () => {window.scroll({
         top:0,
@@ -13,11 +20,26 @@ class Movies extends React.Component{
     render() {
          
         return(
-            <div>
-                    <h1>Movies</h1>
-            </div>        
+            <>
+            {
+                this.props.movies.map( movie => {
+                    return <Movie movie={movie} />
+                })
+            }
+                <Footer />
+            </>        
         )
     }
 }
 
-export default Movies
+const mapStateToProps = state => {
+    return {
+        movies: state.audiovisual.movies.filter( movie => movie.audiovisualType === 'Movie' )
+    }
+}
+
+const mapDispatchToProps = {
+    fetchMovies: audiovisualActions.movies
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movies)
