@@ -41,12 +41,18 @@ a {
     color: var(--main-color);
 }
 
+.section .container {
+    height: auto;
+
+}
+
 .container {
     height: 6rem;
     max-width: 1920px;
     padding: 0 40px;
     margin: auto;   
 }
+
 footer .container {
     height: 15rem;
 }
@@ -611,6 +617,10 @@ footer .content {
     position: relative;
     left:0.1em;
     cursor: pointer;
+  }
+
+  .section div .container{
+      height: auto;
   }
 
 /* RESPONSIVE */
