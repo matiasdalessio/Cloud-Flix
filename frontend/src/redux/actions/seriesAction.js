@@ -9,7 +9,7 @@ const seriesAction = {
             .then( data => data.respuesta.filter( element => element.audiovisualType === "Serie" ) )
             .catch( err => console.log( err ) )
         }
-    }
+    },
 }
 
 export default seriesAction
