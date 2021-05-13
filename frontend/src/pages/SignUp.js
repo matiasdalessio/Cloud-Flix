@@ -40,7 +40,7 @@ const SignUp = (props) => {
     
     return(
         <div className='signUpContainer'>
-            {/* <Header/> */}
+            <Header/>
             <form className='formUsersSignUp'>
                 <h1 className='titleLog'>Sign Up</h1>   
                 <input className='inputUsers' type='email' name='email' placeholder='Please, enter your email address' value={newUser.email} onChange={readInput} required></input>
@@ -68,7 +68,7 @@ const SignUp = (props) => {
                     <NavLink to="/login"><h2>Log In!</h2></NavLink> 
                 </div>
             </form>        
-            {/* <Footer /> */}
+            <Footer />
         </ div>
         
     )    

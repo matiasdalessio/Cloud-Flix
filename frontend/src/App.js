@@ -6,7 +6,6 @@ import './Forni.css'
 import './Cuvillier.css'
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom"
 import Home from "./pages/Home"
-import Login from "./pages/LogIn"
 import SignUp from "./pages/SignUp"
 import Movies from "./pages/Movies"
 import Series from "./pages/Series"
@@ -17,7 +16,8 @@ import usersActions from './redux/actions/usersActions';
 import './preloader.css'
 import { connect } from 'react-redux';
 import ProfileSelection from './pages/ProfileSelection';
-import User from './pages/User';
+import LogIn from './pages/LogIn';
+
 
 class App extends React.Component{
 
@@ -37,8 +37,8 @@ class App extends React.Component{
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Home } />
-          {!localStorage.getItem('token') && <Route path="/signup" component={User} />}
-          {!localStorage.getItem('token') && <Route path="/login" component={User} />}
+          {!localStorage.getItem('token') && <Route path="/signup" component={SignUp} />}
+          {!localStorage.getItem('token') && <Route path="/login" component={LogIn} />}
           <Route path="/movies" component={ Movies } />
           <Route path="/series" component={ Series }  />
           <Route path="/popular" component={ Popular } />

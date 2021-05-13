@@ -35,6 +35,7 @@ const LogIn = (props) => {
 
     return(
         <div className='logInContainer' style={{backgroundImage: "url(./assets/fondoForm.jpg)"}}>
+            <Header />
             <form className='formUsersLogIn'>
                 <h1 className='titleLog'>Log In</h1>   
                 <input className='inputUsers' type='email' name='email' placeholder='Please, enter your email address' value={userLog.email} onChange={readInput} required></input>
@@ -54,8 +55,8 @@ const LogIn = (props) => {
                     <p>Already have an account?</p>
                     <NavLink to="/signup"><h2>Sign Up!</h2></NavLink> 
                 </div>
-                
-            </form>                 
+            </form>   
+            <Footer />              
         </ div>
         )    
 }
