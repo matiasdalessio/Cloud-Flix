@@ -12,7 +12,7 @@ const usersActions ={
             })
             } else {
                 response.data.errores.details.map((error)=>{ 
-                    alert(error.message)
+                   return alert(error.message)
                 })
             }       
         } 
@@ -41,9 +41,9 @@ const usersActions ={
                 headers: {
                     'Authorization': 'Bearer '+ userLS.token
                 }
-            })    
+            })   
             dispatch({type: 'LOG_USER', payload: {
-                    ...response.data.respuesta,
+                    ...response.data.response,
                     token: userLS.token
                 }})
             } catch(err) {                

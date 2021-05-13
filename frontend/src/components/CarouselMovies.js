@@ -1,14 +1,13 @@
 import Slider from './NetflixSlider'
 
-
-const CarouselMovies = ({ movies })=>{
+const CarouselMovies = ({movies})=>{
     return (
         <Slider>
-          {movies.map(movie => (
-            <Slider.Item movie={movie} key={movie._id}>item1</Slider.Item>
-          ))}
+          {movies.map(movie => { 
+              return <Slider.Item movie={movie} key={movie._id}>item1</Slider.Item>   
+          })}
         </Slider> 
-    );
+      )
   
 }
 

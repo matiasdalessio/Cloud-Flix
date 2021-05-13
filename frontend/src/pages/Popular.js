@@ -1,4 +1,5 @@
 import React from "react"
+import Header from "../components/Header"
 
 
 class Popular extends React.Component{
@@ -14,6 +15,7 @@ class Popular extends React.Component{
          
         return(
             <div>
+                <Header/>
                     <h1>Popular</h1>
             </div>        
         )
