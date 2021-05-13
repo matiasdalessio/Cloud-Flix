@@ -47,6 +47,9 @@ a {
     padding: 0 40px;
     margin: auto;   
 }
+footer .container {
+    height: 15rem;
+}
 
 .overlay {
     position: absolute;

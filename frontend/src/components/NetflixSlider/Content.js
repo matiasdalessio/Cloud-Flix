@@ -20,7 +20,6 @@ const Content = ({ movie, onClose, userLogged , history }) => (
                   <div className="content__title">{movie.title}</div>
 
                   <div className="content-info" >
-                    { console.log({ movie })  }
 
                     <div className="content__description">
                       { movie.sinopsis.length > 250 
