@@ -13,7 +13,7 @@ const audiovisualActions = {
                 console.log(data.repuesta)
             }
         }
-    }
+    },
 }
 
 export default audiovisualActions

@@ -1,8 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
 
-const Content = ({ movie, onClose, history }) => (
+const Content = ({ movie, onClose, history, addToMyList }) => {
+
+  const userData = JSON.parse(localStorage.getItem('userLogged'))
+  const userLS= {
+    token: localStorage.getItem('token'),
+    ...userData
+  }
+
+  
+  const sendMovieToList = async(movie) =>{
+    // const response = await 
+    addToMyList(movie, userLS)
+  }
+
+
+  return (
           <div className="content">
               <div className="content__background">
                 <div className="content__background__shadow" />
@@ -46,6 +63,9 @@ const Content = ({ movie, onClose, history }) => (
                     <div className="year">
                     <h4>Year: { movie.year } </h4>
                     </div>
+                    <div>
+                      <button onClick={() => sendMovieToList(movie)}>agregar</button>
+                    </div>
 
                   </div>
 
@@ -56,6 +76,15 @@ const Content = ({ movie, onClose, history }) => (
               </div>
             </div>
   
-);
+)};
 
-export default Content;
+const mapStateToProps = state => {
+  return {
+      userLogged: state.user.userLogged
+  }
+}
+const mapDispatchToProps = {
+  addToMyList :  profileActions.addToMyList,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Content)
