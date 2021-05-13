@@ -37,6 +37,7 @@ a {
 
 
 .main-color {
+    margin-left: 0;
     color: var(--main-color);
 }
 
