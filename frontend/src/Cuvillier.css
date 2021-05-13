@@ -4,7 +4,7 @@
     background-repeat: no-repeat;
 }
 .section-header {
-    margin: 4vh 0;
+    margin-top: 7vh;
 }
 .colorChallengeFooter{
     color: #E50913;
@@ -12,10 +12,26 @@
 }
 footer{
     padding-top: 2vh;
+    padding-bottom: 0vh !important;
 }
+
 .nav-wrapper{
     height: 13vh;
 }
 .nav{
     margin-top: 2vh;
+}
+.imageCarouselHeader{
+    width: 100vw;
+    height: 90vh;
+    border: 1px solid black;
+    background-position: top;
+    background-size: cover;
+  }
+.contenedorCarrousel{
+    margin-top: 13vh;
+} 
+.content{
+    height: 40vh !important;
+    padding-top: 2vh;
 }

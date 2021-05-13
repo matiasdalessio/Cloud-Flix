@@ -6,6 +6,15 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
 
+/* const LogIn = () => {
+
+    return(
+        <CardLogin />
+    )
+}
+
+export default LogIn */
+
 const LogIn = (props) => {   
     const [userLog, setUserLog] = useState({email:'', password:''})
 
@@ -25,6 +34,7 @@ const LogIn = (props) => {
     }
 
     const responseGoogle = (response) => {
+        console.log(response)
         if (response.profileObj.email){
             logInOk(null, {email: response.profileObj.email, password: response.profileObj.googleId})
         }
@@ -39,7 +49,7 @@ const LogIn = (props) => {
                 <input className='inputUsers' type='password' name='password' placeholder='Please, enter your password' value={userLog.password} onChange={readInput} required></input>
                 
                 <input className='btnLogIn' type="button" value="Log In!" onClick={logInOk}></input>
-                <GoogleLogin clientId="860204804144-du4bstlj54sf85itor2r56drhgqp0nuh.apps.googleusercontent.com" 
+                <GoogleLogin clientId="912348770989-k9puv073o95sj858cd3vpah9ua3n9kmv.apps.googleusercontent.com"
                 buttonText="Log In with Google"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
