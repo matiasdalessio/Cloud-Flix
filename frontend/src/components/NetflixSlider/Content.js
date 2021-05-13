@@ -35,7 +35,7 @@ const Content = ({ movie, onClose, history }) => (
                     </div>
 
                     <div className="casting">
-                    <h4>Casting: </h4>
+                    <h4>Cast: </h4>
                      { movie.cast.map( (element, index) => <span key={index}>{ element }</span> ) }
                     </div>
 
