@@ -1,6 +1,7 @@
 .content {
   position: relative;
-  height: 37vw;
+  width: 99vw;
+  min-height: 90vh;
   margin-top: -40px;
 
   &__background,
@@ -80,4 +81,20 @@
     top: 30px;
     right: 30px;
   }
+}
+
+/* .content-info{
+
+} */
+.languages, .subtitles, .casting, .director, .year  {
+  display: flex;
+  align-items: center;
+}
+
+.languages, .subtitles, .casting, .director, .year,  span {
+  margin-left: 0.7rem;
+}
+
+.languages, .subtitles, .casting, .director, .year  {
+  margin-left: 0;
 }
