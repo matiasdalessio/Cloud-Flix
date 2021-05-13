@@ -9,7 +9,6 @@ const audiovisualReducer = (state = initialState, action) => {
                 ...state,
                 movies: action.payload
             }
-            break
         default:
             return state
     }

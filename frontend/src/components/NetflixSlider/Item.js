@@ -8,17 +8,17 @@ import './Item.scss'
 const Item = ({ movie }) => (
   <SliderContext.Consumer>
     {({ onSelectSlide, currentSlide, elementRef }) => {
-      const isActive = currentSlide && currentSlide.id === movie.id;
+      const isActive = currentSlide && currentSlide.id === movie._id;
 
       return (
-        <div
+        <div onClick={() => onSelectSlide(movie)}
           ref={elementRef}
           className={cx('item', {
             'item--open': isActive,
           })}
         >
-          <img src={movie.image} alt="" />
-          <ShowDetailsButton onClick={() => onSelectSlide(movie)} />
+          <img src={movie.imageURL} alt="" />
+          <ShowDetailsButton  />
           {isActive && <Mark />}
         </div>
       );

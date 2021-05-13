@@ -16,7 +16,7 @@ footer{
 }
 
 .nav-wrapper{
-    height: 13vh;
+    height: 6rem;
 }
 .nav{
     margin-top: 2vh;
@@ -29,9 +29,8 @@ footer{
     background-size: cover;
   }
 .contenedorCarrousel{
-    margin-top: 13vh;
+    margin-top: 6rem;
 } 
 .content{
-    height: 40vh !important;
     padding-top: 2vh;
 }
