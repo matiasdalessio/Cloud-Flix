@@ -13,13 +13,11 @@ import Movies from "./pages/Movies"
 import Series from "./pages/Series"
 import Popular from "./pages/Popular"
 import Mylist from "./pages/MyList"
-import Header from './components/Header';
 import Audiovisual from './pages/Audiovisual';
 
 function App() {
   return (
      <BrowserRouter>
-     <Header />
       <Switch>
         <Route exact path="/" component={ Home } />
           <Route path="/login" component={ Login }  />

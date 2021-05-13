@@ -1,7 +1,6 @@
 import Slider from './NetflixSlider'
 
-
-const CarouselMovies = ({ movies })=>{
+const CarouselMovies = ({movies})=>{
     return (
         <Slider>
           {movies.map(movie => (

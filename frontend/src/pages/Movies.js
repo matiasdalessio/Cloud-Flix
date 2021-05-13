@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import { connect } from 'react-redux';
 import audiovisualActions from '../redux/actions/audiovisualActions'
 import Movie from "../components/Movie";
+import Header from "../components/Header";
 
 class Movies extends React.Component{
 
@@ -18,12 +19,19 @@ class Movies extends React.Component{
 
     
     render() {
-         
         return(
             <>
+                <Header />
             {
                 this.props.movies.map( movie => {
-                    return <Movie movie={movie} />
+                    var array =[ 
+                        {
+                            id: movie._id,
+                            image: movie.imageURL,
+                            title: movie.title
+                        }
+                    ]
+                    return <Movie movie={movie} array={array}  />
                 })
             }
                 <Footer />
