@@ -5,7 +5,6 @@ import usersActions from '../redux/actions/usersActions.js'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
-import CardLogin from '../components/CardLogin'
 
 /* const LogIn = () => {
 
