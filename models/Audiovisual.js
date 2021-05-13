@@ -13,7 +13,8 @@ const audiovisualSchema = new mongoose.Schema({
     audiovisualType: {type: String, required: true},
     audienceAge: {type: String, required: true},
     sinopsis: {type: String, required: true},
-    imageURL: {type: String, required: true},
+    imageBanner: {type: String, required: true},
+    imageBackground: {type: String, required: true},
     duration: {type: String},
     comments:[{name:{type:String, required: true}, avatar:{type:String, required: true}, comment:{type:String, required: true}, userId:{type: mongoose.Types.ObjectId, ref: 'user', required:true}, default: 0}],
 })

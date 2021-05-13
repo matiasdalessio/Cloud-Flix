@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { FaPlayCircle } from "react-icons/fa";
 
 const Footer = () => {
     
@@ -11,7 +11,7 @@ const Footer = () => {
                         <div className="col-4 col-md-6 col-sm-12">
                             <div className="content">
                                 <NavLink className="logo" to="/">
-                                <i className='bx bx-movie-play bx-tada main-color'></i>Cloud<span className="main-color">Flix</span>
+                                <i className='bx bx-movie-play bx-tada main-color'></i>Cl<FaPlayCircle className="playIcon"/>ud<span className="main-color">Flix</span>
                                 </NavLink>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut veniam ex quos hic id nobis beatae earum sapiente! Quod ipsa exercitationem officiis non error illum minima iusto et. Dolores, quibusdam?</p>
                                 <div className="social-list">

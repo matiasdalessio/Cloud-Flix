@@ -2,7 +2,7 @@ import React from "react"
 import Header from "../components/Header"
 
 
-class MiList extends React.Component{
+class ProfileSelection extends React.Component{
 
     toTop= () => {window.scroll({
         top:0,
@@ -16,10 +16,10 @@ class MiList extends React.Component{
         return(
             <div>
                 <Header/>
-                    <h1>MiList</h1>
+                    <h1>ProfileSelection</h1>
             </div>        
         )
     }
 }
 
-export default MiList
+export default ProfileSelection

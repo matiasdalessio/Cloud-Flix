@@ -2,10 +2,14 @@ import React from "react"
 import Footer from "../components/Footer"
 import { connect } from 'react-redux';
 import audiovisualActions from '../redux/actions/audiovisualActions'
-import Movie from "../components/Movie";
 import Header from "../components/Header";
+import Lastest from "../components/Lastest"
 
 class Movies extends React.Component{
+
+    state = {
+        
+    }
 
     componentDidMount = () => {
         this.props.fetchMovies()
@@ -22,18 +26,12 @@ class Movies extends React.Component{
         return(
             <>
                 <Header />
-            {
-                this.props.movies.map( movie => {
-                    var array =[ 
-                        {
-                            id: movie._id,
-                            image: movie.imageURL,
-                            title: movie.title
-                        }
-                    ]
-                    return <Movie movie={movie} array={array}  />
-                })
-            }
+                <div className="seriesContainer">
+                <Header/>
+                {  this.movies &&
+                    <Lastest title={ "Most Populars" } array={ this.movies} />
+                }
+                </div>   
                 <Footer />
             </>        
         )
