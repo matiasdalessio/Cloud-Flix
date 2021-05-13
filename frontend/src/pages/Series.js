@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import seriesAction from "../redux/actions/seriesAction"
 import Lastest from "../components/Lastest"
+import Header from "../components/Header"
 
 class Series extends React.Component{
 
@@ -39,6 +40,7 @@ return <div key={ serie._id } onClick={ () => this.props.history.push("/audiovis
     render() {
         return(
             <div className="seriesContainer">
+                <Header/>
                 {  this.state.action &&
                     <Lastest title={ "Most Populars" } array={ this.state.action } />
                 }

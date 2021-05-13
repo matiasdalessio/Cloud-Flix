@@ -26,12 +26,12 @@ class Movies extends React.Component{
                 this.props.movies.map( movie => {
                     var array =[ 
                         {
-                            id: movie._id,
+                            _id: movie._id,
                             image: movie.imageURL,
                             title: movie.title
                         }
                     ]
-                    return <Movie movie={movie} array={array}  />
+                    return <Movie key={movie._id} movie={movie} array={array}  />
                 })
             }
                 <Footer />

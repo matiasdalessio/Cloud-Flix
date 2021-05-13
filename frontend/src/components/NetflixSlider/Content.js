@@ -8,7 +8,7 @@ const Content = ({ movie, onClose, history }) => (
                 <div className="content__background__shadow" />
                 <div
                   className="content__background__image"
-                  style={{ 'background-image': `url(${movie.imageURL})` }}
+                  style={{ backgroundImage: `url(${movie.imageURL})` }}
                 />
               </div>
               <div className="content__area">
@@ -26,17 +26,17 @@ const Content = ({ movie, onClose, history }) => (
 
                     <div className="languages">
                     <h4>Languages: </h4>
-                     { movie.availableLanguages.map( element => <span>{ element }</span> ) }
+                     { movie.availableLanguages.map( (element, index) => <span key={index}>{ element }</span> ) }
                     </div>
                      
                     <div className="subtitles">
                     <h4>Subtitles: </h4>
-                     { movie.availableLanguages.map( element => <span>{ element }</span> ) }
+                     { movie.availableLanguages.map( (element, index) => <span key={index}>{ element }</span> ) }
                     </div>
 
                     <div className="casting">
                     <h4>Casting: </h4>
-                     { movie.cast.map( element => <span>{ element }</span> ) }
+                     { movie.cast.map( (element, index) => <span key={index}>{ element }</span> ) }
                     </div>
 
                     <div className="director">

@@ -4,6 +4,7 @@ import Footer from "../components/Footer"
 // import Lastest from "../components/Lastest"
 import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
+import Header from "../components/Header"
 
 
 class Home extends React.Component{
@@ -25,6 +26,7 @@ class Home extends React.Component{
     render() {
         return(
             <div>
+                <Header/>
                 <Carrousel />
                 {/* <Lastest title={'Movies'} array={ this.array1 } />
                 <Lastest title={'Series'} array={ this.array1} /> */}

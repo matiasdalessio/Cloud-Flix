@@ -1,8 +1,7 @@
-import { NavLink } from 'react-router-dom';
 import CarouselMovies from "./CarouselMovies"
 
 const Movie = (props) => {
-    const { movie , array } = props
+    const {  array } = props
 
     return (
         <>
