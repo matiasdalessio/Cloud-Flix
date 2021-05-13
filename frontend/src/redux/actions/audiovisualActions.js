@@ -7,13 +7,13 @@ const audiovisualActions = {
                 if (!data.success) {
                     console.log(data.respuesta)
                 } else {
-                    dispatch({ type: 'LOAD_MOVIES', payload: data.respuesta })
+                    return data.respuesta.filter( movie => movie.audiovisualType === 'Movie' )
                 }
             } catch (error) {
                 console.log(data.repuesta)
             }
         }
-    }
+    },
 }
 
 export default audiovisualActions

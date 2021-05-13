@@ -2,10 +2,11 @@ import Slider from 'infinite-react-carousel';
 
 const Carrousel = ()=>{
     const settings =  {
-        pauseOnHover: false,
+        pauseOnHover: true,
         autoplay: true,
         autoplaySpeed: 5000
     };
+
     return (
         <div className='contenedorCarrousel'>
             <Slider {...settings}>

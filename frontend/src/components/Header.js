@@ -36,10 +36,10 @@ const Header = ({userLogged, userLogout})=>{
                         <li><Link to="/popular">Popular</Link></li>
                         <li><Link to="/movies">Movies</Link></li>
                         <li><Link to="/series">Series</Link></li>
-                        {userLogged 
+                        {localStorage.getItem('token')
                         ?   <li><Link to="/mylist" >Mylist</Link></li>
                         :   null}
-                        {userLogged 
+                        {localStorage.getItem('token')  
                         ?   <li>
                                 <Link to="/" className="btn btn-hover">
                                     <span onClick={()=> logOut()}>Log out</span>

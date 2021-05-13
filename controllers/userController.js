@@ -24,7 +24,7 @@ const usersController= {
        }
        res.json({
            success: !error ? true : false,
-           respuesta: !error ? {token: respuesta, img: createdUser.img, firstName: createdUser.firstName, id:createdUser._id}: null,
+           respuesta: !error ? {token: respuesta, id:createdUser._id}: null,
            error: error
        })        
     },
@@ -52,13 +52,12 @@ const usersController= {
         }
         res.json({
             success: !error ? true : false,
-            respuesta:!error ? {token: respuesta, img: userExist.img, firstName: userExist.firstName, id:userExist._id} : null,
+            respuesta:!error ? {token: respuesta, id:userExist._id} : null,
             error: error
         })
     },
     logInForced: (req, res) => {
-        console.log(req.user)
-        res.json({success: true, response: {email: req.user.email, id: req.user._id}})
+        res.json({success: true, response: {id: req.user._id}})
     }
 }
 module.exports = usersController

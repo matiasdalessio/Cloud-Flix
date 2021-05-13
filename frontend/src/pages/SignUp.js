@@ -40,8 +40,8 @@ const SignUp = (props) => {
     
     return(
         <div className='signUpContainer'>
-            <Header/>
-            <form className='formUsers'>
+            {/* <Header/> */}
+            <form className='formUsersSignUp'>
                 <h1 className='titleLog'>Sign Up</h1>   
                 <input className='inputUsers' type='email' name='email' placeholder='Please, enter your email address' value={newUser.email} onChange={readInput} required></input>
                 <input className='inputUsers' type='password' name='password' placeholder='Please, enter your password' value={newUser.password} onChange={readInput} required></input>
@@ -53,7 +53,7 @@ const SignUp = (props) => {
                         )
                     })} 
                 </select>
-                <input className='btnSignUp' type="button" value="Sign up!" onClick={signUpOk}></input>
+                <input className='btnSignUp' type="button" value="Sign up!" onClick={signUpOk} active></input>
                 <GoogleLogin
                     clientId="706728189535-gkdltcou7njsjagcfhn30q0i25g7f30v.apps.googleusercontent.com"
                     render={renderProps => (
@@ -68,7 +68,7 @@ const SignUp = (props) => {
                     <NavLink to="/login"><h2>Log In!</h2></NavLink> 
                 </div>
             </form>        
-            <Footer />
+            {/* <Footer /> */}
         </ div>
         
     )    
