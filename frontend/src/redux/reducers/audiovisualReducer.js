@@ -1,5 +1,5 @@
 const initialState = {
-    movies: []
+    movies: null
 }
 
 const audiovisualReducer = (state = initialState, action) => {

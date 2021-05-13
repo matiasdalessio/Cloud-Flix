@@ -6,7 +6,9 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
 
+
 const LogIn = (props) => { 
+
     const [userLog, setUserLog] = useState({email:'', password:''})
 
     const readInput = e =>{
