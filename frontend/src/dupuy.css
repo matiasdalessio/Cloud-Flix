@@ -1,5 +1,5 @@
 
-.seriesContainer{
+.seriesContainer, .popularContainer{
   display: flex;
   flex-wrap: wrap;
   margin-top: 8rem;

@@ -3,6 +3,9 @@ import { connect } from "react-redux"
 import seriesAction from "../redux/actions/seriesAction"
 import Lastest from "../components/Lastest"
 import Header from "../components/Header"
+import Footer from "../components/Footer"
+import Loader from "../components/Loader"
+
 
 class Series extends React.Component{
 
@@ -14,10 +17,11 @@ class Series extends React.Component{
 
     state={
         series:[],
-        mostPopular:[],
-        action:[],
-        comedy:[],
-        fantasy:[]
+        mostPopular:[] ,
+        action: [],
+        comedy: [],
+        scienceFiction:[],
+        crime:[]
     }
 
     componentDidMount(){
@@ -27,33 +31,32 @@ class Series extends React.Component{
                 series: data,
                 action: data.filter( serie => serie.categories.includes( "Action" ) ),
                 comedy: data.filter( serie => serie.categories.includes( "Comedy" ) ),
-                fantasy: data.filter( serie => serie.categories.includes( "Fantasy" ) )
+                scienceFiction: data.filter( serie => serie.categories.includes( "Science Fiction" ) ),
+                crime: data.filter( serie => serie.categories.includes( "Crime" ) )
             })
         })
     }
 
-/* grid series
-this.state.series.map( serie =>{ 
-return <div key={ serie._id } onClick={ () => this.props.history.push("/audiovisual/" + serie._id) } className="serie" style={{  backgroundImage: `url('${ serie.imageURL }')`  }} >
-</div> })
-*/
-
-
+    
     render() {
         return(
             <div className="seriesContainer">
                 <Header/>
-                {  this.state.action &&
+            {
+                !this.state.action.length
+                ?  <Loader />
+                : <>
                     <Lastest title={ "Action" } array={ this.state.action } />
-                }
 
-                {  this.state.comedy &&
                     <Lastest title={ "Comedy" } array={ this.state.comedy } />
-                }
 
-                {  this.state.comedy &&
-                    <Lastest title={ "Fantasy" } array={ this.state.fantasy } />
-                }
+                    <Lastest title={ "Science Fiction" } array={ this.state.scienceFiction } />
+
+                    <Lastest title={ "Crime" } array={ this.state.crime } />
+                </>
+            }
+                
+                <Footer />
             </div>        
         )
     }
