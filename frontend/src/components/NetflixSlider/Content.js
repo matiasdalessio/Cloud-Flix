@@ -1,12 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
 import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
 import { connect } from "react-redux"
 
-
 const Content = ({ movie, onClose, userLogged , history }) => (
+
+  const userData = JSON.parse(localStorage.getItem('userLogged'))
+  const userLS= {
+    token: localStorage.getItem('token'),
+    ...userData
+  }
+
+  
+  const sendMovieToList = async(movie) =>{
+    // const response = await 
+    addToMyList(movie, userLS)
+  }
+
+
+  return (
+
           <div className="content">
               <div className="content__background">
                 <div className="content__background__shadow" />
@@ -51,6 +68,11 @@ const Content = ({ movie, onClose, userLogged , history }) => (
                     <div className="year">
                     <h4>Year: { movie.year } </h4>
                     </div>
+
+                    <div>
+                      <button onClick={() => sendMovieToList(movie)}>agregar</button>
+                    </div>
+
                   </div>
 
                   <div className="buttons">
@@ -72,13 +94,17 @@ const Content = ({ movie, onClose, userLogged , history }) => (
               </div>
             </div>
   
-);
+)};
 
-const mapStateToProps = state =>{
-  return{
-    userLogged: state.user.userLogged
+const mapStateToProps = state => {
+  return {
+      userLogged: state.user.userLogged
   }
+}
+const mapDispatchToProps = {
+  addToMyList :  profileActions.addToMyList,
 }
 
 
-export default connect(mapStateToProps,null)(Content);
+export default connect(mapStateToProps, mapDispatchToProps)(Content)
+

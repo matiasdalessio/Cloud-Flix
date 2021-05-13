@@ -5,6 +5,7 @@ import Lastest from "../components/Lastest"
 import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
+import ProfileSelection from "./ProfileSelection"
 
 
 class Home extends React.Component{
@@ -33,11 +34,16 @@ class Home extends React.Component{
     render() {
         return(
             <div>
+                {localStorage.getItem('token') && localStorage.getItem('profile') ?
+                <ProfileSelection/>
+                :
+                <>
                 <Header/>
                 <Carrousel />
                 <Lastest title={'Lastest Series'} array={ this.state.series} />
                 <Lastest title={'Lastest Movies'} array={ this.state.movies} />
                 <Footer/>
+                </>}
             </div>        
         )
     }
