@@ -42,10 +42,13 @@ a {
 }
 
 .container {
-    height: 30vh;
+    height: 6rem;
     max-width: 1920px;
     padding: 0 40px;
     margin: auto;   
+}
+footer .container {
+    height: 15rem;
 }
 
 .overlay {

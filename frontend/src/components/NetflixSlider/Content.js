@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
+import Rating from "react-rating"
+import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
+import { connect } from "react-redux"
 
-const Content = ({ movie, onClose, history, addToMyList }) => {
+const Content = ({ movie, onClose, userLogged , history }) => (
 
   const userData = JSON.parse(localStorage.getItem('userLogged'))
   const userLS= {
@@ -20,6 +23,7 @@ const Content = ({ movie, onClose, history, addToMyList }) => {
 
 
   return (
+
           <div className="content">
               <div className="content__background">
                 <div className="content__background__shadow" />
@@ -33,10 +37,11 @@ const Content = ({ movie, onClose, history, addToMyList }) => {
                   <div className="content__title">{movie.title}</div>
 
                   <div className="content-info" >
-                    { console.log( movie )  }
 
                     <div className="content__description">
-                      { movie.sinopsis }
+                      { movie.sinopsis.length > 250 
+                      ? movie.sinopsis.slice( 0 , 249 ) + "..." 
+                      : movie.sinopsis } 
                     </div>
 
                      <h4>Age: { movie.audienceAge }</h4>
@@ -63,10 +68,23 @@ const Content = ({ movie, onClose, history, addToMyList }) => {
                     <div className="year">
                     <h4>Year: { movie.year } </h4>
                     </div>
+
                     <div>
                       <button onClick={() => sendMovieToList(movie)}>agregar</button>
                     </div>
 
+                  </div>
+
+                  <div className="buttons">
+                    <button className="btn-borde" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }  >
+                      Play<FaPlayCircle size={ 20 } /></button>
+                    <button className="favourite" ><FaPlus /> </button>
+
+                    <Rating initialRating={ 0 } readonly={ !userLogged ? true : false  }
+                      emptySymbol={ <FaRegStar /> }
+                      fullSymbol={ <FaStar /> }
+                      fractions={ 2 }
+                    />
                   </div>
 
                 </div>
@@ -87,4 +105,6 @@ const mapDispatchToProps = {
   addToMyList :  profileActions.addToMyList,
 }
 
+
 export default connect(mapStateToProps, mapDispatchToProps)(Content)
+

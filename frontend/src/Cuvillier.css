@@ -34,3 +34,6 @@ footer{
 .content{
     padding-top: 2vh;
 }
+.btn:hover{
+    cursor: pointer;
+}
