@@ -1,7 +1,7 @@
 import React from "react"
 import Carrousel from "../components/Carrousel"
 import Footer from "../components/Footer"
-import Lastest from "../components/Lastest"
+// import Lastest from "../components/Lastest"
 import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 
@@ -26,8 +26,8 @@ class Home extends React.Component{
         return(
             <div>
                 <Carrousel />
-                <Lastest Lastest={'Movies'}/>
-                <Lastest Lastest={'Series'}/>
+                {/* <Lastest title={'Movies'} array={ this.array1 } />
+                <Lastest title={'Series'} array={ this.array1} /> */}
                 <Footer/>
             </div>        
         )
