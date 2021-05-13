@@ -83,9 +83,6 @@
   }
 }
 
-/* .content-info{
-
-} */
 .languages, .subtitles, .casting, .director, .year  {
   display: flex;
   align-items: center;
@@ -98,3 +95,42 @@
 .languages, .subtitles, .casting, .director, .year  {
   margin-left: 0;
 }
+
+.buttons{
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+}
+
+.btn-borde {
+  width: 8rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  padding: .375rem .75rem;
+  border: 1px solid #007bff;
+  border-radius: .25rem;
+  color: #007bff;
+  transition: color .15s ease-in-out,
+  background-color .15s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.btn-borde:hover, .btn-borde:active, .btn-borde:focus {
+  color: #fff;
+  background-color: #007bff;
+}
+
+.favourite{
+  background-color: transparent;
+  border: none;
+  margin-left: 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+
+
