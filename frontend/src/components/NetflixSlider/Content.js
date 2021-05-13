@@ -5,9 +5,8 @@ import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
 import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
-import { connect } from "react-redux"
 
-const Content = ({ movie, onClose, userLogged , history }) => (
+const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
 
   const userData = JSON.parse(localStorage.getItem('userLogged'))
   const userLS= {
@@ -80,7 +79,7 @@ const Content = ({ movie, onClose, userLogged , history }) => (
                       Play<FaPlayCircle size={ 20 } /></button>
                     <button className="favourite" ><FaPlus /> </button>
 
-                    <Rating initialRating={ 0 } readonly={ !userLogged ? true : false  }
+                    <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }
                       emptySymbol={ <FaRegStar /> }
                       fullSymbol={ <FaStar /> }
                       fractions={ 2 }
