@@ -14,6 +14,7 @@ class Series extends React.Component{
     state={
         series:[],
         action:[],
+        comedi:[]
     }
 
     componentDidMount(){
@@ -21,13 +22,11 @@ class Series extends React.Component{
         .then( data =>{
             this.setState({ ...this.state,
                  series: data,
-                 action: data.filter( serie => serie.categories.includes( "Action" ) )
+                 action: data.filter( serie => serie.categories.includes( "Action" ) ),
+                 comedy: data.filter( serie => serie.categories.includes( "Comedy" ) )
             })
         })
     }
-
-    
-
 
 /* grid series
 this.state.series.map( serie =>{ 
@@ -40,10 +39,12 @@ return <div key={ serie._id } onClick={ () => this.props.history.push("/audiovis
         return(
             <div className="seriesContainer">
                 {  this.state.action &&
-                    <Lastest title={ "Most Populars" } array={ this.state.action } />
+                    <Lastest title={ "Action" } array={ this.state.action } />
                 }
-                    
-                
+
+                {  this.state.comedy &&
+                    <Lastest title={ "Comedy" } array={ this.state.comedy } />
+                }
             </div>        
         )
     }
