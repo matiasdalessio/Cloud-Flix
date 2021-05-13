@@ -1,16 +1,10 @@
 import React from "react"
 import Carrousel from "../components/Carrousel"
 import Footer from "../components/Footer"
-<<<<<<< HEAD
 import Lastest from "../components/Lastest"
 import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
-=======
-// import Lastest from "../components/Lastest"
-import seriesAction from "../redux/actions/seriesAction"
-import { connect } from "react-redux"
 import Header from "../components/Header"
->>>>>>> c7fa1d4ec377de52e4d7d8783dacce9f9f63de57
 
 
 class Home extends React.Component{
@@ -20,28 +14,29 @@ class Home extends React.Component{
         behavior:"smooth"
     })}
     state={
-        series:[]
+        series:[],
+        movies:[]
     }
     componentDidMount(){
         this.props.fetchSeries()
         .then( data =>{
             this.setState({ ...this.state, series: data })
         })
+        this.props.fetchMovies()
+        .then( data =>{
+            this.setState({ ...this.state, movies: data })
+        })
     }
+
+
 
     render() {
         return(
             <div>
-<<<<<<< HEAD
-                <Carrousel />
-                <Lastest Lastest={'Movies'}/>
-                <Lastest Lastest={'Series'}/>
-=======
                 <Header/>
                 <Carrousel />
-                {/* <Lastest title={'Movies'} array={ this.array1 } />
-                <Lastest title={'Series'} array={ this.array1} /> */}
->>>>>>> c7fa1d4ec377de52e4d7d8783dacce9f9f63de57
+                <Lastest title={'Lastest Series'} array={ this.state.series} />
+                <Lastest title={'Lastest Movies'} array={ this.state.movies} />
                 <Footer/>
             </div>        
         )
@@ -49,6 +44,7 @@ class Home extends React.Component{
 }
 const mapDispatchToProps ={
     fetchSeries: seriesAction.fetchSeries,
+    fetchMovies: seriesAction.fetchMovies
 }
 
 export default connect(null, mapDispatchToProps) (Home)

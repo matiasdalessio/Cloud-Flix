@@ -16,7 +16,7 @@ const Content = ({ movie, onClose, history }) => (
                   <div className="content__title">{movie.title}</div>
 
                   <div className="content-info" >
-                    { console.log( movie )  }
+                    
 
                     <div className="content__description">
                       { movie.sinopsis }
