@@ -6,16 +6,9 @@ import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
 
-/* const LogIn = () => {
 
-    return(
-        <CardLogin />
-    )
-}
+const LogIn = (props) => { 
 
-export default LogIn */
-
-const LogIn = (props) => {   
     const [userLog, setUserLog] = useState({email:'', password:''})
 
     const readInput = e =>{
@@ -42,8 +35,7 @@ const LogIn = (props) => {
 
     return(
         <div className='logInContainer' style={{backgroundImage: "url(./assets/fondoForm.jpg)"}}>
-            <Header /> 
-            <form className='formUsers'>
+            <form className='formUsersLogIn'>
                 <h1 className='titleLog'>Log In</h1>   
                 <input className='inputUsers' type='email' name='email' placeholder='Please, enter your email address' value={userLog.email} onChange={readInput} required></input>
                 <input className='inputUsers' type='password' name='password' placeholder='Please, enter your password' value={userLog.password} onChange={readInput} required></input>
@@ -62,8 +54,8 @@ const LogIn = (props) => {
                     <p>Already have an account?</p>
                     <NavLink to="/signup"><h2>Sign Up!</h2></NavLink> 
                 </div>
-            </form>
-            <Footer />         
+                
+            </form>                 
         </ div>
         )    
 }

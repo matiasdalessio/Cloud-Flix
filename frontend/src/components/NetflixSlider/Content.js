@@ -1,8 +1,12 @@
 import React from 'react';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
+import Rating from "react-rating"
+import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
+import { connect } from "react-redux"
 
-const Content = ({ movie, onClose, history }) => (
+
+const Content = ({ movie, onClose, userLogged , history }) => (
           <div className="content">
               <div className="content__background">
                 <div className="content__background__shadow" />
@@ -16,10 +20,11 @@ const Content = ({ movie, onClose, history }) => (
                   <div className="content__title">{movie.title}</div>
 
                   <div className="content-info" >
-                    
 
                     <div className="content__description">
-                      { movie.sinopsis }
+                      { movie.sinopsis.length > 250 
+                      ? movie.sinopsis.slice( 0 , 249 ) + "..." 
+                      : movie.sinopsis } 
                     </div>
 
                      <h4>Age: { movie.audienceAge }</h4>
@@ -46,7 +51,18 @@ const Content = ({ movie, onClose, history }) => (
                     <div className="year">
                     <h4>Year: { movie.year } </h4>
                     </div>
+                  </div>
 
+                  <div className="buttons">
+                    <button className="btn-borde" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }  >
+                      Play<FaPlayCircle size={ 20 } /></button>
+                    <button className="favourite" ><FaPlus /> </button>
+
+                    <Rating initialRating={ 0 } readonly={ !userLogged ? true : false  }
+                      emptySymbol={ <FaRegStar /> }
+                      fullSymbol={ <FaStar /> }
+                      fractions={ 2 }
+                    />
                   </div>
 
                 </div>
@@ -58,4 +74,11 @@ const Content = ({ movie, onClose, history }) => (
   
 );
 
-export default Content;
+const mapStateToProps = state =>{
+  return{
+    userLogged: state.user.userLogged
+  }
+}
+
+
+export default connect(mapStateToProps,null)(Content);
