@@ -78,7 +78,7 @@ class Movies extends React.Component {
                                 <div className="movie-info">
                                     <span>{selection.audienceAge}</span>
                                 </div>
-                            </div>                            
+                            </div>                         
                             <div className="item-content-description contentDescription">
                                 {selection.sinopsis}
                             </div>
