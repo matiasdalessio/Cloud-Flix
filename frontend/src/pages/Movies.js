@@ -5,6 +5,7 @@ import audiovisualActions from '../redux/actions/audiovisualActions'
 import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
+import { Link } from "react-router-dom";
 
 class Movies extends React.Component {
 
@@ -72,10 +73,7 @@ class Movies extends React.Component {
 
                             {   typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
-                                ? this.state.filtered.map( element =>{ 
-                                    return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
-                                    </div> 
-                                    })
+                                ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
 
                                 : !this.state.filtered 
                                  
@@ -107,6 +105,19 @@ class Movies extends React.Component {
                                                                     <span>{selection.audienceAge}</span>
                                                                 </div>
                                                             </div>
+                                                            <div className="movie-cast">
+                                                                <p>Cast: </p>
+                                                                {selection.cast.map(actor => {          
+                                                                return( 
+                                                                    <>
+                                                                    {console.log(actor)}
+                                                                    <Link to={'/actorFilms/'+ actor} className="cast-link">{actor} </ Link>
+                                                                    </>
+                                                                    )
+                                                                    })
+                                                                    
+                                                                }
+                                                            </div>
                                                                 <div className="item-content-description contentDescription">
                                                                     {selection.sinopsis}
                                                                 </div>
@@ -136,8 +147,10 @@ class Movies extends React.Component {
     }
 }
 
+
 const mapDispatchToProps = {
-    fetchMovies: audiovisualActions.movies
+    fetchMovies: audiovisualActions.movies,
+    actorFilter: audiovisualActions.actorFilter
 }
 
 export default connect(null, mapDispatchToProps)(Movies)

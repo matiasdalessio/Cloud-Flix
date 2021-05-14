@@ -6,7 +6,6 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Loader from "../components/Loader"
 
-
 class Series extends React.Component{
 
     toTop= () => {window.scroll({
@@ -47,24 +46,21 @@ class Series extends React.Component{
         ? this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 )
         : false
         })
-        
     }
 
     render() {
+      
              if( !this.state.action.length ){
                 return <Loader />
              }else{
 
-                return(
+                return( <>
+                    <Header filter={ this.filter } />
                     <div className="seriesContainer">
-                        <Header filter={ this.filter } />
-                    
+                        
                     {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
                             
-                        ? this.state.filtered.map( element =>{ 
-                            return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
-                            </div> 
-                            })
+                        ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
 
                         : !this.state.filtered 
                         
@@ -81,18 +77,13 @@ class Series extends React.Component{
 
                                     <Lastest title={ "Crime" } array={ this.state.crime } />
                                 </>
-                
                     }
-                        <Footer />
-                    </div>        
+                        </div> 
+                      <Footer />
+                    </>       
                 )
 
-             }
-            
-       /*  } */
-
-
-        
+             }  
     }
 }
 

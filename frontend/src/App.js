@@ -22,6 +22,8 @@ import SignUp from './pages/SignUp';
 import Pricing from './components/Pricing';
 import Video from './components/Video';
 import "../node_modules/video-react/dist/video-react.css"
+import ActorFilms from './pages/ActorFilms'
+
 
 
 class App extends React.Component{
@@ -62,6 +64,7 @@ class App extends React.Component{
           <Route path="/audiovisual/:id" component={ Audiovisual } />
           <Route path="/pricing" component={ Pricing } />
           <Route path="/video" component={ Video } />
+          <Route path ="/actorFilms/actor" component={ ActorFilms } />
 
           <Redirect to="/" />
         </Switch>
