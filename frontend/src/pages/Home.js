@@ -5,7 +5,7 @@ import Lastest from "../components/Lastest"
 import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
-import ProfileSelection from "./ProfileSelection"
+
 
 class Home extends React.Component{
     toTop= () => {window.scroll({

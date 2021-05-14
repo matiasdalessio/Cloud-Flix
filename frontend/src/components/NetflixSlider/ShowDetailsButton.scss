@@ -1,6 +1,6 @@
 .show-details-button {
   position: absolute;
-  bottom: 5vh;
+  bottom: 0vh;
   left: 0;
   right: 0;
   opacity: 0;
@@ -9,6 +9,7 @@
   border: 0;
   outline: none;
   width: 100%;
+  height: 15%;
   cursor: pointer;
 
   span {

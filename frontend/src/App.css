@@ -3,7 +3,10 @@
     /*
     #E50913 neftlix
     #6411ad violeta
-    08d9d6
+
+    #D3A01F dorado
+    #00adb5 celeste
+
     */
     --main-color: #E50913;
     --body-bg: #181616;
@@ -18,6 +21,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+.addButton{
+    color: red;
 }
 
 html {
@@ -701,6 +708,11 @@ footer .content {
     justify-content: center;
     align-items: center;
 }
+.addAvatar{
+
+}
+
+
 
 
 /* RESPONSIVE */

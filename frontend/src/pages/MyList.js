@@ -1,9 +1,12 @@
 import React from "react"
+import { connect } from "react-redux"
+import profileActions from "../redux/actions/profileActions"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Lastest from "../components/Lastest"
 
-class MiList extends React.Component{
+
+class MyList extends React.Component{
 
     toTop= () => {window.scroll({
         top:0,
@@ -12,9 +15,16 @@ class MiList extends React.Component{
     })}
 
     state={
-        myFavourites:[],
+
+        movies: "",
+      myFavourites:[],
         filtered:[]
     }
+
+    componentDidMount(){
+        this.props.getMoviesOnList(this.props.selectedProfile._id)        
+    }
+      
 
     filter = (item)=>{
         item.length === 0 
@@ -26,6 +36,7 @@ class MiList extends React.Component{
         : false
         })
     }
+
 
     render() {
          
@@ -54,4 +65,15 @@ class MiList extends React.Component{
     }
 }
 
-export default MiList
+const mapStateToProps = state => {
+  return {
+      userLogged: state.user.userLogged,
+      selectedProfile: state.profile.selectedProfile
+  }
+}
+const mapDispatchToProps = {
+    getMoviesOnList :  profileActions.getMoviesOnList,
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyList)

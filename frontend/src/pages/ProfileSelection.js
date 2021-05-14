@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 import profileActions from "../redux/actions/profileActions"
 import { MdAdd } from "react-icons/md";
 import swal from 'sweetalert'
+import Loader from "../components/Loader";
 
 
 
@@ -69,10 +70,19 @@ class ProfileSelection extends React.Component{
             swal(respuesta.error, "Verify and try again!", "error")
         } else {
             this.props.profileSelected(respuesta)
+            let userData = JSON.parse(localStorage.getItem('userLogged'))
+            let userLS= {
+            token: localStorage.getItem('token'),
+            ...userData
+            }
+            this.props.getUserProfiles(this.props.userLogged.id, userLS)
         }   
     }
     
     render() {
+        this.props.userProfiles === null && <Loader/>
+
+
         return(
             <div>
                 {this.state.creating 

@@ -5,7 +5,7 @@
 
   &__container {
     display: flex;
-    padding: 0px;
+    padding: 0 50px;
     transition: transform 300ms ease 100ms;
     z-index: 3;
     width: 100%;
@@ -16,14 +16,14 @@
   }
 
   &:not(&--open) .item:hover {
-    transform: scale(1.25) !important;
+    transform: scale(1.15) !important;
   }
 
   &:not(&--open):hover .item {
-    transform: translateX(-15%);
+    transform: translateX(-10%);
   }
 
   &:not(&--open) .item:hover ~ .item {
-    transform: translateX(15%);
+    transform: translateX(10%);
   }
 }
