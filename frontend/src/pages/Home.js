@@ -5,6 +5,7 @@ import Lastest from "../components/Lastest"
 import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
+import Loader from "../components/Loader"
 
 
 class Home extends React.Component{
@@ -43,6 +44,10 @@ class Home extends React.Component{
     }
 
     render() {
+        if (this.state.all.length === 0) {
+                return <Loader/>
+        } 
+
         return(
             <div>
                 <Header filter={ this.filter } />
@@ -58,11 +63,10 @@ class Home extends React.Component{
 
                         : <>
                             <Carrousel />
-                            <Lastest title={'Lastest Series'} array={ this.state.series} />
-                            <Lastest title={'Lastest Movies'} array={ this.state.movies} />
+                            <Lastest title={'Latest Series'} array={ this.state.series} />
+                            <Lastest title={'Latest Movies'} array={ this.state.movies} />
                           </>
                 }
-
                 <Footer/>
             </div>        
         )

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 const BannerRandom = (props) => {
     const {array} = props
@@ -5,7 +6,9 @@ const BannerRandom = (props) => {
     let bannerRandom = Math.floor(Math.random() * (array.length));
     let selection = array[bannerRandom]
 
+
     return (
+        <>
         <div className="bannerMovies" style={{ backgroundImage: `url(${selection.imageBackground})` }}>
             <div className="overlay"></div>
             <div className="hero-slide-item-content itemContent">
@@ -41,6 +44,8 @@ const BannerRandom = (props) => {
                 </div>
             </div>
         </div>
+        
+        </>
     )
 }
 export default BannerRandom

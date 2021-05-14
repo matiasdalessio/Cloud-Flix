@@ -1,5 +1,5 @@
 const initialState = {
-    userProfiles:null,
+    userProfiles:[],
     selectedProfile:[]
 }
 

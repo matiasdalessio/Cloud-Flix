@@ -53,8 +53,6 @@ class Movies extends React.Component {
     }
 
     render() {
-        // selection.rate.map( rate => console.log(rate) )
-
         var titles = [
             { name: "Most Populars", movies: this.state.movies },
             { name: "Action", movies: this.state.action },
@@ -84,20 +82,18 @@ class Movies extends React.Component {
 
                             : <>
                             <BannerRandom array={this.state.movies} />
-                                <div className="movie-cast">
-                                                                <p>Cast: </p>
-                                                                {selection.cast.map(actor => {          
-                                                                return( 
-                                                                    <>
-                                                                    {console.log(actor)}
-                                                                    <NavLink to={'/actorFilms'+ actor} className="cast-link">{actor}</ NavLink>
-                                                                    </>
-                                                                    )
-                                                   })
-                                             }
-                                </div>
-
-  
+                            {/* <div className="movie-cast">
+                                        <p>Cast: </p>
+                                        {selection.cast.map(actor => {          
+                                        return( 
+                                            <>
+                                        {console.log(actor)}
+                                        <NavLink to={'/actorFilms'+ actor} className="cast-link">{actor}</ NavLink>
+                                        </>
+                                        )
+                                    })
+                                 }
+                                </div> */}
                                 <div className="seriesContainer">
                                     {
                                         titles.map((title, index) => {

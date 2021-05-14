@@ -4,6 +4,7 @@ import profileActions from "../redux/actions/profileActions"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Lastest from "../components/Lastest"
+import Loader from "../components/Loader"
 
 
 class MyList extends React.Component{
@@ -15,14 +16,16 @@ class MyList extends React.Component{
     })}
 
     state={
-
-        movies: "",
-      myFavourites:[],
+        myFavourites:[],
         filtered:[]
     }
 
     componentDidMount(){
-        this.props.getMoviesOnList(this.props.selectedProfile._id)        
+        this.props.getMoviesOnList(this.props.selectedProfile._id)
+        .then(data => this.setState({...this.state, myFavourites: data.map(audiovisual => {
+            return audiovisual.audiovisualId
+        })}))
+
     }
       
 
@@ -39,6 +42,11 @@ class MyList extends React.Component{
 
 
     render() {
+        console.log(this.state.myFavourites)
+
+        if (this.state.myFavourites.length === 0 ) {
+            return <Loader/>
+        } 
          
         return(
             <div>
@@ -55,7 +63,7 @@ class MyList extends React.Component{
                                     </div>
     
                                 :  <>
-                                        <h1>favourites</h1>
+                                        <Lastest title={ "Your List" } array={ this.state.myFavourites } />
                                    </>
                  }
 

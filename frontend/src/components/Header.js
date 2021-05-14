@@ -8,7 +8,7 @@ import audiovisualActions from "../redux/actions/audiovisualActions";
 
 const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout, filter = null, actorFilter = null }) => {
 
-
+    // console.log(allprofiles)
 
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState(false)
@@ -60,7 +60,7 @@ const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout,
                                         dropdown && <div className="dropdownMenu">
                                             <div className="divAvatars">
                                                 {
-                                                    allProfiles.map(profiled =>
+                                                    allProfiles && allProfiles.map(profiled =>
                                                         <>
                                                             <div
                                                                 className={profile._id === profiled._id ? "avatarProfileSelected" : "avatarProfile"}

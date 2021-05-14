@@ -53,12 +53,6 @@ class Series extends React.Component {
                     ? this.state.series.filter(serie => serie.title.toLowerCase().trim().indexOf(item) === 0)
                     : false
             })
-
-
-        filtered: this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
-        ? this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 )
-        : false
-        })
     }
 
     render() {
@@ -67,9 +61,10 @@ class Series extends React.Component {
                 return <Loader />
              }else{
 
-                return( <>
-                    <Header filter={ this.filter } />
-                    <div className="seriesContainer">
+                return( 
+                <>
+                <Header filter={ this.filter } />
+                <div >
                         
                     {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
                             
@@ -80,25 +75,6 @@ class Series extends React.Component {
                             ?  <div className="noResults">
                                      <h1>There are no results</h1>
                                 </div>
-
-
-            return (
-                <div>
-                    <Header filter={this.filter} />
-
-                    {  typeof this.state.filtered === "object" && this.state.filtered.length > 0
-
-
-                        ? this.state.filtered.map(element => {
-                            return <div className="results" key={element._id} style={{ backgroundImage: `url('${element.imageBanner}')` }} >
-                            </div>
-                        })
-
-                        : !this.state.filtered
-
-                            ? <div className="noResults">
-                                <h1>There are no results</h1>
-                            </div>
 
                             :
                             <>
@@ -116,6 +92,7 @@ class Series extends React.Component {
                     }
                     <Footer />
                 </div>
+                </>
             )
 
         }

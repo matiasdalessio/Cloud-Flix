@@ -1,19 +1,11 @@
 
 .seriesContainer, .popularContainer{
   flex-wrap: wrap;
-  margin-top: 8rem;
+  margin-top: 3rem;
   display: flex;
 }
 
-.serie{
-  width: 15.7rem;
-  height: 20rem;
-  margin: 0.5rem;
-  background-size: cover;
-  display:inline-block;
-  position:relative;
-  cursor: pointer;
-}
+
 
 .results{
   width: 17rem ;
