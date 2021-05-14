@@ -1,11 +1,11 @@
 import axios from 'axios'
+import swal from 'sweetalert'
 
 const usersActions ={
     loadUser: (newUser) => {
         return async (dispatch, getstate) => {
             const response = await axios.post('http://localhost:4000/api/user/signup', newUser)
             if(response.data.success){
-                console.log(response.data)
             dispatch({
                 type: 'LOG_USER',
                 payload: response.data.success ? response.data.respuesta : null 
@@ -17,17 +17,23 @@ const usersActions ={
             }       
         } 
     },
-    userLogged: (userLog) => {
-        return async (dispatch, getstate) => {
-            const response = await axios.post('http://localhost:4000/api/user/login', userLog)
-            if(response.data.success){
+    logUser: (userLog) => {
+        return async (dispatch, getState) => {
+           try {
+                const response = await axios.post('http://localhost:4000/api/user/login', userLog)
+                if (!response.data.success) {
+                    return response.data
+                }
                 dispatch({
-                    type: 'LOG_USER', 
-                    payload: response.data.respuesta})
-            } else {
-                alert(response.data.error)              
-            }            
-       }
+                    type: "LOG_USER",
+                    payload: response.data.respuesta
+                    
+                })
+                return `Welcome back, ${response.data.respuesta.firstName}!`
+            }catch(error) {
+                return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
+            } 
+        }
     },
     userLogout: () => {
         return(dispatch, getstate) => {

@@ -3,13 +3,17 @@ import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import usersActions from "../redux/actions/usersActions"
 import { FaPlayCircle } from "react-icons/fa";
+import profileActions from "../redux/actions/profileActions";
 
-const Header = ({userLogged, userLogout, filter = null })=>{
+
+const Header = ({userLogged,  unselectProfile, userLogout, filter = null })=>{
+
     const [ visible, setVisible ] = useState(false)
     /* const [ item, setItem ] = useState("") */
 
     const logOut = () => {
         userLogout()
+        unselectProfile()
     }
 
  return  <div className="animate__animated animate__fadeInDown nav-wrapper">
@@ -66,6 +70,7 @@ const mapStateToProps = state => {
   }
   const mapDispatchToProps = {
     userLogout :  usersActions.userLogout,
+    unselectProfile: profileActions.unselectProfile
   
   }
   

@@ -36,6 +36,7 @@ const SignUp = (props) =>{
         signUpOk(null, {email, password: "asd"+googleId, country: "Nothing", premium})         
       }
 
+
     return (<>
         <Header />
         <div className='siteContainerLogInEma' style={{backgroundImage:'url("https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2018/06/series-netflix.jpg")'}}>

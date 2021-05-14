@@ -44,10 +44,11 @@ router.route('/profile/:id')
 .get(getSingleProfile)
 .delete(deleteProfile)
 .put(updateProfile)
+.post(createProfile)
 
 router.route('/profiles')
 .get(getAllProfiles)
-.post(createProfile)
+
 
 router.route('/profile/addToList/:id')
 .put(passport.authenticate('jwt', {session: false}), addToList)

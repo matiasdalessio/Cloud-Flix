@@ -15,8 +15,11 @@ import usersActions from './redux/actions/usersActions';
 import './preloader.css'
 import { connect } from 'react-redux';
 import ProfileSelection from './pages/ProfileSelection';
+import Loader from "./components/Loader"
+import profileActions from './redux/actions/profileActions';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
+
 
 class App extends React.Component{
 
@@ -29,11 +32,21 @@ class App extends React.Component{
       }
       this.props.loginForcedLS(userLS)
     }
+    if (localStorage.getItem('profile') && this.props.selectedProfile.length === 0) {
+      const profileId = JSON.parse(localStorage.getItem('profile'))
+      this.props.profileSelected(profileId)
+    }
   }
+  
   render(){
+    if (localStorage.getItem('token') && !this.props.userLogged) {
+      return(<Loader/>)
+    }
 
   return (
-      <BrowserRouter>
+    localStorage.getItem('token') && this.props.userLogged && this.props.selectedProfile.length === 0 && !localStorage.getItem('profile')
+      ?<ProfileSelection/>
+      :<BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Home } />
           {!localStorage.getItem('token') && <Route path="/login" component={ Login } />}
@@ -52,11 +65,13 @@ class App extends React.Component{
 
 const mapStateToProps = state => {
   return {
-      userLogged: state.user.userLogged
+      userLogged: state.user.userLogged,
+      selectedProfile: state.profile.selectedProfile
   }
 }
 const mapDispatchToProps = {
   loginForcedLS :  usersActions.loginForcedLS,
+  profileSelected:  profileActions.profileSelected,
 
 }
 

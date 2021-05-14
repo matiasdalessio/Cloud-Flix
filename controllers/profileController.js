@@ -3,29 +3,18 @@ const jwt = require('jsonwebtoken')
 
 const profileControllers= {
     createProfile: async (req, res) => {
-        var {name, avatar, kids, myList, userId} = req.body
-        var response;
+        var {newProfile} = req.body
+        var {name, avatar, kids} = newProfile
+        var userId = req.params.id
         var error;
-        var profileSaved;        
-        var nameExist = await Profile.findOne({name})
-        if(!nameExist) {
-                try{ 
-                profileSaved = new Profile({name, avatar, kids, myList, userId})
-                await profileSaved.save()
-                const token = jwt.sign({...profileSaved}, process.env.SECRET_OR_KEY)
-                response = token               
-                } catch (e){
+        var profileSaved;     
+            try{ 
+                profileSaved = new Profile({name, avatar, kids, userId})
+                await profileSaved.save()   
+                res.json({success: true, respuesta: profileSaved})        
+            } catch (e){
                 error= 'Something went wrong, try again'
-               }  
-        }else {
-            error= 'This user name is already being used'
-        }
-
-        res.json({
-            success: !error ? true : false,
-            response: {token: response, name: profileSaved.name, avatar: profileSaved.avatar, kids: profileSaved.kids, myList: profileSaved.myList},
-            error: error
-        }) 
+            } 
     },
     getAllProfiles: async (req, res) => {
         const allProfiles = await Profile.find()
@@ -61,7 +50,7 @@ const profileControllers= {
         res.json({response:deletedProfile, success:true})
     },
     addToList: async (req, res) => {
-        console.log(req.body)
+        // console.log(req.body)
         // var {sendedData} = req.body
         // const audiovisualId = req.params.id
         // const {avatar, name, _id} = req.user
