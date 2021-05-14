@@ -17,7 +17,7 @@ const Item = ({ movie }) => (
             'item--open': isActive,
           })}
         >
-          <img src={movie.imageURL} alt="" />
+          <img src={movie.imageBanner} alt="" />
           <ShowDetailsButton  />
           {isActive && <Mark />}
         </div>
