@@ -24,12 +24,12 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
 
   return (
 
-          <div className="content">{console.log(movie)}
+          <div className="content">
               <div className="content__background">
                 <div className="content__background__shadow" />
                 <div
                   className="content__background__image"
-                  style={{ backgroundImage: `url(${movie.imageURL})` }}
+                  style={{ backgroundImage: `url(${ movie.imageBackground })` }}
                 />
                 
               </div>

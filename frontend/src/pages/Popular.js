@@ -15,40 +15,75 @@ class Popular extends React.Component{
     })}
 
     state={
+        all:[],
         series: [],
         movies: [] ,
         action: [],
         comedy: [],
+        filtered:[]
     }
 
     componentDidMount(){
         this.props.fetchAll()
         .then( data =>{
         this.setState({ ...this.state,
+            all: data,
             series: data.filter( element => element.audiovisualType === "Serie"  ),
             movies: data.filter( element => element.audiovisualType === "Movie"  )
         })
         })
     }
 
+    filter = (item)=>{
+        item.length === 0 
+        ? this.setState({ ...this.state, filtered:[] })
+        : this.setState({ ...this.state, 
+
+        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
+        ? this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 )
+        : false
+        })
+    }
+
     render() {
-         console.log({ series: this.state.series, movies:this.state.movies  })
-        return(
-            <div className="popularContainer" >
-                <Header/>
 
-              { !this.state.series.length 
-                ? <Loader />
-                : <>
-                    <Lastest title={ "Most popular series" } array={ this.state.series } />
+        if( !this.state.all.length ){
+            return <Loader />
+        }
+        else{
 
-                    <Lastest title={ "Most popular Movies" } array={ this.state.movies } />
-                  </>
-              }      
+            return(
+                <div className="popularContainer" >
 
-                <Footer />    
-            </div>        
-        )
+                <Header filter={ this.filter } />
+                    
+                {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
+
+                    ? this.state.filtered.map( element =>{ 
+                        return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
+                        </div> 
+                        })
+
+                    : !this.state.filtered
+                        
+                        ? <div className="noResults">
+                            <h1>There are no results</h1>
+                          </div>
+
+                        : <>
+                            <Lastest title={ "Most popular series" } array={ this.state.series } />
+                                
+                            <Lastest title={ "Most popular Movies" } array={ this.state.movies } />
+                          </>
+                }
+
+                    <Footer />    
+                </div>        
+            )
+        }
+
+
+        
     }
 }
 
