@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 import ProfileSelection from './pages/ProfileSelection';
 import Loader from "./components/Loader"
 import profileActions from './redux/actions/profileActions';
-import Login from './pages/Login';
+import Login from './pages/LogIn';
 import SignUp from './pages/SignUp';
 
 

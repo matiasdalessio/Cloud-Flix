@@ -78,10 +78,6 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
                         </div>
                     </div>
 
-                    <div>
-                      <button onClick={() => sendMovieToList(movie)}>agregar</button>
-                    </div>
-
                   </div>
 
                   <div className="buttons">

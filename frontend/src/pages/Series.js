@@ -74,9 +74,7 @@ class Series extends React.Component{
         }else{
              if( !this.state.action.length ){
                 return < div className="seriesContainer">
-                <Header filter={ this.filter } />
                     <Loader />
-                <Footer />
                 </div>
                  
              }else{
