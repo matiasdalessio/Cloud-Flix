@@ -23,6 +23,10 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
     addToMyList(movie, userLS)
   }
 
+  const valor = (e) => {
+    console.log(e.target)
+  }
+
 
   return (
 
@@ -92,10 +96,9 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
 
                     <button className="favourite" onClick={() => sendMovieToList(movie)} ><FaPlus /> </button>
 
-
                     <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }
                       emptySymbol={ <FaRegStar /> }
-                      fullSymbol={ <FaStar /> }
+                      fullSymbol={ <FaStar onClick={valor} /> }
                       fractions={ 2 }
                     />
                   </div>
