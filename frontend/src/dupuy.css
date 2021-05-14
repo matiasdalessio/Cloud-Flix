@@ -2,6 +2,7 @@
 .seriesContainer, .popularContainer{
   flex-wrap: wrap;
   margin-top: 8rem;
+  display: flex;
 }
 
 .serie{
@@ -19,6 +20,7 @@
   height: 20rem;
   margin: 0.5rem ;
   background-size: cover ;
+  cursor: pointer;
 }
 
 .noResults{
@@ -28,5 +30,23 @@
 }
 
 
+.d-block{
+  display: block;
+}
+
+.d-none{
+  display: none;
+}
+
+.searcContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.cardBusqueda{
+  position: absolute;
+  left: 0;
+  top: 31rem;
+}
 
   

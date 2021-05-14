@@ -5,6 +5,8 @@ import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import { connect } from "react-redux"
 import seriesAction from "../redux/actions/seriesAction"
+import BannerRandom from "../components/BannerRandom"
+
 
 class Popular extends React.Component{
 
@@ -35,6 +37,7 @@ class Popular extends React.Component{
     }
 
     filter = (item)=>{
+        item = item.toLowerCase().trim()
         item.length === 0 
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
@@ -53,16 +56,13 @@ class Popular extends React.Component{
         else{
 
             return(
-                <div className="popularContainer" >
+                <div>
 
                 <Header filter={ this.filter } />
                     
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
-                    ? this.state.filtered.map( element =>{ 
-                        return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
-                        </div> 
-                        })
+                    ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
 
                     : !this.state.filtered
                         
@@ -70,11 +70,14 @@ class Popular extends React.Component{
                             <h1>There are no results</h1>
                           </div>
 
-                        : <>
+                        :<div>
+                            <BannerRandom array={this.state.all} />
+                        <div className="popularContainer" >
                             <Lastest title={ "Most popular series" } array={ this.state.series } />
                                 
                             <Lastest title={ "Most popular Movies" } array={ this.state.movies } />
-                          </>
+                        </div>
+                        </div>
                 }
 
                     <Footer />    

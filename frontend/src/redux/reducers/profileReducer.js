@@ -1,7 +1,6 @@
 const initialState = {
-    userProfiles:[],
+    userProfiles:null,
     selectedProfile:[]
-        
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -12,7 +11,13 @@ const profileReducer = (state = initialState, action) => {
                 userProfiles: action.payload
             }
         case 'SELECTED_PROFILE':
-            localStorage.setItem('profile', JSON.stringify({_id: action.payload._id}))
+            localStorage.setItem('profile', JSON.stringify({
+                _id: action.payload._id,
+                name: action.payload.name,
+                avatar: action.payload.avatar,
+                myList: action.payload.myList,
+                kids: action.payload.kids
+            }))
             return {
                 ...state,
                 selectedProfile: action.payload

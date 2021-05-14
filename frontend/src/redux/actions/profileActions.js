@@ -3,14 +3,24 @@ import swal from 'sweetalert'
 
 const profileActions = {
 
-    addToMyList: (movie, userLS) => {
+    addToMyList: (sendedData, userLS, id) => {
         return async () => {
            try {
-            const response = await axios.put(`http://localhost:4000/api/profile/addToList/${movie._id}`, {movie}, {
+            const response = await axios.put(`http://localhost:4000/api/profile/addToList/${id}`, {sendedData}, {
                 headers: {
                 'Authorization': 'Bearer '+userLS.token
                 }
             })            
+            return  response.data.response
+            } catch {
+               return alert("error")
+            }
+        }
+    }, 
+    getMoviesOnList: (id) => {
+        return async () => {
+           try {
+            const response = await axios.get(`http://localhost:4000/api/profiles/mylist/${id}`,)     
             return  response.data.response
             } catch {
                return alert("error")

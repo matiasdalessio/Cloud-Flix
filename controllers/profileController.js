@@ -50,19 +50,27 @@ const profileControllers= {
         res.json({response:deletedProfile, success:true})
     },
     addToList: async (req, res) => {
-        // console.log(req.body)
-        // var {sendedData} = req.body
-        // const audiovisualId = req.params.id
-        // const {avatar, name, _id} = req.user
-        // const userId = _id
-        // const userInfo = {avatar, name, userId}
-        // try {
-        //     const rated = await Audiovisual.findOneAndUpdate({_id: audiovisualId}, sendedData.add ? {$push:{rate:{...userInfo}}} : {$pull:{rate: {userId}}}, {new: true})
-        //     res.json({success: true, response: rated.rate})
-        // } catch(error) {
-        //     console.log(error)
-        //     res.json({success: false, response: 'Oops! the ID you enter was not founded'})
-        // }
+        var {sendedData} = req.body
+        var {movie} = sendedData
+        console.log(req.body)
+        try {
+            const addedToList = await Profile.findOneAndUpdate({_id: req.params.id}, sendedData.add ? {$push:{myList:{audiovisualId: movie._id}}} : {$pull:{myList: {audiovisualId: movie._id}}}, {new: true})
+            res.json({success: true, response: addedToList.myList})
+        } catch(error) {
+            console.log(error)
+            res.json({success: false, response: 'Oops! the ID you enter was not founded'})
+        }
+    },
+    getAllListedAudivisuals: async (req, res) => {
+        console.log(req.body)
+        try {
+            const audiovisualsListed = await Profile.find({_id: req.params.id}).populate({ path:"myList", populate:{path:"audiovisualId"}})
+            // populate({ path:"comments", populate:{ path:"user_id", select:{ "name":1 ,"last_name":1,"picture":1 } } })
+            res.json({success: true, response: audiovisualsListed[0].myList})
+        } catch(error) {
+            console.log(error)
+            res.json({success: false, response: 'Oops! the ID you enter was not founded'})
+        }
     },
 }
 

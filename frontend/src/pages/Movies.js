@@ -5,7 +5,9 @@ import audiovisualActions from '../redux/actions/audiovisualActions'
 import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
-import { NavLink } from "react-router-dom";
+import BannerRandom from "../components/BannerRandom";
+import { Link, NavLink} from "react-router-dom";
+
 
 class Movies extends React.Component {
 
@@ -15,7 +17,7 @@ class Movies extends React.Component {
         action: [],
         comedy: [],
         adventure: [],
-        filtered:[]
+        filtered: []
     }
 
     componentDidMount = async () => {
@@ -38,22 +40,19 @@ class Movies extends React.Component {
     }
 
 
-    filter = (item)=>{
-        item.length === 0 
-        ? this.setState({ ...this.state, filtered:[] })
-        : this.setState({ ...this.state, 
+    filter = (item) => {
+        item.length === 0
+            ? this.setState({ ...this.state, filtered: [] })
+            : this.setState({
+                ...this.state,
 
-        filtered: this.state.movies.filter( movie => movie.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
-        ? this.state.movies.filter( movie => movie.title.toLowerCase().trim().indexOf( item ) === 0 )
-        : false
-        })
-        
+                filtered: this.state.movies.filter(movie => movie.title.toLowerCase().trim().indexOf(item) === 0).length > 0
+                    ? this.state.movies.filter(movie => movie.title.toLowerCase().trim().indexOf(item) === 0)
+                    : false
+            })
     }
 
     render() {
-        let bannerRandom = Math.floor(Math.random() * (this.state.movies.length));
-        let selection = this.state.movies[bannerRandom]
-
         // selection.rate.map( rate => console.log(rate) )
 
         var titles = [
@@ -64,51 +63,28 @@ class Movies extends React.Component {
         ]
 
         if (this.state.loader) {
-                return <Loader />
-            }
-            else{
-                    return (
-                        <>
-                            <Header filter={ this.filter } />
 
-                            {   typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
-                                ? this.state.filtered.map( element =>{ 
-                                    return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
-                                    </div> 
-                                    })
+            return <Loader />
+        }
+        else {
+            return (
+                <>
+                    <Header filter={this.filter} />
 
-                                : !this.state.filtered 
-                                 
-                                    ? <div className="noResults">
-                                         <h1>There are no results</h1>
-                                      </div>
+                    {   typeof this.state.filtered === "object" && this.state.filtered.length > 0
 
-                                    :   <>
-                                            <div className="bannerMovies" style={{ backgroundImage: `url(${selection.imageBackground})` }}>
-                                                <div className="overlay"></div>
-                                                    <div className="hero-slide-item-content itemContent">
-                                                        <div className="item-content-wraper contentWraper">
-                                                            <div className="item-content-title contentTitle">
-                                                                {selection.title}
-                                                            </div>
-                                                            <div className="movie-infos">
-                                                                <div className="movie-info">
-                                                                    <i className="bx bxs-star"></i>
-                                                                    <span>9.5</span>
-                                                                </div>
-                                                                <div className="movie-info">
-                                                                    <i className="bx bxs-time"></i>
-                                                                    <span>{selection.duration} hs</span>
-                                                                </div>
-                                                                <div className="movie-info">
-                                                                    <span>HD</span>
-                                                                </div>
-                                                                <div className="movie-info">
-                                                                    <span>{selection.audienceAge}</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className="movie-cast">
+                        ?  <Lastest title={ "Resutls" } array={ this.state.filtered } />
+
+                        : !this.state.filtered
+
+                            ? <div className="noResults">
+                                <h1>There are no results</h1>
+                            </div>
+
+                            : <>
+                            <BannerRandom array={this.state.movies} />
+                                <div className="movie-cast">
                                                                 <p>Cast: </p>
                                                                 {selection.cast.map(actor => {          
                                                                 return( 
@@ -117,34 +93,26 @@ class Movies extends React.Component {
                                                                     <NavLink to={'/actorFilms'+ actor} className="cast-link">{actor}</ NavLink>
                                                                     </>
                                                                     )
-                                                                    })
-                                                                }
-                                                            </div>
-                                                                <div className="item-content-description contentDescription">
-                                                                    {selection.sinopsis}
-                                                                </div>
-                                                                <div className="item-action">
-                                                                    <p className="btn btn-hover">
-                                                                        <i className="bx bxs-right-arrow"></i>
-                                                                        <span>Watch now</span>
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="seriesContainer">
-                                                    {
-                                                        titles.map((title, index) => {
-                                                            return <Lastest key={index} title={title.name} array={title.movies} />
-                                                        })
-                                                     }
-                                                    </div>
-                                        </>
-                            }
-                            <Footer />
-                        </>
-                    )
-            } 
+                                                   })
+                                             }
+                                </div>
+
+  
+                                <div className="seriesContainer">
+                                    {
+                                        titles.map((title, index) => {
+                                            return <Lastest key={index} title={title.name} array={title.movies} />
+                                        })
+                                    }
+                                </div>
+                            </>
+                    }
+                    <Footer />
+                </>
+            )
+        }
+
+
 
     }
 }
