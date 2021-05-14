@@ -83,7 +83,7 @@ class Movies extends React.Component {
 
                                     :   <>
                                             <div className="bannerMovies" style={{ backgroundImage: `url(${selection.imageBackground})` }}>
-                                                <div className="overlay"></div>
+                                                <div className="overlayBannerMovies"></div>
                                                     <div className="hero-slide-item-content itemContent">
                                                         <div className="item-content-wraper contentWraper">
                                                             <div className="item-content-title contentTitle">

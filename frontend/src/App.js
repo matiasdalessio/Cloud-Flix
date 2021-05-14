@@ -20,7 +20,10 @@ import profileActions from './redux/actions/profileActions';
 import Login from './pages/LogIn';
 import SignUp from './pages/SignUp';
 import Pricing from './components/Pricing';
+import Video from './components/Video';
+import "../node_modules/video-react/dist/video-react.css"
 import ActorFilms from './pages/ActorFilms'
+
 
 
 class App extends React.Component{
@@ -60,7 +63,9 @@ class App extends React.Component{
           {localStorage.getItem('token') && <Route path="/ProfileSelection" component={ ProfileSelection } />}
           <Route path="/audiovisual/:id" component={ Audiovisual } />
           <Route path="/pricing" component={ Pricing } />
+          <Route path="/video" component={ Video } />
           <Route path ="/actorFilms/actor" component={ ActorFilms } />
+
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
