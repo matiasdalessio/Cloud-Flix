@@ -6,7 +6,8 @@ import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom";
-import { Link } from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
+
 
 class Movies extends React.Component {
 
@@ -63,6 +64,7 @@ class Movies extends React.Component {
 
         if (this.state.loader) {
 
+
             return <Loader />
         }
         else {
@@ -82,6 +84,20 @@ class Movies extends React.Component {
 
                             : <>
                             <BannerRandom array={this.state.movies} />
+                                <div className="movie-cast">
+                                                                <p>Cast: </p>
+                                                                {selection.cast.map(actor => {          
+                                                                return( 
+                                                                    <>
+                                                                    {console.log(actor)}
+                                                                    <NavLink to={'/actorFilms'+ actor} className="cast-link">{actor}</ NavLink>
+                                                                    </>
+                                                                    )
+                                                   })
+                                             }
+                                </div>
+
+  
                                 <div className="seriesContainer">
                                     {
                                         titles.map((title, index) => {
@@ -95,6 +111,7 @@ class Movies extends React.Component {
                 </>
             )
         }
+
 
 
     }
