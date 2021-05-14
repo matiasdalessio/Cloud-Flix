@@ -56,7 +56,7 @@ class Movies extends React.Component {
         return (
             <>
                 <Header />
-                <div className="bannerMovies" style={{ backgroundImage: `url(${selection.imageURL})` }}>
+                <div className="bannerMovies" style={{ backgroundImage: `url(${selection.imageBackground})` }}>
                     <div className="overlay"></div>
                     <div className="hero-slide-item-content itemContent">
                         <div className="item-content-wraper contentWraper">

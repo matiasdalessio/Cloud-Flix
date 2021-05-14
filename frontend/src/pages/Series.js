@@ -56,7 +56,7 @@ class Series extends React.Component{
                  <Header filter={ this.filter } />
                 {
                     this.state.filtered.map( element =>{ 
-                    return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageURL }')` }} >
+                    return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
                             </div> 
                 })
                 }
@@ -73,9 +73,7 @@ class Series extends React.Component{
             </div>
         }else{
              if( !this.state.action.length ){
-                return < div className="seriesContainer">
-                    <Loader />
-                </div>
+                return  <Loader />                
                  
              }else{
 
