@@ -3,8 +3,9 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import usersActions from '../redux/actions/usersActions.js'
 import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
+import swal from 'sweetalert'
 
 
 const LogIn = (props) => { 
@@ -23,11 +24,17 @@ const LogIn = (props) => {
     const logInOk = async (e = null, userGoogle = null) => {
         e && e.preventDefault()
         let user = e ? userLog : userGoogle
-        props.userLogged(user)
+        const response = await props.logUser(user)
+        if (!response) {
+            return props.history.push('/serverdown')            
+        } else if (response.error) {
+            swal(response.error, "Verify and try again!", "error")
+        } else {
+            return <Redirect to="/ProfileSelection"/>
+        }   
     }
 
     const responseGoogle = (response) => {
-        console.log(response)
         if (response.profileObj.email){
             logInOk(null, {email: response.profileObj.email, password: "asd"+response.profileObj.googleId})
         }
@@ -61,7 +68,7 @@ const LogIn = (props) => {
 }
 
 const mapDispatchToProps = {
-    userLogged: usersActions.userLogged
+    logUser: usersActions.logUser
 }
 
 export default connect(null, mapDispatchToProps) (LogIn)

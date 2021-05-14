@@ -34,16 +34,11 @@ class Home extends React.Component{
     render() {
         return(
             <div>
-                {localStorage.getItem('token') && localStorage.getItem('profile') ?
-                <ProfileSelection/>
-                :
-                <>
                 <Header/>
                 <Carrousel />
                 <Lastest title={'Lastest Series'} array={ this.state.series} />
                 <Lastest title={'Lastest Movies'} array={ this.state.movies} />
                 <Footer/>
-                </>}
             </div>        
         )
     }

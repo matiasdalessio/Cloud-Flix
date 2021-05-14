@@ -53,7 +53,7 @@ const SignUp = (props) => {
                         )
                     })} 
                 </select>
-                <input className='btnSignUp' type="button" value="Sign up!" onClick={signUpOk} active></input>
+                <input className='btnSignUp' type="button" value="Sign up!" onClick={signUpOk} ></input>
                 <GoogleLogin
                     clientId="706728189535-gkdltcou7njsjagcfhn30q0i25g7f30v.apps.googleusercontent.com"
                     render={renderProps => (
