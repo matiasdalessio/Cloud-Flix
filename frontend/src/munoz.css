@@ -32,3 +32,35 @@
     width: 60vw;
     z-index: 3;
 }
+
+.userLogged{
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    margin-left: 1em;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.prueba{
+    display: flex;
+    cursor: pointer;
+}
+
+.dropdownMenu{
+    position: absolute;
+    width: 7vw;
+    background-color: white;
+    margin-top: 4em;
+}
+
+.logout{
+    width: 7vw;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E50913;
+}

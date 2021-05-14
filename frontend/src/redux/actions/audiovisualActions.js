@@ -15,9 +15,11 @@ const audiovisualActions = {
             }
         }
     },
-    actorFilter: (value) => {
+    actorFilter: (outerText) => {
+        console.log(outerText)
         return(dispatch, getstate) => {
-            dispatch({type: 'FILTRAR_ACTOR', payload: value})
+            console.log('llegué actions')
+            /* dispatch({type: 'FILTRAR_ACTOR', payload: outerText}) */
         }
     },
 

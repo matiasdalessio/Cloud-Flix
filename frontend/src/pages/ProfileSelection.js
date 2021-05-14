@@ -77,25 +77,36 @@ class ProfileSelection extends React.Component{
             <div>
                 {this.state.creating 
                 ?<div className="containerProfiles">
-                        <h1>Create Profile</h1>
-                        <h3>Add a profile for other person Watching CloudFlix</h3>
+                        <h1 className='h1AddProfile'>Add Profile</h1>
+                        <h3 className='h3AddProfile'>Add a profile for other person Watching CloudFlix</h3>
+                        <hr className='separacionConHr'/>
                         <div className="formProfile">
-                            <label htmlFor="name">Tell us Who you are!</label>
-                            <input type="text" placeholder="Name" id="name" name="name" onChange={this.readInput} value={this.state.newProfile.name}></input>
-                            <label htmlFor="avatar">Post a pic of you in URL</label>
-                            <input type="text" placeholder="Image URL" id="avatar"name="avatar" onChange={this.readInput} value={this.state.newProfile.avatar}></input>
-                            <h2>Show content for:</h2>
-                            <div className="divContent">
-                                <label htmlFor="kids">Kids</label>
-                                <input type="radio" name="content" id="kids" onChange={(e) => this.setContent(e)} value= "true" />
-                                <label htmlFor="adults">Adults</label>
-                                <input type="radio" name="content" id="adults" onChange={(e) => this.setContent(e)} value="false" />
+                            <div className='avatarPredeterminadoDiv' style={{backgroundImage:'url("https://i.pinimg.com/originals/0d/dc/ca/0ddccae723d85a703b798a5e682c23c1.png")'}}></div>
+                            <div className='infoPerfilCreate'>
+                                <label className='labelCreatePerfil' htmlFor="name">Tell us Who you are!</label>
+                                <input className='inputCreatePerfil' type="text" placeholder="Name" id="name" name="name" onChange={this.readInput} value={this.state.newProfile.name}></input>
+                                <label className='labelCreatePerfil' htmlFor="avatar">Post a pic of you in URL</label>
+                                <input className='inputCreatePerfil' type="text" placeholder="Image URL" id="avatar"name="avatar" onChange={this.readInput} value={this.state.newProfile.avatar}></input>
                             </div>
                         </div>
-                        <div>
-                            <button onClick={this.send}>Continue</button>
-                            <button onClick={() => this.finishEdit()}>Cancel</button>
+                        <div className='showContentPrefile'>
+                            <h3 className='h3showContentPrefile'>Show content for:</h3>
+                            <div className="divContent">
+                                <label for="adults" class="l-radio">
+                                    <input type="radio" id="adults" name="content" value="false" onChange={(e) => this.setContent(e)} tabindex="1"></input>
+                                    <span>Adults</span>
+                                </label>
+                                <label for="kids" class="l-radio">
+                                    <input type="radio" id="kids" name="content" value= "true" onChange={(e) => this.setContent(e)} tabindex="2"></input>
+                                    <span>Kids</span>
+                                </label>
+                            </div>
                         </div>
+                        <div className='containerButtonsCreateProfile'>
+                            <button className='continueCreateProfile' onClick={this.send}>CONTINUE</button>
+                            <button className='cancelCreateProfile' onClick={() => this.finishEdit()}>CANCEL</button>
+                        </div>
+                        
 
 
                  </div>
@@ -106,10 +117,12 @@ class ProfileSelection extends React.Component{
                                 return <div onClick={() => this.selectProfile(profile)} className="profileAvatar" key={profile._id} style={{backgroundImage: `url('${profile.avatar}')`}}>
                                             <h3 className="profileName">{profile.name}</h3>
                                     </div>
-                            })}                 
+                            })}
+                            {this.props.userProfiles.length<= 4 &&
                             <div onClick={() => this.createProfile()} className="addAvatar" >
                                 <MdAdd className="addIcon"/>
-                            </div>                  
+                            </div> }                 
+                                             
                         </div>  
                                                   
                  </div>                

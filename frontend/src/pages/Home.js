@@ -15,13 +15,15 @@ class Home extends React.Component{
         behavior:"smooth"
     })}
     state={
+        all:[],
         series:[],
-        movies:[]
+        movies:[],
+        filtered:[]
     }
     componentDidMount(){
         this.props.fetchSeries()
         .then( data =>{
-            this.setState({ ...this.state, series: data })
+            this.setState({ ...this.state, all:data, series: data })
         })
         this.props.fetchMovies()
         .then( data =>{
@@ -29,15 +31,42 @@ class Home extends React.Component{
         })
     }
 
+    filter = (item)=>{
+        item.length === 0 
+        ? this.setState({ ...this.state, filtered:[] })
+        : this.setState({ ...this.state, 
+
+        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
+        ? this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 )
+        : false
+        })
+    }
 
 
     render() {
         return(
             <div>
-                <Header/>
-                <Carrousel />
-                <Lastest title={'Lastest Series'} array={ this.state.series} />
-                <Lastest title={'Lastest Movies'} array={ this.state.movies} />
+                <Header filter={ this.filter } />
+                {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
+
+                    ? this.state.filtered.map( element =>{ 
+                        return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
+                        </div> 
+                        })
+
+                    : !this.state.filtered
+
+                        ? <div className="noResults">
+                            <h1>There are no results</h1>
+                          </div>
+
+                        : <>
+                            <Carrousel />
+                            <Lastest title={'Lastest Series'} array={ this.state.series} />
+                            <Lastest title={'Lastest Movies'} array={ this.state.movies} />
+                          </>
+                }
+
                 <Footer/>
             </div>        
         )
