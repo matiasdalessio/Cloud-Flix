@@ -81,9 +81,6 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
                   </div>
 
                   <div className="buttons">
-                    {//<button className="btn-borde" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }  >
-                      //Play<FaPlayCircle size={ 20 } /></button>
-                    }
                     <p className="btn btn-hover" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }>
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>

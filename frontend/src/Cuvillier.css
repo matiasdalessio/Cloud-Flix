@@ -110,3 +110,142 @@ footer{
     border: none;
     margin: 1rem 0;
 }
+.h1AddProfile{
+    font-weight: 600;
+}
+.h3AddProfile{
+    font-weight: 500;
+    color: grey;
+}
+.separacionConHr{
+    width: 20rem;
+    font-weight: 500;
+    border: 1px solid rgba(128, 128, 128, 0.61);
+}
+.avatarPredeterminadoDiv{
+    width: 7.5rem;
+    height: 7.5rem;
+    background-position: center;
+    background-size: cover;
+}
+.formProfile{
+    display: flex;
+    flex-direction: row;
+    width: 24rem;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    align-items: center;
+}
+.infoPerfilCreate{
+    display: flex;
+    flex-direction: column;
+}
+.h3showContentPrefile{
+    font-weight: 500;
+    margin-right: 1rem;
+}
+.showContentPrefile{
+    display: flex;
+    justify-content: center;
+    width: 22rem;
+    align-items: center;
+}
+.inputCreatePerfil{
+    background-color: #666666;
+    color: white;
+    outline: none;
+    border: none;
+    height: 1.5rem;
+    padding-left: 0.8rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+.inputCreatePerfil::placeholder {
+    color: white;
+    font-size: 1rem;
+  }
+  .labelCreatePerfil{
+      font-size: 0.9rem;
+      color: grey;
+  }
+  .continueCreateProfile{
+      background-color: #E50913;
+      color: white;
+      border: #E50913;
+      height: 2rem;
+      width: 8rem;
+      letter-spacing: 0.2rem;
+      cursor: pointer;
+      margin-right: 2rem;
+      border-radius: 0.3rem;
+  }
+  .containerButtonsCreateProfile{
+      width: 22rem;
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+  }
+  .cancelCreateProfile{
+    background-color: #181616;
+    color: white;
+    border:1px solid white;
+    height: 2rem;
+    width: 8rem;
+    letter-spacing: 0.2rem;
+    cursor: pointer;
+    margin-right: 2rem;
+    border-radius: 0.3rem;
+  }
+  .l-radio {
+    padding: 6px;
+    border-radius: 50px;
+    display: inline-flex;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin: 8px 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .l-radio:hover, .l-radio:focus-within {
+    background: rgba(159, 159, 159, 0.1);
+  }
+  .l-radio input {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background: none;
+    border: 0;
+    box-shadow: inset 0 0 0 1px #9F9F9F;
+    box-shadow: inset 0 0 0 1.5px #9F9F9F;
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    transition: box-shadow 150ms cubic-bezier(0.95, 0.15, 0.5, 1.25);
+    pointer-events: none;
+  }
+  .l-radio input:focus {
+    outline: none;
+  }
+  .l-radio input:checked {
+    box-shadow: inset 0 0 0 6px #E50913;
+  }
+  .l-radio span {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 20px;
+    padding: 0 8px;
+  }
+  .profileName{
+      color: white
+  }
+  .pricing-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5vw;
+    width: 94vw;
+  }
+.pricing-box{
+    width: 30vw;
+    margin: 0 9.5rem;
+}
