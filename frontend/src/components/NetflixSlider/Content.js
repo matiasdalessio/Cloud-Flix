@@ -4,7 +4,7 @@ import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
-import { FaPlayCircle, FaPlus ,FaRegStar, FaStar , FaRegClock } from "react-icons/fa"
+import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
 
 
 const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
