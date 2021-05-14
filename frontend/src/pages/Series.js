@@ -21,7 +21,8 @@ class Series extends React.Component{
         action: [],
         comedy: [],
         scienceFiction:[],
-        crime:[]
+        crime:[],
+        filtered:[]
     }
 
     componentDidMount(){
@@ -37,28 +38,69 @@ class Series extends React.Component{
         })
     }
 
-    
+    filter = (item)=>{
+        item.length === 0 
+        ? this.setState({ ...this.state, filtered:[] })
+        : this.setState({ ...this.state, 
+
+        filtered: this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
+        ? this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 )
+        : false
+        })
+        
+     }
+
     render() {
-        return(
-            <div className="seriesContainer">
-                <Header/>
-            {
-                !this.state.action.length
-                ?  <Loader />
-                : <>
-                    <Lastest title={ "Action" } array={ this.state.action } />
-
-                    <Lastest title={ "Comedy" } array={ this.state.comedy } />
-
-                    <Lastest title={ "Science Fiction" } array={ this.state.scienceFiction } />
-
-                    <Lastest title={ "Crime" } array={ this.state.crime } />
-                </>
-            }
-                
+        if( typeof this.state.filtered === "object" && this.state.filtered.length > 0 ){
+            return <div className="seriesContainer" >
+                 <Header filter={ this.filter } />
+                {
+                    this.state.filtered.map( element =>{ 
+                    return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageURL }')` }} >
+                            </div> 
+                })
+                }
                 <Footer />
-            </div>        
-        )
+            </div>
+        }
+        else if( !this.state.filtered ) {
+            return <div className="seriesContainer" >
+                 <Header filter={ this.filter } />
+                 <div className="noResults">
+                    <h1>There are no results</h1>
+                 </div>
+                <Footer />
+            </div>
+        }else{
+             if( !this.state.action.length ){
+                return < div className="seriesContainer">
+                <Header filter={ this.filter } />
+                    <Loader />
+                <Footer />
+                </div>
+                 
+             }else{
+
+             }
+            return(
+                <div className="seriesContainer">
+                    <Header filter={ this.filter } />
+                
+                    <Lastest title={ "Action" } array={ this.state.action } />
+    
+                    <Lastest title={ "Comedy" } array={ this.state.comedy } />
+    
+                    <Lastest title={ "Science Fiction" } array={ this.state.scienceFiction } />
+    
+                    <Lastest title={ "Crime" } array={ this.state.crime } />
+
+                    <Footer />
+                </div>        
+            )
+        }
+
+
+        
     }
 }
 
