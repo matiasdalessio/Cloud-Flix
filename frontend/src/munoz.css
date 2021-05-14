@@ -5,3 +5,30 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.bannerMovies{
+    height: 90vh;
+    width: 100%;
+    background-color: black;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.itemContent{
+    height: 90vh;
+}
+
+.contentWraper{
+    width: 50vw;
+}
+
+.contentTitle{
+    width: 90vw;
+    z-index: 3;
+}
+
+.contentDescription{
+    width: 60vw;
+    z-index: 3;
+}

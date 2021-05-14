@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import audiovisualActions from '../redux/actions/audiovisualActions'
 import Header from "../components/Header";
 import Lastest from "../components/Lastest"
+import Loader from "../components/Loader"
 
-class Movies extends React.Component{
+class Movies extends React.Component {
 
     state = {
+        loader: true,
         movies: [],
         accion: [],
         comedy: [],
@@ -18,46 +20,86 @@ class Movies extends React.Component{
     componentDidMount = async () => {
         var response = await this.props.fetchMovies()
         this.setState({
+            loader: false,
             movies: response,
-            accion: response.filter( serie => serie.categories.includes( "Action" ) ),
-            comedy: response.filter( serie => serie.categories.includes( "Comedy" ) ),
-            adventure: response.filter( serie => serie.categories.includes( "Adventure" ) )
+            accion: response.filter(serie => serie.categories.includes("Action")),
+            comedy: response.filter(serie => serie.categories.includes("Comedy")),
+            adventure: response.filter(serie => serie.categories.includes("Adventure"))
         })
     }
 
-    toTop= () => {window.scroll({
-        top:0,
-        left:0,
-        behavior:"smooth"
-    })}
+    toTop = () => {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        })
+    }
 
-    
     render() {
-        return(
+        let bannerRandom = Math.floor(Math.random() * (this.state.movies.length));
+        let selection = this.state.movies[bannerRandom]
+
+        selection.rate.map( rate => console.log(rate) )
+
+        var titles = [
+            { name: "Most Populars", movies: this.state.movies },
+            { name: "Action", movies: this.state.accion },
+            { name: "Comedy", movies: this.state.comedy },
+            { name: "Adventure", movies: this.state.adventure }
+        ]
+
+        if (this.state.loader) {
+            return <Loader />
+        }
+
+        return (
             <>
                 <Header />
+                <div className="bannerMovies" style={{ backgroundImage: `url(${selection.imageURL})` }}>
+                    <div className="overlay"></div>
+                    <div className="hero-slide-item-content itemContent">
+                        <div className="item-content-wraper contentWraper">
+                            <div className="item-content-title contentTitle">
+                                {selection.title}
+                            </div>
+                            <div className="movie-infos">
+                                <div className="movie-info">
+                                    <i className="bx bxs-star"></i>
+                                    <span>9.5</span>
+                                </div>
+                                <div className="movie-info">
+                                    <i className="bx bxs-time"></i>
+                                    <span>{selection.duration}</span>
+                                </div>
+                                <div className="movie-info">
+                                    <span>HD</span>
+                                </div>
+                                <div className="movie-info">
+                                    <span>{selection.audienceAge}</span>
+                                </div>
+                            </div>
+                            <div className="item-content-description contentDescription">
+                                {selection.sinopsis}
+                            </div>
+                            <div className="item-action">
+                                <p className="btn btn-hover">
+                                    <i className="bx bxs-right-arrow"></i>
+                                    <span>Watch now</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="seriesContainer">
-                    {  this.state.movies &&
-                        <Lastest title={ "Most Populars" } array={ this.state.movies} />
+                    {
+                        titles.map((title, index) => {
+                            return <Lastest key={index} title={title.name} array={title.movies} />
+                        })
                     }
-                </div> 
-                <div className="seriesContainer">
-                    {  this.state.accion &&
-                        <Lastest title={ "Accion" } array={ this.state.accion} />
-                    }
-                </div>     
-                <div className="seriesContainer">
-                    {  this.state.comedy &&
-                        <Lastest title={ "Comedy" } array={ this.state.comedy} />
-                    }
-                </div>   
-                <div className="seriesContainer">
-                    {  this.state.adventure &&
-                        <Lastest title={ "Adventure" } array={ this.state.adventure} />
-                    }
-                </div>   
+                </div>
                 <Footer />
-            </>        
+            </>
         )
     }
 }
