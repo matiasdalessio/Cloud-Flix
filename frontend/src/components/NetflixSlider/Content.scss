@@ -80,19 +80,20 @@
     position: absolute;
     top: 30px;
     right: 30px;
+    cursor: pointer;
   }
 }
 
-.languages, .subtitles, .casting, .director, .year  {
+.languages, .subtitles, .casting, .director, .year, .duration  {
   display: flex;
   align-items: center;
 }
 
-.languages, .subtitles, .casting, .director, .year,  span {
+.languages, .subtitles, .casting, .director, .year, .duration, span {
   margin-left: 0.7rem;
 }
 
-.languages, .subtitles, .casting, .director, .year  {
+.languages, .subtitles, .casting, .director, .year, .duration   {
   margin-left: 0;
 }
 

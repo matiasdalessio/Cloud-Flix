@@ -1,4 +1,5 @@
 import Slider from 'infinite-react-carousel';
+import { FaPlayCircle} from "react-icons/fa"
 
 const Carrousel = ()=>{
     const settings =  {
@@ -41,7 +42,7 @@ const Carrousel = ()=>{
                                     </div>
                                     <div className="item-action">
                                         <p className="btn btn-hover">
-                                            <i className="bx bxs-right-arrow"></i>
+                                            <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                                             <span>Watch now</span>
                                         </p>
                                     </div>
@@ -81,7 +82,7 @@ const Carrousel = ()=>{
                                     </div>
                                     <div className="item-action">
                                         <p className="btn btn-hover">
-                                            <i className="bx bxs-right-arrow"></i>
+                                            <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                                             <span>Watch now</span>
                                         </p>
                                     </div>
@@ -121,7 +122,7 @@ const Carrousel = ()=>{
                                     </div>
                                     <div className="item-action">
                                         <p className="btn btn-hover">
-                                            <i className="bx bxs-right-arrow"></i>
+                                            <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                                             <span>Watch now</span>
                                         </p>
                                     </div>
@@ -161,7 +162,7 @@ const Carrousel = ()=>{
                                     </div>
                                     <div className="item-action">
                                         <p className="btn btn-hover">
-                                            <i className="bx bxs-right-arrow"></i>
+                                            <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                                             <span>Watch now</span>
                                         </p>
                                     </div>

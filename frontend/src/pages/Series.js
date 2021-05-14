@@ -3,6 +3,9 @@ import { connect } from "react-redux"
 import seriesAction from "../redux/actions/seriesAction"
 import Lastest from "../components/Lastest"
 import Header from "../components/Header"
+import Footer from "../components/Footer"
+import Loader from "../components/Loader"
+
 
 class Series extends React.Component{
 
@@ -14,10 +17,12 @@ class Series extends React.Component{
 
     state={
         series:[],
-        mostPopular:[],
-        action:[],
-        comedy:[],
-        fantasy:[]
+        mostPopular:[] ,
+        action: [],
+        comedy: [],
+        scienceFiction:[],
+        crime:[],
+        filtered:[]
     }
 
     componentDidMount(){
@@ -27,35 +32,73 @@ class Series extends React.Component{
                 series: data,
                 action: data.filter( serie => serie.categories.includes( "Action" ) ),
                 comedy: data.filter( serie => serie.categories.includes( "Comedy" ) ),
-                fantasy: data.filter( serie => serie.categories.includes( "Fantasy" ) )
+                scienceFiction: data.filter( serie => serie.categories.includes( "Science Fiction" ) ),
+                crime: data.filter( serie => serie.categories.includes( "Crime" ) )
             })
         })
     }
 
-/* grid series
-this.state.series.map( serie =>{ 
-return <div key={ serie._id } onClick={ () => this.props.history.push("/audiovisual/" + serie._id) } className="serie" style={{  backgroundImage: `url('${ serie.imageURL }')`  }} >
-</div> })
-*/
+    filter = (item)=>{
+        item.length === 0 
+        ? this.setState({ ...this.state, filtered:[] })
+        : this.setState({ ...this.state, 
 
+        filtered: this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
+        ? this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 )
+        : false
+        })
+        
+     }
 
     render() {
-        return(
-            <div className="seriesContainer">
-                <Header/>
-                {  this.state.action &&
+        if( typeof this.state.filtered === "object" && this.state.filtered.length > 0 ){
+            return <div className="seriesContainer" >
+                 <Header filter={ this.filter } />
+                {
+                    this.state.filtered.map( element =>{ 
+                    return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageURL }')` }} >
+                            </div> 
+                })
+                }
+                <Footer />
+            </div>
+        }
+        else if( !this.state.filtered ) {
+            return <div className="seriesContainer" >
+                 <Header filter={ this.filter } />
+                 <div className="noResults">
+                    <h1>There are no results</h1>
+                 </div>
+                <Footer />
+            </div>
+        }else{
+             if( !this.state.action.length ){
+                return < div className="seriesContainer">
+                    <Loader />
+                </div>
+                 
+             }else{
+
+             }
+            return(
+                <div className="seriesContainer">
+                    <Header filter={ this.filter } />
+                
                     <Lastest title={ "Action" } array={ this.state.action } />
-                }
-
-                {  this.state.comedy &&
+    
                     <Lastest title={ "Comedy" } array={ this.state.comedy } />
-                }
+    
+                    <Lastest title={ "Science Fiction" } array={ this.state.scienceFiction } />
+    
+                    <Lastest title={ "Crime" } array={ this.state.crime } />
 
-                {  this.state.comedy &&
-                    <Lastest title={ "Fantasy" } array={ this.state.fantasy } />
-                }
-            </div>        
-        )
+                    <Footer />
+                </div>        
+            )
+        }
+
+
+        
     }
 }
 

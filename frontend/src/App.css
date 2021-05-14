@@ -57,6 +57,8 @@ footer .container {
     height: 15rem;
 }
 
+
+
 .overlay {
     position: absolute;
     top: 0;
@@ -622,6 +624,88 @@ footer .content {
   .section div .container{
       height: auto;
   }
+
+  /* SELECT PROFILE */
+  .containerProfiles{
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      top: 30vh;
+      left: 0vw;
+}
+.tittleProfiles{
+    color: var(--main-color);
+    font-size: 3rem;
+}
+  .profileOptions{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.addAvatar{
+    background-color: #222122;
+    margin: 2vh 3vw;
+    cursor: pointer;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+}
+.addIcon{
+    font-size: 6rem;
+}
+.profileAvatar{
+    margin: 2vh 3vw;
+    cursor: pointer;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+}
+.profileName{
+    border-radius: 0 0 15px 15px;
+    background-color: rgba(0, 0, 0, 0.521);
+    color: var(--main-color);
+    text-align: center;
+}
+
+/* CREATE PROFILE */
+.containerProfiles{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.formProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.divContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.addAvatar{
+
+}
+
+
+
 
 /* RESPONSIVE */
 

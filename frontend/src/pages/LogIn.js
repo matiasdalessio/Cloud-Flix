@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
 import usersActions from '../redux/actions/usersActions.js'
 import {connect} from 'react-redux'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Redirect} from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
+import swal from 'sweetalert'
 
-
-const LogIn = (props) => { 
-
+const Login = (props) =>{
     const [userLog, setUserLog] = useState({email:'', password:''})
 
     const readInput = e =>{
@@ -23,25 +21,31 @@ const LogIn = (props) => {
     const logInOk = async (e = null, userGoogle = null) => {
         e && e.preventDefault()
         let user = e ? userLog : userGoogle
-        props.userLogged(user)
+        const response = await props.logUser(user)
+        if (!response) {
+            return props.history.push('/serverdown')            
+        } else if (response.error) {
+            swal(response.error, "Verify and try again!", "error")
+        } else {
+            return <Redirect to="/ProfileSelection"/>
+        }   
     }
 
     const responseGoogle = (response) => {
-        console.log(response)
         if (response.profileObj.email){
             logInOk(null, {email: response.profileObj.email, password: "asd"+response.profileObj.googleId})
         }
       }
-
-    return(
-        <div className='logInContainer' style={{backgroundImage: "url(./assets/fondoForm.jpg)"}}>
-            <Header />
-            <form className='formUsersLogIn'>
-                <h1 className='titleLog'>Log In</h1>   
-                <input className='inputUsers' type='email' name='email' placeholder='Please, enter your email address' value={userLog.email} onChange={readInput} required></input>
-                <input className='inputUsers' type='password' name='password' placeholder='Please, enter your password' value={userLog.password} onChange={readInput} required></input>
-                
-                <input className='btnLogIn' type="button" value="Log In!" onClick={logInOk}></input>
+    return (<>
+        <Header />
+        <div className='siteContainerLogInEma' style={{backgroundImage:'url("https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2018/06/series-netflix.jpg")'}}>
+            <div className='divContainerLogInEma'>
+                <h1 className='titleFormRegister'>Sign In</h1>
+                <form>
+                    <input type='text' className='inputFormRegister' placeholder='Email' value={userLog.email} onChange={readInput} required></input>
+                    <input type='password' className='inputFormRegister' placeholder='Password' value={userLog.password} onChange={readInput} required></input>
+                    <p className='botonFormRegister' onClick={logInOk}>Sign In</p>
+                </form>
                 <GoogleLogin
                     clientId="706728189535-gkdltcou7njsjagcfhn30q0i25g7f30v.apps.googleusercontent.com"
                     render={renderProps => (
@@ -51,18 +55,14 @@ const LogIn = (props) => {
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                <div className='signUp'>
-                    <p>Already have an account?</p>
-                    <NavLink to="/signup"><h2>Sign Up!</h2></NavLink> 
-                </div>
-            </form>   
-            <Footer />              
-        </ div>
-        )    
+                <p className='callToActionForm'>New to CloudFlix?<NavLink to="/signup"><span className='reedirectFormRegister'>Sign Up</span></NavLink></p>
+            </div>
+        </div>
+        </>
+    )
 }
-
 const mapDispatchToProps = {
-    userLogged: usersActions.userLogged
+    logUser: usersActions.logUser
 }
 
-export default connect(null, mapDispatchToProps) (LogIn)
+export default connect(null, mapDispatchToProps) (Login)
