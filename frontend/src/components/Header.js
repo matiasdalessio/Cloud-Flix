@@ -8,8 +8,6 @@ import audiovisualActions from "../redux/actions/audiovisualActions";
 
 const Header = ({profile, userLogged,  unselectProfile, userLogout, filter = null, actorFilter = null })=>{
 
-    console.log(profile)
-
 
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState(false)

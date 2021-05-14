@@ -9,7 +9,7 @@ import Home from "./pages/Home"
 import Movies from "./pages/Movies"
 import Series from "./pages/Series"
 import Popular from "./pages/Popular"
-import Mylist from "./pages/MyList"
+import MyList from "./pages/MyList"
 import Audiovisual from './pages/Audiovisual';
 import usersActions from './redux/actions/usersActions';
 import './preloader.css'
@@ -55,7 +55,7 @@ class App extends React.Component{
           <Route path="/movies" component={ Movies } />
           <Route path="/series" component={ Series }  />
           <Route path="/popular" component={ Popular } />
-          {localStorage.getItem('token') && <Route path="/mylist" component={ Mylist } />}
+          {localStorage.getItem('token') && <Route path="/mylist" component={ MyList } />}
           {localStorage.getItem('token') && <Route path="/ProfileSelection" component={ ProfileSelection } />}
           <Route path="/audiovisual/:id" component={ Audiovisual } />
           <Route path="/pricing" component={ Pricing } />
