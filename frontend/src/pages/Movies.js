@@ -11,7 +11,7 @@ class Movies extends React.Component {
     state = {
         loader: true,
         movies: [],
-        accion: [],
+        action: [],
         comedy: [],
         adventure: []
 
@@ -22,7 +22,7 @@ class Movies extends React.Component {
         this.setState({
             loader: false,
             movies: response,
-            accion: response.filter(serie => serie.categories.includes("Action")),
+            action: response.filter(serie => serie.categories.includes("Action")),
             comedy: response.filter(serie => serie.categories.includes("Comedy")),
             adventure: response.filter(serie => serie.categories.includes("Adventure"))
         })
@@ -44,7 +44,7 @@ class Movies extends React.Component {
 
         var titles = [
             { name: "Most Populars", movies: this.state.movies },
-            { name: "Action", movies: this.state.accion },
+            { name: "Action", movies: this.state.action },
             { name: "Comedy", movies: this.state.comedy },
             { name: "Adventure", movies: this.state.adventure }
         ]
@@ -78,7 +78,7 @@ class Movies extends React.Component {
                                 <div className="movie-info">
                                     <span>{selection.audienceAge}</span>
                                 </div>
-                            </div>
+                            </div>                            
                             <div className="item-content-description contentDescription">
                                 {selection.sinopsis}
                             </div>

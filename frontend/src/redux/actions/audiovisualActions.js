@@ -4,6 +4,7 @@ const audiovisualActions = {
             try {
                 var response = await fetch("http://localhost:4000/api/audiovisuals")
                 var data = await response.json()
+                console.log(data.respuesta)
                 if (!data.success) {
                     console.log(data.respuesta)
                 } else {
@@ -12,6 +13,11 @@ const audiovisualActions = {
             } catch (error) {
                 console.log(data.repuesta)
             }
+        }
+    },
+    actorFilter: (value) => {
+        return(dispatch, getstate) => {
+            dispatch({type: 'FILTRAR_ACTOR', payload: value})
         }
     },
 

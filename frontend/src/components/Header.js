@@ -4,9 +4,10 @@ import { Link } from "react-router-dom"
 import usersActions from "../redux/actions/usersActions"
 import { FaPlayCircle } from "react-icons/fa";
 import profileActions from "../redux/actions/profileActions";
+import audiovisualActions from "../redux/actions/audiovisualActions";
 
 
-const Header = ({userLogged,  unselectProfile, userLogout, filter = null })=>{
+const Header = ({userLogged,  unselectProfile, userLogout, filter = null, actorFilter = null })=>{
 
     const [ visible, setVisible ] = useState(false)
     /* const [ item, setItem ] = useState("") */
@@ -70,7 +71,8 @@ const mapStateToProps = state => {
   }
   const mapDispatchToProps = {
     userLogout :  usersActions.userLogout,
-    unselectProfile: profileActions.unselectProfile
+    unselectProfile: profileActions.unselectProfile,
+    actorFilter: audiovisualActions.actorFilter
   
   }
   
