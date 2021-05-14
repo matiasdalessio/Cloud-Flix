@@ -4,7 +4,8 @@ import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
-import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
+import { FaPlayCircle, FaPlus ,FaRegStar, FaStar , FaRegClock } from "react-icons/fa"
+
 
 const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
 
@@ -91,8 +92,9 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>
                     </p>
-                   
-                    <button className="favourite" ><FaPlus /> </button>
+
+                    <button className="favourite" onClick={() => sendMovieToList(movie)} ><FaPlus /> </button>
+
 
                     <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }
                       emptySymbol={ <FaRegStar /> }
