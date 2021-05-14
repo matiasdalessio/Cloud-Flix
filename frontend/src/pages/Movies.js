@@ -40,7 +40,7 @@ class Movies extends React.Component {
         let bannerRandom = Math.floor(Math.random() * (this.state.movies.length));
         let selection = this.state.movies[bannerRandom]
 
-        selection.rate.map( rate => console.log(rate) )
+        // selection.rate.map( rate => console.log(rate) )
 
         var titles = [
             { name: "Most Populars", movies: this.state.movies },
@@ -70,7 +70,7 @@ class Movies extends React.Component {
                                 </div>
                                 <div className="movie-info">
                                     <i className="bx bxs-time"></i>
-                                    <span>{selection.duration}</span>
+                                    <span>{selection.duration} hs</span>
                                 </div>
                                 <div className="movie-info">
                                     <span>HD</span>
