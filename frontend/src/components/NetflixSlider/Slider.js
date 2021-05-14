@@ -30,7 +30,7 @@ const Slider = ({ children, activeSlide }) => {
 
   const contextValue = {
     onSelectSlide: handleSelect,
-    onCloseSlide: handleClose,
+    onCloseSlide: handleClose ,
     elementRef,
     currentSlide,
   };

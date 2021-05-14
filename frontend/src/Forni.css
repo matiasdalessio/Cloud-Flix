@@ -66,3 +66,10 @@ html *{
     margin-left: 0.3em;
     font-size: 1em;
 }
+.movie-cast{
+    display: flex;
+    flex-direction: column;
+}
+.cast-link:hover{
+    color: red;
+}

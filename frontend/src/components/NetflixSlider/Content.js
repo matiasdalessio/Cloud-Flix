@@ -4,6 +4,7 @@ import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
+import { NavLink } from 'react-router-dom';
 import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
 
 
@@ -29,6 +30,10 @@ const Content = ({ movie, onClose, addToMyList, selectedProfile, userLogged , hi
     const response = await addToMyList(sendedData, userLS, selectedProfile._id)
       setMyList({myList: response, fetching: false})
     
+  }
+
+  const valor = (e) => {
+    console.log(e.target)
   }
 
 
@@ -91,18 +96,19 @@ const Content = ({ movie, onClose, addToMyList, selectedProfile, userLogged , hi
                   </div>
                         {userLogged &&
                   <div className="buttons">
-                    <p className="btn btn-hover" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }>
+                    <NavLink to="/video">
+                    <p className="btn btn-hover" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>
                     </p>
+                    </NavLink>
 
                     <button className="favourite" onClick={() => !myList.fetching && sendMovieToList(movie)} ><FaPlus className={movieFounded ? "addButton" : ""}/> </button>
                     
 
-
                     <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }
                       emptySymbol={ <FaRegStar /> }
-                      fullSymbol={ <FaStar /> }
+                      fullSymbol={ <FaStar onClick={valor} /> }
                       fractions={ 2 }
                     />
                   </div>

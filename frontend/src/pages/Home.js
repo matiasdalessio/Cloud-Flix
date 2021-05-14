@@ -7,7 +7,6 @@ import { connect } from "react-redux"
 import Header from "../components/Header"
 
 
-
 class Home extends React.Component{
     toTop= () => {window.scroll({
         top:0,
@@ -32,6 +31,7 @@ class Home extends React.Component{
     }
 
     filter = (item)=>{
+        item = item.toLowerCase().trim()
         item.length === 0 
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
@@ -42,17 +42,13 @@ class Home extends React.Component{
         })
     }
 
-
     render() {
         return(
             <div>
                 <Header filter={ this.filter } />
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
-                    ? this.state.filtered.map( element =>{ 
-                        return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
-                        </div> 
-                        })
+                    ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
 
                     : !this.state.filtered
 

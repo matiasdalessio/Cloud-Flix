@@ -4,19 +4,22 @@ const audiovisualActions = {
             try {
                 var response = await fetch("http://localhost:4000/api/audiovisuals")
                 var data = await response.json()
+
                 if (!data.success) {
-                    console.log(data.respuesta)
+
                 } else {
                     return data.respuesta.filter( movie => movie.audiovisualType === 'Movie' )
                 }
             } catch (error) {
-                console.log(data.repuesta)
+                console.log(error)
             }
         }
     },
-    actorFilter: (value) => {
+    actorFilter: (outerText) => {
+        console.log(outerText)
         return(dispatch, getstate) => {
-            dispatch({type: 'FILTRAR_ACTOR', payload: value})
+            console.log('llegué actions')
+            /* dispatch({type: 'FILTRAR_ACTOR', payload: outerText}) */
         }
     },
 

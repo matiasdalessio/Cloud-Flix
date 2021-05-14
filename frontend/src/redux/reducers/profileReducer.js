@@ -1,7 +1,6 @@
 const initialState = {
     userProfiles:null,
     selectedProfile:[]
-        
 }
 
 const profileReducer = (state = initialState, action) => {
