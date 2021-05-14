@@ -5,7 +5,7 @@ import audiovisualActions from '../redux/actions/audiovisualActions'
 import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Movies extends React.Component {
 
@@ -114,11 +114,10 @@ class Movies extends React.Component {
                                                                 return( 
                                                                     <>
                                                                     {console.log(actor)}
-                                                                    <Link to={'/actorFilms/'+ actor} className="cast-link">{actor} </ Link>
+                                                                    <NavLink to={'/actorFilms'+ actor} className="cast-link">{actor}</ NavLink>
                                                                     </>
                                                                     )
                                                                     })
-                                                                    
                                                                 }
                                                             </div>
                                                                 <div className="item-content-description contentDescription">
