@@ -3,12 +3,13 @@
   top: 0;
   bottom: 0;
   width: 55px;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.774);
   border: 0;
   outline: 0;
   padding: 0;
   margin: 40px 0;
   z-index: 4;
+  cursor: pointer;
 
   span {
     width: 25px;
@@ -32,4 +33,5 @@
       transform: rotateZ(90deg);
     }
   }
+
 }
