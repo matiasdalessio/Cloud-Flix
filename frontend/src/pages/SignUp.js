@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../components/Footer'
 import axios from 'axios'
 import {NavLink} from 'react-router-dom'
 import usersActions from '../redux/actions/usersActions.js'
@@ -7,7 +6,7 @@ import {connect} from 'react-redux'
 import { GoogleLogin } from 'react-google-login'; 
 import Header from '../components/Header'
 
-const SignUp = (props) => {   
+const SignUp = (props) =>{
     const [newUser, setNewUser] = useState({email: '', password:'', country:'', premium: false})
     const [countrySelect, setCountrySelect] = useState([])
     
@@ -30,30 +29,31 @@ const SignUp = (props) => {
         e && e.preventDefault()
         let user = e ? newUser : googleUser
         props.loadUser(user)
-        
     }
 
     const responseGoogle = (response) => {
         const {email, googleId, premium} = response.profileObj
         signUpOk(null, {email, password: "asd"+googleId, country: "Nothing", premium})         
       }
-    
-    return(
-        <div className='signUpContainer'>
-            {/* <Header/> */}
-            <form className='formUsersSignUp'>
-                <h1 className='titleLog'>Sign Up</h1>   
-                <input className='inputUsers' type='email' name='email' placeholder='Please, enter your email address' value={newUser.email} onChange={readInput} required></input>
-                <input className='inputUsers' type='password' name='password' placeholder='Please, enter your password' value={newUser.password} onChange={readInput} required></input>
-                <select className='inputUsers' name='country' value={newUser.country} onChange={readInput}>
-                    <option>Select country</option>
-                    {countrySelect.map((country, id)=> {
-                        return(
-                            <option key={id} value={country.name}>{country.name}</option>
-                        )
-                    })} 
-                </select>
-                <input className='btnSignUp' type="button" value="Sign up!" onClick={signUpOk} active></input>
+
+    return (<>
+        <Header />
+        <div className='siteContainerLogInEma' style={{backgroundImage:'url("https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2018/06/series-netflix.jpg")'}}>
+            <div className='divContainerLogInEma'>
+                <h1 className='titleFormRegister'>Sign Up</h1>
+                <form>
+                    <input type='text' className='inputFormRegister' name='email' placeholder='Please, enter your email address' value={newUser.email} onChange={readInput}></input>
+                    <input type='password' className='inputFormRegister' name='password' placeholder='Please, enter your password' value={newUser.password} onChange={readInput}></input>
+                    <select className='inputFormRegister' name='country' value={newUser.country} onChange={readInput}>
+                        <option>Select country</option>
+                            {countrySelect.map((country, id)=> {
+                                return(
+                                    <option key={id} value={country.name}>{country.name}</option>
+                                )
+                            })} 
+                    </select>
+                    <p className='botonFormRegister' value="Sign up!" onClick={signUpOk} >Sign Up</p>
+                </form>
                 <GoogleLogin
                     clientId="706728189535-gkdltcou7njsjagcfhn30q0i25g7f30v.apps.googleusercontent.com"
                     render={renderProps => (
@@ -63,21 +63,14 @@ const SignUp = (props) => {
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                <div className='logIn'>
-                    <p>Already have an account?</p>
-                    <NavLink to="/login"><h2>Log In!</h2></NavLink> 
-                </div>
-            </form>        
-            {/* <Footer /> */}
-        </ div>
-        
-    )    
+                <p className='callToActionForm'>Already account to CloudFlix?<NavLink to="/login"><span className='reedirectFormRegister'>Sign In</span></NavLink></p>
+            </div>
+        </div>
+        </>
+    )
 }
-
 const mapDispatchToProps = {
     loadUser: usersActions.loadUser
 }
 
 export default connect(null, mapDispatchToProps)(SignUp)
-
-
