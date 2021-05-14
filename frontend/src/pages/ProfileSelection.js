@@ -117,10 +117,12 @@ class ProfileSelection extends React.Component{
                                 return <div onClick={() => this.selectProfile(profile)} className="profileAvatar" key={profile._id} style={{backgroundImage: `url('${profile.avatar}')`}}>
                                             <h3 className="profileName">{profile.name}</h3>
                                     </div>
-                            })}                 
+                            })}
+                            {this.props.userProfiles.length<= 4 &&
                             <div onClick={() => this.createProfile()} className="addAvatar" >
                                 <MdAdd className="addIcon"/>
-                            </div>                  
+                            </div> }                 
+                                             
                         </div>  
                                                   
                  </div>                

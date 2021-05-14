@@ -39,6 +39,9 @@
     background-color: white;
     margin-left: 1em;
     border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .prueba{

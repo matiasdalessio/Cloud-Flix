@@ -16,14 +16,14 @@
   }
 
   &:not(&--open) .item:hover {
-    transform: scale(1.5) !important;
+    transform: scale(1.25) !important;
   }
 
   &:not(&--open):hover .item {
-    transform: translateX(-25%);
+    transform: translateX(-15%);
   }
 
   &:not(&--open) .item:hover ~ .item {
-    transform: translateX(25%);
+    transform: translateX(15%);
   }
 }
