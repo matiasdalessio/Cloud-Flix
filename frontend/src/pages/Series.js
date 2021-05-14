@@ -10,6 +10,7 @@ import BannerRandom from "../components/BannerRandom"
 
 class Series extends React.Component {
 
+
     toTop = () => {
         window.scroll({
             top: 0,
@@ -53,18 +54,40 @@ class Series extends React.Component {
                     : false
             })
 
+
+        filtered: this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
+        ? this.state.series.filter( serie => serie.title.toLowerCase().trim().indexOf( item ) === 0 )
+        : false
+        })
     }
 
     render() {
-        if (!this.state.action.length) {
-            return <Loader />
-        } else {
+      
+             if( !this.state.action.length ){
+                return <Loader />
+             }else{
+
+                return( <>
+                    <Header filter={ this.filter } />
+                    <div className="seriesContainer">
+                        
+                    {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
+                            
+                        ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
+
+                        : !this.state.filtered 
+                        
+                            ?  <div className="noResults">
+                                     <h1>There are no results</h1>
+                                </div>
+
 
             return (
                 <div>
                     <Header filter={this.filter} />
 
                     {  typeof this.state.filtered === "object" && this.state.filtered.length > 0
+
 
                         ? this.state.filtered.map(element => {
                             return <div className="results" key={element._id} style={{ backgroundImage: `url('${element.imageBanner}')` }} >
@@ -96,6 +119,7 @@ class Series extends React.Component {
             )
 
         }
+
     }
 }
 

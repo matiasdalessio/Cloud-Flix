@@ -1,10 +1,8 @@
-import { FaPlayCircle } from "react-icons/fa"
-
 const Loader = ()=>{
 
  return (
     <div className="preloader">
-        <i className='bx bx-movie-play bx-tada main-color'></i>Cl<FaPlayCircle className="playIcon"/>ud<span className="main-color">Flix</span>
+        <div className='logoLoader' style={{backgroundImage:'url("../images/logoCloudFlix.png")'}}></div>
         <div className="sk-cube-grid">
             <div className="sk-cube sk-cube1"></div>
             <div className="sk-cube sk-cube2"></div>

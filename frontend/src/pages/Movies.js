@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom";
+import { Link } from "react-router-dom";
 
 class Movies extends React.Component {
 
@@ -61,6 +62,7 @@ class Movies extends React.Component {
         ]
 
         if (this.state.loader) {
+
             return <Loader />
         }
         else {
@@ -70,10 +72,7 @@ class Movies extends React.Component {
 
                     {   typeof this.state.filtered === "object" && this.state.filtered.length > 0
 
-                        ? this.state.filtered.map(element => {
-                            return <div className="results" key={element._id} style={{ backgroundImage: `url('${element.imageBanner}')` }} >
-                            </div>
-                        })
+                        ?  <Lastest title={ "Resutls" } array={ this.state.filtered } />
 
                         : !this.state.filtered
 
@@ -97,11 +96,14 @@ class Movies extends React.Component {
             )
         }
 
+
     }
 }
 
+
 const mapDispatchToProps = {
-    fetchMovies: audiovisualActions.movies
+    fetchMovies: audiovisualActions.movies,
+    actorFilter: audiovisualActions.actorFilter
 }
 
 export default connect(null, mapDispatchToProps)(Movies)
