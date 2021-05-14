@@ -4,10 +4,10 @@ import { Link } from "react-router-dom"
 import usersActions from "../redux/actions/usersActions"
 import { FaPlayCircle } from "react-icons/fa";
 import profileActions from "../redux/actions/profileActions";
+import audiovisualActions from "../redux/actions/audiovisualActions";
 
-const Header = ({ profile, userLogged, unselectProfile, userLogout, filter = null }) => {
+const Header = ({profile, userLogged,  unselectProfile, userLogout, filter = null, actorFilter = null })=>{
 
-    console.log(profile)
 
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState(false)
@@ -83,11 +83,13 @@ const mapStateToProps = state => {
         userLogged: state.user.userLogged,
         profile: state.profile.selectedProfile
     }
-}
-const mapDispatchToProps = {
-    userLogout: usersActions.userLogout,
-    unselectProfile: profileActions.unselectProfile
 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+  }
+  const mapDispatchToProps = {
+    userLogout :  usersActions.userLogout,
+    unselectProfile: profileActions.unselectProfile,
+    actorFilter: audiovisualActions.actorFilter
+  
+  }
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(Header)
