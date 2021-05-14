@@ -19,6 +19,7 @@ import Loader from "./components/Loader"
 import profileActions from './redux/actions/profileActions';
 import Login from './pages/LogIn';
 import SignUp from './pages/SignUp';
+import Pricing from './components/Pricing';
 
 
 class App extends React.Component{
@@ -57,6 +58,7 @@ class App extends React.Component{
           {localStorage.getItem('token') && <Route path="/mylist" component={ Mylist } />}
           {localStorage.getItem('token') && <Route path="/ProfileSelection" component={ ProfileSelection } />}
           <Route path="/audiovisual/:id" component={ Audiovisual } />
+          <Route path="/pricing" component={ Pricing } />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
