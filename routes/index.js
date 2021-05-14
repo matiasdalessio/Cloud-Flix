@@ -64,13 +64,3 @@ router.route('/seasons')
 
 
 module.exports = router
-
-
-
-
-
-
-
-
-
-
