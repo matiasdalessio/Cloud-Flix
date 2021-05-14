@@ -4,7 +4,8 @@ import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
-import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
+import { FaPlayCircle, FaPlus ,FaRegStar, FaStar , FaRegClock } from "react-icons/fa"
+
 
 const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
 
@@ -66,18 +67,20 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
 
                     <div className="year">
                     <h4>Year: { movie.year } </h4>
-                    </div>
-
-                    <div>
-                      <button onClick={() => sendMovieToList(movie)}>agregar</button>
-                    </div>
-
+                    </div >
+                        {  movie.duration &&
+                          <div className="duration">
+                            <FaRegClock />
+                          <span> { movie.duration } </span>
+                          </div>
+                        }
                   </div>
 
                   <div className="buttons">
                     <button className="btn-borde" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }  >
                       Play<FaPlayCircle size={ 20 } /></button>
-                    <button className="favourite" ><FaPlus /> </button>
+
+                    <button className="favourite" onClick={() => sendMovieToList(movie)} ><FaPlus /> </button>
 
                     <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }
                       emptySymbol={ <FaRegStar /> }
