@@ -72,10 +72,7 @@ class Movies extends React.Component {
 
                             {   typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
-                                ? this.state.filtered.map( element =>{ 
-                                    return <div className="results" key={ element._id } style={{  backgroundImage:`url('${ element.imageBanner }')` }} >
-                                    </div> 
-                                    })
+                                ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
 
                                 : !this.state.filtered 
                                  
