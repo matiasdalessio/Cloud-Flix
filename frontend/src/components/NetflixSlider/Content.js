@@ -5,6 +5,7 @@ import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
 import { FaPlayCircle, FaPlus ,FaRegStar, FaStar , FaRegClock } from "react-icons/fa"
+import { NavLink } from 'react-router-dom';
 
 
 const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
@@ -81,10 +82,12 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
                   </div>
 
                   <div className="buttons">
-                    <p className="btn btn-hover" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }>
+                    <NavLink to="/video">
+                    <p className="btn btn-hover" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>
                     </p>
+                    </NavLink>
 
                     <button className="favourite" onClick={() => sendMovieToList(movie)} ><FaPlus /> </button>
 
