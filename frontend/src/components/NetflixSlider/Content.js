@@ -23,13 +23,14 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
 
   return (
 
-          <div className="content">
+          <div className="content">{console.log(movie)}
               <div className="content__background">
                 <div className="content__background__shadow" />
                 <div
                   className="content__background__image"
                   style={{ backgroundImage: `url(${movie.imageURL})` }}
                 />
+                
               </div>
               <div className="content__area">
                 <div className="content__area__container">
@@ -42,8 +43,6 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
                       ? movie.sinopsis.slice( 0 , 249 ) + "..." 
                       : movie.sinopsis } 
                     </div>
-
-                     <h4>Age: { movie.audienceAge }</h4>
 
                     <div className="languages">
                     <h4>Languages: </h4>
@@ -63,9 +62,19 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
                     <div className="director">
                     <h4>Director: { movie.director } </h4>
                     </div>
-
-                    <div className="year">
-                    <h4>Year: { movie.year } </h4>
+                    
+                    <div className="movie-infos">
+                        <div className="movie-info">
+                          <i className="bx bxs-star"></i>
+                          <span>9.5</span>
+                        </div>
+                        <div className="movie-info">
+                          {movie.duration && <i className="bx bxs-time"></i>}
+                          <span> {movie.duration && movie.duration+ " hs"}</span>
+                        </div>
+                        <div className="movie-info">
+                          <span>{ movie.audienceAge }</span>
+                        </div>
                     </div>
 
                     <div>
@@ -75,8 +84,14 @@ const Content = ({ movie, onClose, addToMyList, userLogged , history }) => {
                   </div>
 
                   <div className="buttons">
-                    <button className="btn-borde" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }  >
-                      Play<FaPlayCircle size={ 20 } /></button>
+                    {//<button className="btn-borde" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }  >
+                      //Play<FaPlayCircle size={ 20 } /></button>
+                    }
+                    <p className="btn btn-hover" onClick={ ()=> history.push("/audiovisual"+ movie._id )  }>
+                      <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
+                      <span>Watch now</span>
+                    </p>
+                   
                     <button className="favourite" ><FaPlus /> </button>
 
                     <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }

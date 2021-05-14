@@ -2,6 +2,7 @@
     background-position: top;
     background-size: cover;
     background-repeat: no-repeat;
+    margin-bottom: 10vh;
 }
 .section-header {
     margin: 0;
@@ -36,4 +37,75 @@ footer{
 }
 .btn:hover{
     cursor: pointer;
+}
+.favourite{
+    font-size: 4vh;
+}
+.circulePlay{
+    margin-top: 0.5vh;
+}
+.siteContainerLogInEma{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+.divContainerLogInEma{
+    background-color: #151515d3;
+    width: 20rem;
+    height: 27rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0.5rem;
+    margin-top: 2rem;
+}
+.titleFormRegister{
+    font-size: 6.5vh;
+}
+.divContainerLogInEma form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.inputFormRegister{
+    width: 18rem;
+    height: 2rem;
+    margin: 0.5rem;
+    padding-left: 0.4rem;
+    border-radius: 0.2rem;
+    outline: none;
+    cursor: pointer;
+}
+.botonFormRegister{
+    font-size: 2.5vh;
+    width: 18rem;
+    font-weight: bolder;
+    background-color: #E50913;
+    border: #E50913;
+    text-align: center;
+    border-radius: 0.2rem;
+    margin-top: 1rem;
+    padding: 0.2rem 0;
+    cursor: pointer;
+}
+.callToActionForm{
+    color: rgb(153, 150, 150);
+}
+.reedirectFormRegister{
+    color: white;
+    font-size: 3.5vh;
+    font-weight: 550;
+}
+.googleButton{
+    width: 18rem;
+    padding: 0.2rem 0;
+    cursor: pointer;
+    border-radius: 0.2rem;
+    height: 2.3rem;
+    border: none;
 }
