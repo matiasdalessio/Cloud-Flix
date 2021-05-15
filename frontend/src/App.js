@@ -10,11 +10,11 @@ import Movies from "./pages/Movies"
 import Series from "./pages/Series"
 import Popular from "./pages/Popular"
 import MyList from "./pages/MyList"
-import Audiovisual from './pages/Audiovisual';
+import Audiovisual from './components/Audiovisual';
 import usersActions from './redux/actions/usersActions';
 import './preloader.css'
 import { connect } from 'react-redux';
-import ProfileSelection from './pages/ProfileSelection';
+import ProfileSelection from './components/ProfileSelection';
 import Loader from "./components/Loader"
 import profileActions from './redux/actions/profileActions';
 import Login from './pages/LogIn';
@@ -22,7 +22,7 @@ import SignUp from './pages/SignUp';
 import Pricing from './components/Pricing';
 import Video from './components/Video';
 import "../node_modules/video-react/dist/video-react.css"
-import ActorFilms from './pages/ActorFilms'
+import ActorFilms from './components/ActorFilms'
 
 
 
@@ -36,9 +36,10 @@ class App extends React.Component{
         ...userData
       }
       this.props.loginForcedLS(userLS)
+      this.props.getUserProfiles(userData.id, userLS)
     }
     if (localStorage.getItem('profile') && this.props.selectedProfile.length === 0) {
-      const profileId = JSON.parse(localStorage.getItem('profile'))
+      const profileId = JSON.parse(localStorage.getItem('profile'))      
       this.props.profileSelected(profileId)
     }
   }
@@ -64,7 +65,7 @@ class App extends React.Component{
           <Route path="/audiovisual/:id" component={ Audiovisual } />
           <Route path="/pricing" component={ Pricing } />
           <Route path="/video" component={ Video } />
-          <Route path ="/actorFilms/actor" component={ ActorFilms } />
+          <Route path ="/actorFilms/:name" component={ ActorFilms } />
 
           <Redirect to="/" />
         </Switch>
@@ -81,6 +82,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   loginForcedLS :  usersActions.loginForcedLS,
   profileSelected:  profileActions.profileSelected,
+  getUserProfiles: profileActions.getUserProfiles,
 
 }
 

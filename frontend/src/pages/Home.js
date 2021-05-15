@@ -6,6 +6,7 @@ import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
 import Loader from "../components/Loader"
+import audiovisualActions from "../redux/actions/audiovisualActions"
 
 
 class Home extends React.Component{
@@ -21,15 +22,29 @@ class Home extends React.Component{
         filtered:[]
     }
     componentDidMount(){
-        this.props.fetchSeries()
+        this.props.fetchAll()
         .then( data =>{
-            this.setState({ ...this.state, all:data, series: data })
+
+        this.setState({ ...this.state,
+            all: data,
+            series: data.filter( element => element.audiovisualType === "Serie"  ),
+            movies: data.filter( element => element.audiovisualType === "Movie"  )
+        })
+
+            this.setState({ ...this.state,
+            series: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )  })
         })
         this.props.fetchMovies()
         .then( data =>{
-            this.setState({ ...this.state, movies: data })
+            this.setState({ ...this.state,
+            movies: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )})
+
+            this.setState({ ...this.state, all:[...this.state.series, ...this.state.movies ] })
+
         })
+       
     }
+
 
     filter = (item)=>{
         item = item.toLowerCase().trim()
@@ -37,8 +52,8 @@ class Home extends React.Component{
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
 
-        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
-        ? this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 )
+        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().includes( item ) ).length > 0
+        ? this.state.all.filter( element => element.title.toLowerCase().trim().includes( item ) )
         : false
         })
     }
@@ -46,20 +61,24 @@ class Home extends React.Component{
     render() {
         if (this.state.all.length === 0) {
                 return <Loader/>
-        } 
+        }
 
         return(
             <div>
                 <Header filter={ this.filter } />
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
-                    ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
+                    ? <div className="carouselBannerless">
+                            <Lastest title={ "Results" } array={ this.state.filtered } /> 
+                        </div> 
 
                     : !this.state.filtered
 
-                        ? <div className="noResults">
-                            <h1>There are no results</h1>
-                          </div>
+                        ?   <div className="carouselBannerless"> 
+                                <div className="noResultsFounded">
+                                    <h1 className="noResults">No results founded.</h1>
+                                </div>
+                            </div>
 
                         : <>
                             <Carrousel />
@@ -73,7 +92,7 @@ class Home extends React.Component{
     }
 }
 const mapDispatchToProps ={
-    fetchSeries: seriesAction.fetchSeries,
+    fetchAll: seriesAction.fetchAll,
     fetchMovies: seriesAction.fetchMovies
 }
 

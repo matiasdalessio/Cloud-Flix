@@ -6,8 +6,6 @@ import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom";
-import { Link, NavLink} from "react-router-dom";
-
 
 class Movies extends React.Component {
 
@@ -17,7 +15,8 @@ class Movies extends React.Component {
         action: [],
         comedy: [],
         adventure: [],
-        filtered: []
+        filtered: [],
+        cast:[]
     }
 
     componentDidMount = async () => {
@@ -72,28 +71,20 @@ class Movies extends React.Component {
 
                     {   typeof this.state.filtered === "object" && this.state.filtered.length > 0
 
-                        ?  <Lastest title={ "Resutls" } array={ this.state.filtered } />
+                        ? <div className="carouselBannerless">
+                                <Lastest title={ "Results" } array={ this.state.filtered } /> 
+                            </div> 
 
                         : !this.state.filtered
 
-                            ? <div className="noResults">
-                                <h1>There are no results</h1>
-                            </div>
+                            ?   <div className="carouselBannerless"> 
+                                    <div className="noResultsFounded">
+                                        <h1 className="noResults">No results founded.</h1>
+                                    </div>
+                                </div>
 
                             : <>
-                            <BannerRandom array={this.state.movies} />
-                            {/* <div className="movie-cast">
-                                        <p>Cast: </p>
-                                        {selection.cast.map(actor => {          
-                                        return( 
-                                            <>
-                                        {console.log(actor)}
-                                        <NavLink to={'/actorFilms'+ actor} className="cast-link">{actor}</ NavLink>
-                                        </>
-                                        )
-                                    })
-                                 }
-                                </div> */}
+                            <BannerRandom array={this.state.movies} />                            
                                 <div className="seriesContainer">
                                     {
                                         titles.map((title, index) => {

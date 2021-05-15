@@ -73,3 +73,12 @@ html *{
 .cast-link:hover{
     color: red;
 }
+.actor {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 20px;
+    padding: 0 8px;
+  }
+.actor:hover {
+    color:red;
+  }

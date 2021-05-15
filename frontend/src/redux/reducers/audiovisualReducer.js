@@ -12,7 +12,7 @@ const audiovisualReducer = (state = initialState, action) => {
         case 'FILTER_ACTORS':
             return {
                 ...state,
-                movies: console.log('llegue reducer')/* state.movies.filter(movie => {return movie.cast == action.payload})  */
+                movies: state.movies.filter(movie => {return (movie.cast === action.payload)})
             }
         default:
             return state

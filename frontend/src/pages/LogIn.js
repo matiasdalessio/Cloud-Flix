@@ -40,11 +40,11 @@ const Login = (props) =>{
         <Header />
         <div className='siteContainerLogInEma' style={{backgroundImage:'url("https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2018/06/series-netflix.jpg")'}}>
             <div className='divContainerLogInEma'>
-                <h1 className='titleFormRegister'>Sign In</h1>
+                <h1 className='titleFormRegister'>Log In</h1>
                 <form>
                     <input type='text' className='inputFormRegister' placeholder='Email' value={userLog.email} onChange={readInput} required></input>
                     <input type='password' className='inputFormRegister' placeholder='Password' value={userLog.password} onChange={readInput} required></input>
-                    <p className='botonFormRegister' onClick={logInOk}>Sign In</p>
+                    <p className='botonFormRegister' onClick={logInOk}>Log In</p>
                 </form>
                 <GoogleLogin
                     clientId="706728189535-gkdltcou7njsjagcfhn30q0i25g7f30v.apps.googleusercontent.com"

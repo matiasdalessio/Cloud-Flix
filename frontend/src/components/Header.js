@@ -5,10 +5,12 @@ import usersActions from "../redux/actions/usersActions"
 import { FaPlayCircle } from "react-icons/fa";
 import profileActions from "../redux/actions/profileActions";
 import audiovisualActions from "../redux/actions/audiovisualActions";
+import { MdSettings } from "react-icons/md";
+
 
 const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout, filter = null, actorFilter = null }) => {
 
-    // console.log(allprofiles)
+    console.log(profile)
 
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState(false)
@@ -23,6 +25,7 @@ const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout,
         userLogout()
         unselectProfile()
     }
+
 
     return (
         <>
@@ -72,10 +75,13 @@ const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout,
                                                         </>
                                                     )
                                                 }
-                                            </div>
-                                            <div className="settings">
-                                                <img style={{ width: '30px' }} src="/images/settings.png" alt="" />
-                                            </div>
+                                            </div>          
+                                            <Link to="/ProfileSelection">         
+                                                <div className="settings" >
+                                                    <MdSettings style={{ fontSize:'40px', color:'black' }}  />                                                
+                                                    <h6 style= {{color: 'black'}}>Manage Profiles</h6>
+                                                </div>
+                                            </Link>
                                             <div onClick={logOut} className="logout">LOG OUT</div>
                                         </div>
                                     }

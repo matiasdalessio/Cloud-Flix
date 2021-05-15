@@ -16,8 +16,9 @@ class MyList extends React.Component{
     })}
 
     state={
-        myFavourites:[],
-        filtered:[]
+        myFavourites:null,
+        filtered:[],
+        profile: this.props.selectedProfile
     }
 
     componentDidMount(){
@@ -34,38 +35,43 @@ class MyList extends React.Component{
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
 
-        filtered: this.state.myFavourites.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
-        ? this.state.myFavourites.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 )
+        filtered: this.state.myFavourites.filter( element => element.title.toLowerCase().trim().includes( item )  ).length > 0
+        ? this.state.myFavourites.filter( element => element.title.toLowerCase().trim().includes( item ) )
         : false
         })
     }
 
 
     render() {
-        console.log(this.state.myFavourites)
 
-        if (this.state.myFavourites.length === 0 ) {
+        if (this.state.myFavourites === null ) {
             return <Loader/>
         } 
          
         return(
             <div>
                 <Header filter={ this.filter } />
-
-                {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
-                            
-                    ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
-    
-                            : !this.state.filtered 
-                            
-                                ?  <div className="noResults">
-                                         <h1>There are no results</h1>
-                                    </div>
-    
-                                :  <>
+                {  typeof this.state.filtered === "object" && this.state.filtered.length > 0                          
+                    ? <div className="carouselBannerless">
+                            <Lastest title={ "Results" } array={ this.state.filtered } /> 
+                      </div>   
+                            : !this.state.filtered                             
+                                ?   <div className="carouselBannerless"> 
+                                        <div className="noResultsFounded">
+                                            <h1 className="noResults">No results founded.</h1>
+                                        </div>
+                                    </div>  
+                                :  this.state.myFavourites.length !== 0 &&                                 
+                                    <div className="carouselBannerless">
                                         <Lastest title={ "Your List" } array={ this.state.myFavourites } />
-                                   </>
+                                   </div>
                  }
+                 {this.state.myFavourites.length === 0 &&
+                 <div className="noFilmsInList">
+                     <h1>Your List is empty!</h1>
+                     <h2>Put some Titles here!</h2>
+                 </div>
+                }
 
                 <Footer />
             </div>        

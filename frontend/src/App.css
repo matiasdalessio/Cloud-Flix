@@ -23,8 +23,36 @@
     box-sizing: border-box;
 }
 
+.divProfileAvatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .addButton{
-    color: red;
+    color: black;
+}
+.buttonBanner{
+    margin-top: 1rem;
+    min-width: 17rem;
+}
+.deleteIcon{
+    text-align: center;
+    z-index: 1000;
+    font-size: 35px;
+}
+
+.noFilmsInList{
+    width: 100%;
+    height: 56vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.noFilmsInList h1{
+    font-size: 6vw;
 }
 
 html {
@@ -603,6 +631,7 @@ footer .content {
   .searchContainer input {
     transition:all 0.2s ease-out;
     width:0px;
+    margin-bottom: 0.4rem !important;
     border-radius:0;
     outline: none;
     padding-left:0.3rem;
@@ -709,9 +738,15 @@ footer .content {
     justify-content: center;
     align-items: center;
 }
-.addAvatar{
-
+.carouselBannerless{
+    margin-top: 8rem;
 }
+.noResultsFounded{
+    height: 50vh;
+    display: flex;
+    align-items: center;
+}
+
 
 
 

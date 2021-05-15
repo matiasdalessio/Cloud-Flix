@@ -42,8 +42,8 @@ class Popular extends React.Component{
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
 
-        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
-        ? this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 )
+        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().includes( item ) ).length > 0
+        ? this.state.all.filter( element => element.title.toLowerCase().trim().includes( item )  )
         : false
         })
     }
@@ -62,13 +62,17 @@ class Popular extends React.Component{
                     
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
-                    ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
+                    ? <div className="carouselBannerless">
+                            <Lastest title={ "Results" } array={ this.state.filtered } /> 
+                        </div> 
 
                     : !this.state.filtered
                         
-                        ? <div className="noResults">
-                            <h1>There are no results</h1>
-                          </div>
+                        ?   <div className="carouselBannerless"> 
+                                <div className="noResultsFounded">
+                                    <h1 className="noResults">No results founded.</h1>
+                                </div>
+                            </div>
 
                         :<div>
                             <BannerRandom array={this.state.all} />
