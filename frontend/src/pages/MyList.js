@@ -1,9 +1,13 @@
 import React from "react"
+import { connect } from "react-redux"
+import profileActions from "../redux/actions/profileActions"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Lastest from "../components/Lastest"
+import Loader from "../components/Loader"
 
-class MiList extends React.Component{
+
+class MyList extends React.Component{
 
     toTop= () => {window.scroll({
         top:0,
@@ -16,6 +20,15 @@ class MiList extends React.Component{
         filtered:[]
     }
 
+    componentDidMount(){
+        this.props.getMoviesOnList(this.props.selectedProfile._id)
+        .then(data => this.setState({...this.state, myFavourites: data.map(audiovisual => {
+            return audiovisual.audiovisualId
+        })}))
+
+    }
+      
+
     filter = (item)=>{
         item.length === 0 
         ? this.setState({ ...this.state, filtered:[] })
@@ -27,7 +40,13 @@ class MiList extends React.Component{
         })
     }
 
+
     render() {
+        console.log(this.state.myFavourites)
+
+        if (this.state.myFavourites.length === 0 ) {
+            return <Loader/>
+        } 
          
         return(
             <div>
@@ -44,7 +63,7 @@ class MiList extends React.Component{
                                     </div>
     
                                 :  <>
-                                        <h1>favourites</h1>
+                                        <Lastest title={ "Your List" } array={ this.state.myFavourites } />
                                    </>
                  }
 
@@ -54,4 +73,15 @@ class MiList extends React.Component{
     }
 }
 
-export default MiList
+const mapStateToProps = state => {
+  return {
+      userLogged: state.user.userLogged,
+      selectedProfile: state.profile.selectedProfile
+  }
+}
+const mapDispatchToProps = {
+    getMoviesOnList :  profileActions.getMoviesOnList,
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyList)

@@ -11,7 +11,7 @@ const passport = require('passport')
 const { newUser, logIn, logInForced } = userController
 const { getAllAudiovisuals, getSingleAudiovisual, addAudiovisual, deleteAudiovisual, updateAudiovisual, addOrRemoveRate, addComment, modifyOrRemoveComment } = audiovisualController
 const { getAllSeasons, addSeason, deleteSeason, modifySeason, getSinleSeason  } = seasonController
-const {createProfile, getAllProfiles, getSingleProfile, updateProfile, deleteProfile, addToList, getUserProfiles}= profileController
+const {createProfile, getAllProfiles, getSingleProfile, updateProfile, deleteProfile, addToList, getUserProfiles, getAllListedAudivisuals}= profileController
 
 
 router.route('/audiovisuals')
@@ -45,6 +45,9 @@ router.route('/profile/:id')
 .delete(deleteProfile)
 .put(updateProfile)
 .post(createProfile)
+
+router.route('/profiles/mylist/:id')
+.get(getAllListedAudivisuals)
 
 router.route('/profiles')
 .get(getAllProfiles)

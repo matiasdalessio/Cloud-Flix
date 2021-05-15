@@ -5,6 +5,7 @@ import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import { connect } from "react-redux"
 import seriesAction from "../redux/actions/seriesAction"
+import BannerRandom from "../components/BannerRandom"
 
 
 class Popular extends React.Component{
@@ -55,7 +56,7 @@ class Popular extends React.Component{
         else{
 
             return(
-                <div className="popularContainer" >
+                <div>
 
                 <Header filter={ this.filter } />
                     
@@ -69,11 +70,14 @@ class Popular extends React.Component{
                             <h1>There are no results</h1>
                           </div>
 
-                        : <>
+                        :<div>
+                            <BannerRandom array={this.state.all} />
+                        <div className="popularContainer" >
                             <Lastest title={ "Most popular series" } array={ this.state.series } />
                                 
                             <Lastest title={ "Most popular Movies" } array={ this.state.movies } />
-                          </>
+                        </div>
+                        </div>
                 }
 
                     <Footer />    

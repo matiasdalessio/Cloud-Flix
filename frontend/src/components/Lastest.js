@@ -1,10 +1,6 @@
 import CarouselMovies from "./CarouselMovies"
 
 const ViewMovies = ({ title, array })=>{
-  console.log( array )
-  if( !array ){
-    return
-  }
     return (
         <>
         <div className="section">

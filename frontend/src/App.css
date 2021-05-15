@@ -3,6 +3,10 @@
     /*
     #E50913 neftlix
     #6411ad violeta
+
+    #D3A01F dorado
+    #00adb5 celeste
+
     */
     --main-color: #E50913;
     --body-bg: #181616;
@@ -17,6 +21,10 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+.addButton{
+    color: red;
 }
 
 html {
@@ -61,11 +69,12 @@ footer .container {
 
 .overlay {
     position: absolute;
+    height: 90vh;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .nav-wrapper {
@@ -700,6 +709,11 @@ footer .content {
     justify-content: center;
     align-items: center;
 }
+.addAvatar{
+
+}
+
+
 
 
 /* RESPONSIVE */
