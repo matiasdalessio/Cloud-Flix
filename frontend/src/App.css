@@ -783,7 +783,9 @@ footer .content {
     html {
         font-size: 12px;
     }
-
+    .displayNoneResponsive{
+        display: none;
+    }
     .container {
         padding: 0 15px;
     }
@@ -803,10 +805,6 @@ footer .content {
 
     .hero-slide-item-content {
         position: relative;
-    }
-
-    .hero-slide-item div {
-        height: 100%;
     }
 
     .item-content-title {

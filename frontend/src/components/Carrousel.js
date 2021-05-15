@@ -38,7 +38,7 @@ const Carrousel = ()=>{
                                             <span>13+</span>
                                         </div>
                                     </div>
-                                    <div className="item-content-description">
+                                    <div className="item-content-description descriptionDisplayNone">
                                     Autobots and Decepticons are at war, with humans on the sidelines. Optimus Prime is gone. The key to saving our future lies buried in the secrets of the past, in the hidden history of Transformers on Earth.
                                     </div>
                                     <NavLink to='/video'>
@@ -80,7 +80,7 @@ const Carrousel = ()=>{
                                             <span>13+</span>
                                         </div>
                                     </div>
-                                    <div className="item-content-description">
+                                    <div className="item-content-description descriptionDisplayNone">
                                     Wanda Maximoff and Vision—two super-powered beings living idealized suburban lives—begin to suspect that everything is not as it seems.
                                     </div>
                                     <NavLink to='/video'>
@@ -122,7 +122,7 @@ const Carrousel = ()=>{
                                             <span>13+</span>
                                         </div>
                                     </div>
-                                    <div className="item-content-description">
+                                    <div className="item-content-description descriptionDisplayNone">
                                     Twenty-four-year-old Kara Zor-El, who was taken in by the Danvers family when she was 13 after being sent away from Krypton, must learn to embrace her powers after previously hiding them. The Danvers teach her to be careful with her powers, until she has to reveal them during an unexpected disaster, setting her on her journey of heroism.
                                     </div>
                                     <NavLink to='/video'>
@@ -164,7 +164,7 @@ const Carrousel = ()=>{
                                             <span>13+</span>
                                         </div>
                                     </div>
-                                    <div className="item-content-description">
+                                    <div className="item-content-description descriptionDisplayNone ">
                                     King T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new leader. However, T'Challa soon finds that he is challenged for the throne by factions within his own country as well as without.
                                     </div>
                                     <NavLink to='/video'>
