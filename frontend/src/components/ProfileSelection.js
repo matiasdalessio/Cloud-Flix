@@ -1,7 +1,7 @@
 import React from "react"
 import { connect } from "react-redux"
 import profileActions from "../redux/actions/profileActions"
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdDelete } from "react-icons/md";
 import swal from 'sweetalert'
 import Loader from "../components/Loader";
 
@@ -26,20 +26,23 @@ class ProfileSelection extends React.Component{
         },       
     }
 
+    userData = JSON.parse(localStorage.getItem('userLogged'))
+    userLS= {
+        token: localStorage.getItem('token'),
+        ...this.userData
+    }
+
     componentDidMount(){
-        let userData = JSON.parse(localStorage.getItem('userLogged'))
-        let userLS= {
-            token: localStorage.getItem('token'),
-            ...userData
-        }
-        this.props.getUserProfiles(this.props.userLogged.id, userLS)
+        this.props.getUserProfiles(this.props.userLogged.id, this.userLS)
     }
     selectProfile = (profile) => {
         this.props.profileSelected(profile)
+        this.props.history.push('/')
     }
 
-    createProfile = () => {
+    createProfile = async () => {
         this.setState({...this.state, creating:true})
+        
     }
     readInput = ((e) => {
         const field = e.target.name
@@ -70,14 +73,40 @@ class ProfileSelection extends React.Component{
             swal(respuesta.error, "Verify and try again!", "error")
         } else {
             this.props.profileSelected(respuesta)
-            let userData = JSON.parse(localStorage.getItem('userLogged'))
-            let userLS= {
-            token: localStorage.getItem('token'),
-            ...userData
-            }
-            this.props.getUserProfiles(this.props.userLogged.id, userLS)
+            this.props.getUserProfiles(this.props.userLogged.id, this.userLS)
+            this.props.history.push('/')
         }   
     }
+    options = (profileId)=> swal("Want to delete this profile?", {
+        buttons: {
+          Delete: {text: "Delete", value: "delete"},
+          cancel: "Cancel",
+        },
+      })
+      .then((value, willDelete) => {
+        switch (value) {         
+          case "delete":
+            swal({
+              title: "Your comment will be deleted...",
+              text: "Are you sure?",
+              icon: "warning",
+              buttons: ["Nope", "I'm Sure!"],
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                  this.props.deleteProfile(profileId, this.userLS)
+                  swal("Poof! Your comment has been deleted!", {
+                      icon: "success",
+                });
+              } else {
+                swal("Okay! We'll keep it alive then");
+              }
+            });                
+            break           
+          default:           
+        }
+      })
     
     render() {
         this.props.userProfiles === null && <Loader/>
@@ -87,7 +116,7 @@ class ProfileSelection extends React.Component{
             <div>
                 {this.state.creating 
                 ?<div className="containerProfiles">
-                        <h1 className='h1AddProfile'>Add Profile</h1>
+                        <h1 className='h1AddProfile'>Add Profile (max 5)</h1>
                         <h3 className='h3AddProfile'>Add a profile for other person Watching CloudFlix</h3>
                         <hr className='separacionConHr'/>
                         <div className="formProfile">
@@ -102,12 +131,12 @@ class ProfileSelection extends React.Component{
                         <div className='showContentPrefile'>
                             <h3 className='h3showContentPrefile'>Show content for:</h3>
                             <div className="divContent">
-                                <label for="adults" class="l-radio">
-                                    <input type="radio" id="adults" name="content" value="false" onChange={(e) => this.setContent(e)} tabindex="1"></input>
+                                <label htmlFor="adults" className="l-radio">
+                                    <input type="radio" id="adults" name="content" value="false" onChange={(e) => this.setContent(e)} tabIndex="1"></input>
                                     <span>Adults</span>
                                 </label>
-                                <label for="kids" class="l-radio">
-                                    <input type="radio" id="kids" name="content" value= "true" onChange={(e) => this.setContent(e)} tabindex="2"></input>
+                                <label htmlFor="kids" className="l-radio">
+                                    <input type="radio" id="kids" name="content" value= "true" onChange={(e) => this.setContent(e)} tabIndex="2"></input>
                                     <span>Kids</span>
                                 </label>
                             </div>
@@ -115,26 +144,24 @@ class ProfileSelection extends React.Component{
                         <div className='containerButtonsCreateProfile'>
                             <button className='continueCreateProfile' onClick={this.send}>CONTINUE</button>
                             <button className='cancelCreateProfile' onClick={() => this.finishEdit()}>CANCEL</button>
-                        </div>
-                        
-
-
+                        </div>                      
                  </div>
                 :<div className="containerProfiles">
                         <h1 className="tittleProfiles">Select Profile</h1>  
                         <div className="profileOptions">                
                             {this.props.userProfiles.map(profile => {
-                                return <div onClick={() => this.selectProfile(profile)} className="profileAvatar" key={profile._id} style={{backgroundImage: `url('${profile.avatar}')`}}>
-                                            <h3 className="profileName">{profile.name}</h3>
-                                    </div>
+                                return  <div className="divProfileAvatar" key={profile._id}>
+                                            <div onClick={() => this.selectProfile(profile)} className="profileAvatar"  style={{backgroundImage: `url('${profile.avatar}')`}}>                                          
+                                                        <h3 className="profileName">{profile.name}</h3>
+                                            </div>
+                                            <MdDelete className="deleteIcon" onClick={(e)=> this.options(profile._id) }/>  
+                                        </div>
                             })}
                             {this.props.userProfiles.length<= 4 &&
                             <div onClick={() => this.createProfile()} className="addAvatar" >
                                 <MdAdd className="addIcon"/>
-                            </div> }                 
-                                             
-                        </div>  
-                                                  
+                            </div> }                                           
+                        </div>                                                   
                  </div>                
                 }                    
             </div>        
@@ -151,7 +178,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
     getUserProfiles :  profileActions.getUserProfiles,
     profileSelected:  profileActions.profileSelected,
-    createProfile: profileActions.createProfile
+    createProfile: profileActions.createProfile,
+    deleteProfile: profileActions.deleteProfile,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileSelection)

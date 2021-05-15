@@ -18,8 +18,7 @@ const Content = ({ movie, onClose, addToMyList, selectedProfile, userLogged , hi
     ...userData
   }
 
-  console.log(movie._id)
-  console.log(selectedProfile)
+
   var movieFounded = selectedProfile.length !==0 && myList.myList.some(movieAdded => movieAdded.audiovisualId === movie._id)
   
   const sendMovieToList = async(movie) =>{
@@ -28,12 +27,8 @@ const Content = ({ movie, onClose, addToMyList, selectedProfile, userLogged , hi
     const remove = {movie, add:false}
     const sendedData = movieFounded ? remove : add
     const response = await addToMyList(sendedData, userLS, selectedProfile._id)
-      setMyList({myList: response, fetching: false})
+      setMyList({myList: response.myList, fetching: false})
     
-  }
-
-  const valor = (e) => {
-    console.log(e.target)
   }
 
 
@@ -94,26 +89,26 @@ const Content = ({ movie, onClose, addToMyList, selectedProfile, userLogged , hi
                     </div>
 
                   </div>
-                        {userLogged &&
+                        
                   <div className="buttons">
                     <NavLink to="/video">
-                    <p className="btn btn-hover" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
+                    <p className="btn btn-hover buttonBanner" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>
                     </p>
-                    </NavLink>
-
-                    <button className="favourite" onClick={() => !myList.fetching && sendMovieToList(movie)} ><FaPlus className={movieFounded ? "addButton" : ""}/> </button>
-                    
-
+                    </NavLink>                   
                     <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }
                       emptySymbol={ <FaRegStar /> }
-                      fullSymbol={ <FaStar onClick={valor} /> }
+                      fullSymbol={ <FaStar onClick={() => 3} /> }
                       fractions={ 2 }
                     />
                   </div>
-                  }
-
+                  {userLogged &&   
+                    <p className="btn btn-hover buttonBanner" onClick={() => !myList.fetching && sendMovieToList(movie)} >
+                        <i><FaPlus className={movieFounded ? "addButton" : ""}/> </i>
+                        <span>{movieFounded ? "Remove form list" : "Add to list"} </span>                        
+                    </p>
+                    }               
                 </div>
                 <button className="content__close" onClick={onClose}>
                   <IconCross />

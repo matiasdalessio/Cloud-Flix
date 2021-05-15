@@ -49,8 +49,8 @@ class Series extends React.Component {
             : this.setState({
                 ...this.state,
 
-                filtered: this.state.series.filter(serie => serie.title.toLowerCase().trim().indexOf(item) === 0).length > 0
-                    ? this.state.series.filter(serie => serie.title.toLowerCase().trim().indexOf(item) === 0)
+                filtered: this.state.series.filter(serie => serie.title.toLowerCase().trim().includes(item) ).length > 0
+                    ? this.state.series.filter(serie => serie.title.toLowerCase().trim().includes(item) )
                     : false
             })
     }

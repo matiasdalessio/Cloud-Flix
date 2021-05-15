@@ -38,8 +38,11 @@ footer{
 .btn:hover{
     cursor: pointer;
 }
-.favourite{
-    font-size: 4vh;
+.addToList{
+    border: none;
+    color: white;
+    background-color: black;
+    font-size: 1.25rem;
 }
 .circulePlay{
     margin-top: 0.5vh;
@@ -111,9 +114,11 @@ footer{
     margin: 1rem 0;
 }
 .h1AddProfile{
+    cursor: default;
     font-weight: 600;
 }
 .h3AddProfile{
+    cursor: default;
     font-weight: 500;
     color: grey;
 }
@@ -141,6 +146,7 @@ footer{
     flex-direction: column;
 }
 .h3showContentPrefile{
+    cursor: default;
     font-weight: 500;
     margin-right: 1rem;
 }
@@ -266,8 +272,8 @@ footer{
     align-items: center;
 }
 .logoLoader{
-    width: 50vw;
-    height: 20vh;
+    width: 30vw;
+    height: 10vh;
     background-position: center;
     background-size: cover;
 }

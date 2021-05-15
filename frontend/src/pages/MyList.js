@@ -34,15 +34,14 @@ class MyList extends React.Component{
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
 
-        filtered: this.state.myFavourites.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
-        ? this.state.myFavourites.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 )
+        filtered: this.state.myFavourites.filter( element => element.title.toLowerCase().trim().includes( item )  ).length > 0
+        ? this.state.myFavourites.filter( element => element.title.toLowerCase().trim().includes( item ) )
         : false
         })
     }
 
 
     render() {
-        console.log(this.state.myFavourites)
 
         if (this.state.myFavourites.length === 0 ) {
             return <Loader/>

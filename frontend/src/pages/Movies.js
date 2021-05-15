@@ -6,8 +6,6 @@ import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom";
-import { Link, NavLink} from "react-router-dom";
-
 
 class Movies extends React.Component {
 

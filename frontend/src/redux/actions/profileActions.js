@@ -4,23 +4,28 @@ import swal from 'sweetalert'
 const profileActions = {
 
     addToMyList: (sendedData, userLS, id) => {
-        return async () => {
-           try {
-            const response = await axios.put(`http://localhost:4000/api/profile/addToList/${id}`, {sendedData}, {
-                headers: {
-                'Authorization': 'Bearer '+userLS.token
-                }
-            })            
-            return  response.data.response
-            } catch {
-               return alert("error")
-            }
+        return async (dispatch, getstate) => {
+            try {
+                const response = await axios.put(`http://localhost:4000/api/profile/addToList/${id}`, {sendedData}, {
+                    headers: {
+                    'Authorization': 'Bearer '+userLS.token
+                    }
+                })            
+                dispatch({
+                    type: "SELECTED_PROFILE",
+                    payload: response.data.response
+                    
+                })
+                return response.data.response               
+            }catch(error) {
+                return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
+            } 
         }
     }, 
     getMoviesOnList: (id) => {
         return async () => {
            try {
-            const response = await axios.get(`http://localhost:4000/api/profiles/mylist/${id}`,)     
+            const response = await axios.get(`http://localhost:4000/api/profile/mylist/${id}`,)     
             return  response.data.response
             } catch {
                return alert("error")
@@ -28,6 +33,7 @@ const profileActions = {
         }
     }, 
     createProfile:(newProfile, id) => {
+        console.log(newProfile)
         return async (dispatch, getstate) => {
             try {
                 const respuesta = await axios.post(`http://localhost:4000/api/profile/${id}`, {newProfile})
@@ -45,6 +51,27 @@ const profileActions = {
             } 
         }
     }, 
+    deleteProfile:( id, userLS) => {
+        const userId= userLS.id
+        console.log("entro al delete")
+        return async (dispatch, getstate) => {
+            try {
+                const response = await axios.put(`http://localhost:4000/api/profile/delete/${id}`, {userId}, {
+                    headers: {
+                    'Authorization': 'Bearer '+userLS.token
+                    }
+                }) 
+                console.log(response.data.respuesta)
+                dispatch({
+                    type: "USER_PROFILES",
+                    payload: response.data.respuesta                    
+                })
+                return response.data.respuesta               
+            }catch(error) {
+                return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
+            } 
+        }
+    },
     getUserProfiles: (id, userLS) => {
         return async (dispatch, getstate) => {
            try {
