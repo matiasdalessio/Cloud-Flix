@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const audiovisualActions = {
     movies: () => {
         return async (dispatch, getState) => {
@@ -32,6 +34,23 @@ const audiovisualActions = {
             }
         }
     },
+    rateMovie: (id, info, num) => {
+        return async (dispatch, getState) => {
+            try {
+                var response = await axios.post('http://localhost:4000/api/rate/'+ id , { numero: num }, {
+                    headers: {
+                        'Authorization': 'Bearer '+ info.token
+                    }
+                })
+                if (response.data.success) {
+                    console.log(response.data.response)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
+        }
+    }
 
 }
 

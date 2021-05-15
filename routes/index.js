@@ -7,11 +7,13 @@ const profileController = require('../controllers/profileController')
 const validatorAudiovisuals = require('../config/validatorAudiovisuals')
 const validatorUser = require('../config/validatorUser')
 const passport = require('passport')
+const rateControllers = require('../controllers/rateControllers')
 
 const { newUser, logIn, logInForced } = userController
 const { getAllAudiovisuals, getSingleAudiovisual, addAudiovisual, deleteAudiovisual, updateAudiovisual, addOrRemoveRate, addComment, modifyOrRemoveComment } = audiovisualController
 const { getAllSeasons, addSeason, deleteSeason, modifySeason, getSinleSeason  } = seasonController
 const {createProfile, getAllProfiles, getSingleProfile, updateProfile, deleteProfile, addToList, getUserProfiles, getAllListedAudivisuals}= profileController
+const { personalRate } = rateControllers
 
 
 router.route('/audiovisuals')
@@ -64,6 +66,9 @@ router.route('/season/:id')
 router.route('/seasons')
 .get(getAllSeasons)
 .post(addSeason)
+
+router.route('/rate/:id')
+.post(passport.authenticate('jwt', {session: false}), personalRate)
 
 
 module.exports = router
