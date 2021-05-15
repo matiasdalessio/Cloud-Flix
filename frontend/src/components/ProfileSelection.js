@@ -32,17 +32,15 @@ class ProfileSelection extends React.Component{
         ...this.userData
     }
 
-    componentDidMount(){
-        this.props.getUserProfiles(this.props.userLogged.id, this.userLS)
-    }
     selectProfile = (profile) => {
         this.props.profileSelected(profile)
+        this.props.history.push('/')
     }
 
     createProfile = async () => {
-        this.setState({...this.state, creating:true})
-        
+        this.setState({...this.state, creating:true})        
     }
+
     readInput = ((e) => {
         const field = e.target.name
         const value = e.target.value
@@ -56,8 +54,7 @@ class ProfileSelection extends React.Component{
     finishEdit = () => {
         this.setState({...this.state, creating:false})
     }
-    setContent = (e) => {
-        
+    setContent = (e) => {        
         this.setState({...this.state,
             newProfile:{...this.state.newProfile,
                 kids:e.target.value}})
@@ -73,6 +70,7 @@ class ProfileSelection extends React.Component{
         } else {
             this.props.profileSelected(respuesta)
             this.props.getUserProfiles(this.props.userLogged.id, this.userLS)
+            this.props.history.push('/')
         }   
     }
     options = (profileId)=> swal("Want to delete this profile?", {
@@ -108,8 +106,6 @@ class ProfileSelection extends React.Component{
     
     render() {
         this.props.userProfiles === null && <Loader/>
-
-
         return(
             <div>
                 {this.state.creating 
