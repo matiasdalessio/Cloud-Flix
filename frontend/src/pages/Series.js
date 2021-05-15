@@ -56,7 +56,6 @@ class Series extends React.Component {
     }
 
     render() {
-      
              if( !this.state.action.length ){
                 return <Loader />
              }else{

@@ -17,10 +17,21 @@ const audiovisualActions = {
             }
         }
     },
-    actorFilter: (outerText) => {
-        return(dispatch, getstate) => {
-            console.log('llegué actions')
-            /* dispatch({type: 'FILTRAR_ACTOR', payload: outerText}) */
+    filterFilms: (value) => {
+        return async (dispatch, getState) => {
+            try {
+                var response = await fetch("http://localhost:4000/api/audiovisuals")
+                var data = await response.json()
+
+                if (!data.success) {
+
+                } else {
+                    console.log(data.respuesta)
+                    return  data.respuesta.filter( movie => movie.cast.includes(value) )
+                }
+            } catch (error) {
+                console.log(error)
+            }
         }
     },
     rateMovie: (id, info, num) => {
