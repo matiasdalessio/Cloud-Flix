@@ -277,3 +277,136 @@ footer{
     background-position: center;
     background-size: cover;
 }
+
+@media only screen and (max-width: 850px) {
+    .hero-slide-item{
+        height: 70vh;
+    }
+    .overlay{
+        z-index: 40;
+        background-color: rgba(0, 0, 0, 0.342);
+    }
+    .social-list{
+        display: flex;
+        justify-content: center;
+    }
+    .logoFooterResponsive{
+        text-align: center;
+    }
+    .textFooterResponsive{
+        text-align: center;
+    }
+    .linksFooterResponsive{
+        text-align: center;
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    .descriptionDisplayNone{
+        display: none;
+    }
+  }
+  .containerPricingCards{
+      width: 98.5vw;
+      height: 90vh;
+      margin-top: 6rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+  }
+  .pricingCard{
+    width: 35vw;
+    height: 70vh;
+    background-color: #151515;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3vh 0;
+    margin: 1vw;
+  }
+  .parteDeArribaCard{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      padding: 0 4vw;
+  }
+  .parteDeArribaCard h3{
+      font-size: 5vh;
+  }
+  .contenidoDelPaqueteCard{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+  }
+  .contenidoDelPaqueteCard h4{
+    font-size: 3.5vh;
+  }
+  .lugarDelBotonCard{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .borderTopRed{
+      border-top: 5px solid #E50913;
+  }
+  .pricingCard:hover{
+    background-color: #222121;
+  }
+  .textoTachadoCards{
+    text-decoration:line-through;
+  }
+@media only screen and (max-width: 700px) {
+   .pricingCard{
+       width: 85vw;
+       height: 40vh;
+       flex-direction: row;
+   }
+   .contenidoDelPaqueteCard{
+       width: 33%;
+       height: 100%;
+   }
+   .parteDeArribaCard{
+       flex-direction: column;
+       width: 33%;
+       align-items: center;
+       height: 100%;
+       padding: 5vh;
+   }
+   .lugarDelBotonCard{
+       width: 33%;
+
+   }
+   .contenidoDelPaqueteCard h4{
+    font-size: 3vh;
+  }
+}
+@media only screen and (max-width: 520px) {
+    .contenidoDelPaqueteCard h4{
+        font-size: 2.5vh;
+      }
+}
+@media only screen and (max-width: 477px) {
+   .pricingCard{
+       flex-direction: column;
+       height: 60vh;
+   }
+   .parteDeArribaCard{
+       height: 20%;
+       width: 100%;
+       flex-direction: row;
+   }
+   .contenidoDelPaqueteCard{
+       height: 50%;
+       width: 100%;
+   }
+   .lugarDelBotonCard{
+       width: 100%;
+       height: 20%;
+   }
+}

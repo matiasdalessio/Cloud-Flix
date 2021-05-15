@@ -1,19 +1,43 @@
-import React from "react"
-import Footer from "../components/Footer"
-import Header from "../components/Header"
+import React, { useEffect, useState } from "react"
+import { connect } from "react-redux"
+import audiovisualActions from "../redux/actions/audiovisualActions"
+import Footer from "./Footer"
+import Header from "./Header"
+import Lastest from "../components/Lastest"
 
-class ActorFilms extends React.Component{    
-    render() {
-        console.log(this.props)
-        return(
+const ActorFilms = (props) => {
+    var actorName = props.match.params.name    
+    const [actorMovies, setActorMovies] = useState([])
+
+    useEffect(()=> {
+        var fecthearActor = async ()=>{
+            let res = await props.filterFilms(actorName)
+            setActorMovies(res)
+        }
+        fecthearActor()    
+    },[actorName])
+
+    return(
+        
+        <div>
+            <Header />
+            <h2>Films of: {actorName}</h2>
             <div>
-                <Header filter={ this.filter } />
-                <h2>Films of: </h2>
-
-                <Footer/>
-            </div>        
-        )
-    }
+                {actorMovies.length !== 0 && <Lastest title={'result'} array={actorMovies}/>}
+            </div>
+            <Footer/>
+        </div>        
+    )
 }
 
-export default ActorFilms
+const mapStateToProps = (state) =>{
+    return{
+        moviesList: state.audiovisual.movies
+    }    
+} 
+const mapDispatchToProps = {
+    filterFilms: audiovisualActions.filterFilms
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (ActorFilms)  
+

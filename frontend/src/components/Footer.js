@@ -12,10 +12,10 @@ const Footer = ({ userLogged }) => {
                     <div className="row">
                         <div className="col-4 col-md-6 col-sm-12">
                             <div className="content">
-                                <NavLink className="logo" to="/">
+                                <NavLink className="logo logoFooterResponsive" to="/">
                                 <i className='bx bx-movie-play bx-tada main-color'></i>Cl<FaPlayCircle className="playIcon"/>ud<span className="main-color">Flix</span>
                                 </NavLink>
-                                <p>Cloudflix is ​​a streaming service that works by 
+                                <p className='textFooterResponsive'>Cloudflix is ​​a streaming service that works by 
                                     subscription and allows its users to watch series and movies without 
                                     ads through any device connected to the internet.</p>
                                 <div className="social-list">
@@ -33,7 +33,7 @@ const Footer = ({ userLogged }) => {
                         </div>
                         <div className="col-8 col-md-6 col-sm-12">
                             <div className="row">
-                                <div className="col-3 col-md-6 col-sm-6">
+                                <div className="col-3 col-md-6 col-sm-6 linksFooterResponsive">
                                     <div className="content">
                                         <p><b>Flix</b></p>
                                         <ul className="footer-menu">
@@ -43,7 +43,7 @@ const Footer = ({ userLogged }) => {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="col-3 col-md-6 col-sm-6">
+                                <div className="col-3 col-md-6 col-sm-6 linksFooterResponsive">
                                     <div className="content">
                                         <p><b>Browse</b></p>
                                         <ul className="footer-menu">
@@ -66,7 +66,7 @@ const Footer = ({ userLogged }) => {
                                         </ul>
                                     </div> */}
                                 </div>
-                                <div className="col-3 col-md-6 col-sm-6">
+                                <div className="col-3 col-md-6 col-sm-6 displayNoneResponsive">
                                     <div className="content">
                                         <p><b>Download app</b></p>
                                         <ul className="footer-menu">

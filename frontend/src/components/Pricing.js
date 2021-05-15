@@ -1,64 +1,41 @@
 const Pricing = ()=>{
     return(
-        <div className="section">
-        <div className="container">
-            <div className="pricing">
-                <div className="pricing-header">
-                    Cloud<span className="main-color">Flix</span> pricing
+        <div className="containerPricingCards">
+            <div className='pricingCard'>
+                <div className='parteDeArribaCard'>
+                    <h3>Basic</h3>
+                    <h3>Free</h3>
                 </div>
-                <div className="pricing-list">
-                    <div className="row">
-                        <div className="col-4 col-md-12 col-sm-12">
-                            <div className="pricing-box">
-                                <div className="pricing-box-header">
-                                    <div className="pricing-name">
-                                        Basic
-                                    </div>
-                                    <div className="pricing-price">
-                                        Free
-                                    </div>
-                                </div>
-                                <div className="pricing-box-content">
-                                    <p>Originals</p>
-                                    <p>Swich plans anytime</p>
-                                    <p><del>65+ top Live</del></p>
-                                    <p><del>TV Channels</del></p>
-                                </div>
-                                <div className="pricing-box-action">
-                                    <p  className="btn btn-hover">
-                                        <span>Register now</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-4 col-md-12 col-sm-12">
-                            <div className="pricing-box hightlight">
-                                <div className="pricing-box-header">
-                                    <div className="pricing-name">
-                                        Premium
-                                    </div>
-                                    <div className="pricing-price">
-                                        $35.99 <span>/month</span>
-                                    </div>
-                                </div>
-                                <div className="pricing-box-content">
-                                    <p>Originals</p>
-                                    <p>Swich plans anytime</p>
-                                    <p>65+ top Live</p>
-                                    <p>TV Channels</p>
-                                </div>
-                                <div className="pricing-box-action">
-                                    <p className="btn btn-hover">
-                                        <span>Register now</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className='contenidoDelPaqueteCard'>
+                    <h4>Original</h4>
+                    <h4>Swich plans anytime</h4>
+                    <h4 className='textoTachadoCards'>65+ top live</h4>
+                    <h4 className='textoTachadoCards'>Tv Channels</h4>
+                </div>
+                <div className='lugarDelBotonCard'>
+                    <p className="btn btn-hover">                       
+                        <span>Select Plan</span>
+                    </p>
+                </div>
+            </div>
+            <div className='pricingCard borderTopRed'>
+                <div className='parteDeArribaCard'>
+                    <h3>Premium</h3>
+                    <h3>$4.99</h3>
+                </div>
+                <div className='contenidoDelPaqueteCard'>
+                    <h4>Original</h4>
+                    <h4>Swich plans anytime</h4>
+                    <h4>65+ top live</h4>
+                    <h4>Tv Channels</h4>
+                </div>
+                <div className='lugarDelBotonCard'>
+                    <p className="btn btn-hover">                       
+                        <span>Select Plan</span>
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
     )
 }
 export default Pricing

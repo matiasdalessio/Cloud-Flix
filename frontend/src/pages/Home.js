@@ -23,13 +23,27 @@ class Home extends React.Component{
     componentDidMount(){
         this.props.fetchAll()
         .then( data =>{
+
         this.setState({ ...this.state,
             all: data,
             series: data.filter( element => element.audiovisualType === "Serie"  ),
             movies: data.filter( element => element.audiovisualType === "Movie"  )
         })
+
+            this.setState({ ...this.state,
+            series: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )  })
         })
+        this.props.fetchMovies()
+        .then( data =>{
+            this.setState({ ...this.state,
+            movies: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )})
+
+            this.setState({ ...this.state, all:[...this.state.series, ...this.state.movies ] })
+
+        })
+       
     }
+
 
     filter = (item)=>{
         item = item.toLowerCase().trim()
@@ -46,7 +60,7 @@ class Home extends React.Component{
     render() {
         if (this.state.all.length === 0) {
                 return <Loader/>
-        } 
+        }
 
         return(
             <div>
