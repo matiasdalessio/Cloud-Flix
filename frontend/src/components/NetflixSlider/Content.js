@@ -4,7 +4,7 @@ import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
 
 
@@ -72,7 +72,7 @@ const Content = ({ movie, onClose, addToMyList, selectedProfile, userLogged , hi
 
                     <div className="casting">
                     <h4>Cast: </h4>
-                     { movie.cast.map( (element, index) => <span key={index}>{ element }</span> ) }
+                     { movie.cast.map( (element, index) => <NavLink to={'/actorFilms/' + element} className='actor' key={index}>{ element }</NavLink> ) }
                     </div>
 
                     <div className="director">
