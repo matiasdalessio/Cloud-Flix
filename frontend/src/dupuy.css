@@ -16,7 +16,10 @@
 }
 
 .noResults{
-  justify-self: center;
+  font-size: 50px;
+  display: flex;
+  align-items: center;
+  text-align: center;
   margin: 0 auto;
   min-height: 28.5vh;
 }

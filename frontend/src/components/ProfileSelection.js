@@ -34,7 +34,7 @@ class ProfileSelection extends React.Component{
 
     selectProfile = (profile) => {
         this.props.profileSelected(profile)
-        this.props.history.push('/')
+        // this.props.history.push('/')
     }
 
     createProfile = async () => {

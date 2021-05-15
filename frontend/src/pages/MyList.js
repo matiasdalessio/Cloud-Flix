@@ -52,14 +52,19 @@ class MyList extends React.Component{
             <div>
                 <Header filter={ this.filter } />
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0                          
-                    ? <Lastest title={ "Results" } array={ this.state.filtered } />    
+                    ? <div className="carouselBannerless">
+                            <Lastest title={ "Results" } array={ this.state.filtered } /> 
+                      </div>   
                             : !this.state.filtered                             
-                                ?  <div className="noResults">
-                                         <h1>There are no results</h1>
-                                    </div>    
-                                :  <>
+                                ?   <div className="carouselBannerless"> 
+                                        <div className="noResultsFounded">
+                                            <h1 className="noResults">No results founded.</h1>
+                                        </div>
+                                    </div>  
+                                :  this.state.myFavourites.length !== 0 &&                                 
+                                    <div className="carouselBannerless">
                                         <Lastest title={ "Your List" } array={ this.state.myFavourites } />
-                                   </>
+                                   </div>
                  }
                  {this.state.myFavourites.length === 0 &&
                  <div className="noFilmsInList">

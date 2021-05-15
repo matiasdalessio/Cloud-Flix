@@ -4,6 +4,7 @@ import audiovisualActions from "../redux/actions/audiovisualActions"
 import Footer from "./Footer"
 import Header from "./Header"
 import Lastest from "../components/Lastest"
+import Loader from "./Loader"
 
 const ActorFilms = (props) => {
     var actorName = props.match.params.name    
@@ -17,17 +18,21 @@ const ActorFilms = (props) => {
         fecthearActor()    
     },[actorName])
 
+    console.log(actorMovies)
+    if (actorMovies.length === 0) {
+        return <Loader/>
+    } else {
+
     return(
         
         <div>
             <Header />
-            <h2>Films of: {actorName}</h2>
-            <div>
-                {actorMovies.length !== 0 && <Lastest title={'result'} array={actorMovies}/>}
+            <div className="carouselBannerless">    
+            {actorMovies.length !== 0 && <Lastest title={`Films of: ${actorName}`} array={actorMovies}/>}
             </div>
             <Footer/>
         </div>        
-    )
+    )}
 }
 
 const mapStateToProps = (state) =>{

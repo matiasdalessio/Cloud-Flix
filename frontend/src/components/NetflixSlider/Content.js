@@ -61,38 +61,13 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                 ? movie.sinopsis.slice(0, 249) + "..."
                 : movie.sinopsis}
             </div>
-
-            <div className="languages">
-              <h4>Languages: </h4>
-              {movie.availableLanguages.map((element, index) => <span key={index}>{element}</span>)}
-            </div>
-
-            <div className="subtitles">
-              <h4>Subtitles: </h4>
-              {movie.availableLanguages.map((element, index) => <span key={index}>{element}</span>)}
-            </div>
-
-            <div className="casting">
-              <h4>Cast: </h4>
-              {movie.cast.map((element, index) => <span key={index}>{element}</span>)}
-            </div>
-
-            <div className="director">
-              <h4>Director: {movie.director} </h4>
-            </div>
-
-            <div className="movie-infos">
-              <div className="movie-info">
-                <i className="bx bxs-star"></i>
-                <span>9.5</span>
-              </div>
+            
 
               <div className="content__area">
                 <div className="content__area__container">
                   <div className="content__title">{movie.title}</div>
 
                   <div className="content-info" >
-
                     <div className="content__description">
                       { movie.sinopsis.length > 250 
                       ? movie.sinopsis.slice( 0 , 249 ) + "..." 
@@ -117,21 +92,14 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                     <div className="director">
                     <h4>Director: { movie.director } </h4>
                     </div>
-                    
                     <div className="movie-infos">
-                        <div className="movie-info">
-                          <i className="bx bxs-star"></i>
-                          <span>9.5</span>
-                        </div>
-                        <div className="movie-info">
-                          {movie.duration && <i className="bx bxs-time"></i>}
-                          <span> {movie.duration && movie.duration+ " hs"}</span>
-                        </div>
-                        <div className="movie-info">
-                          <span>{ movie.audienceAge }</span>
-                        </div>
-                    </div>
-
+                      <div className="movie-info">
+                        <i className="bx bxs-star"></i>
+                        <span>9.5</span>
+                      </div>
+                      <div className="movie-info">
+                        <span>{movie.audienceAge}</span>
+                      </div>
                   </div>
                         
                   <div className="buttons">
@@ -141,10 +109,10 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                       <span>Watch now</span>
                     </p>
                     </NavLink>                   
-                    <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }
-                      emptySymbol={ <FaRegStar /> }
-                      fullSymbol={ <FaStar onClick={() => 3} /> }
-                      fractions={ 2 }
+                    <Rating onClick={valor} initialRating={3} readonly={!userLogged ? true : false}
+                      emptySymbol={<FaRegStar />}
+                      fullSymbol={<FaStar />}
+                      fractions={1}
                     />
                   </div>
                   {userLogged &&   
@@ -158,28 +126,9 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                   <IconCross />
                 </button>
               </div>
-              <div className="movie-info">
-                <span>{movie.audienceAge}</span>
-              </div>
             </div>
 
-          </div>
-          {userLogged &&
-            <div className="buttons">
-              <NavLink to="/video">
-                <p className="btn btn-hover" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
-                  <i className='circulePlay'><FaPlayCircle size={20} /></i>
-                  <span>Watch now</span>
-                </p>
-              </NavLink>
-              <button className="favourite" onClick={() => !myList.fetching && sendMovieToList(movie)} ><FaPlus className={movieFounded ? "addButton" : ""} /> </button>
-              <Rating onClick={valor} initialRating={3} readonly={!userLogged ? true : false}
-                emptySymbol={<FaRegStar />}
-                fullSymbol={<FaStar />}
-                fractions={1}
-              />
-            </div>
-          }
+          </div>          
         </div>
         <button className="content__close" onClick={onClose}>
           <IconCross />

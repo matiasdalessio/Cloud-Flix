@@ -279,6 +279,9 @@ footer{
 }
 
 @media only screen and (max-width: 850px) {
+    div.item-content-wraper{
+        justify-content: flex-end;
+    }
     .hero-slide-item{
         height: 70vh;
     }
@@ -301,9 +304,7 @@ footer{
     }
   }
   @media only screen and (max-width: 450px) {
-    .descriptionDisplayNone{
-        display: none;
-    }
+    
   }
   .containerPricingCards{
       width: 98.5vw;

@@ -64,7 +64,7 @@ const SignUp = (props) =>{
                     onFailure={responseGoogle}
                     cookiePolicy={'single_host_origin'}
                 />
-                <p className='callToActionForm'>Already account to CloudFlix?<NavLink to="/login"><span className='reedirectFormRegister'>Sign In</span></NavLink></p>
+                <p className='callToActionForm'>Already account to CloudFlix?<NavLink to="/login"><span className='reedirectFormRegister'>Log In</span></NavLink></p>
             </div>
         </div>
         </>

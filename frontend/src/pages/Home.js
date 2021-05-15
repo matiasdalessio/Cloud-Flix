@@ -6,6 +6,7 @@ import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
 import Loader from "../components/Loader"
+import audiovisualActions from "../redux/actions/audiovisualActions"
 
 
 class Home extends React.Component{
@@ -67,13 +68,17 @@ class Home extends React.Component{
                 <Header filter={ this.filter } />
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
-                    ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
+                    ? <div className="carouselBannerless">
+                            <Lastest title={ "Results" } array={ this.state.filtered } /> 
+                        </div> 
 
                     : !this.state.filtered
 
-                        ? <div className="noResults">
-                            <h1>There are no results</h1>
-                          </div>
+                        ?   <div className="carouselBannerless"> 
+                                <div className="noResultsFounded">
+                                    <h1 className="noResults">No results founded.</h1>
+                                </div>
+                            </div>
 
                         : <>
                             <Carrousel />
@@ -88,6 +93,7 @@ class Home extends React.Component{
 }
 const mapDispatchToProps ={
     fetchAll: seriesAction.fetchAll,
+    fetchMovies: seriesAction.fetchMovies
 }
 
 export default connect(null, mapDispatchToProps) (Home)
