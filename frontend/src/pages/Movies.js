@@ -17,7 +17,8 @@ class Movies extends React.Component {
         action: [],
         comedy: [],
         adventure: [],
-        filtered: []
+        filtered: [],
+        cast:[]
     }
 
     componentDidMount = async () => {
@@ -81,19 +82,7 @@ class Movies extends React.Component {
                             </div>
 
                             : <>
-                            <BannerRandom array={this.state.movies} />
-                            {/* <div className="movie-cast">
-                                        <p>Cast: </p>
-                                        {selection.cast.map(actor => {          
-                                        return( 
-                                            <>
-                                        {console.log(actor)}
-                                        <NavLink to={'/actorFilms'+ actor} className="cast-link">{actor}</ NavLink>
-                                        </>
-                                        )
-                                    })
-                                 }
-                                </div> */}
+                            <BannerRandom array={this.state.movies} />                            
                                 <div className="seriesContainer">
                                     {
                                         titles.map((title, index) => {
