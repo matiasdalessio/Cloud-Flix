@@ -37,7 +37,6 @@ class ProfileSelection extends React.Component{
     }
     selectProfile = (profile) => {
         this.props.profileSelected(profile)
-        this.props.history.push('/')
     }
 
     createProfile = async () => {
@@ -74,7 +73,6 @@ class ProfileSelection extends React.Component{
         } else {
             this.props.profileSelected(respuesta)
             this.props.getUserProfiles(this.props.userLogged.id, this.userLS)
-            this.props.history.push('/')
         }   
     }
     options = (profileId)=> swal("Want to delete this profile?", {

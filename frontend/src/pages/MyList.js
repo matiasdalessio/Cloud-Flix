@@ -16,8 +16,9 @@ class MyList extends React.Component{
     })}
 
     state={
-        myFavourites:[],
-        filtered:[]
+        myFavourites:null,
+        filtered:[],
+        profile: this.props.selectedProfile
     }
 
     componentDidMount(){
@@ -43,28 +44,29 @@ class MyList extends React.Component{
 
     render() {
 
-        if (this.state.myFavourites.length === 0 ) {
+        if (this.state.myFavourites === null ) {
             return <Loader/>
         } 
          
         return(
             <div>
                 <Header filter={ this.filter } />
-
-                {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
-                            
-                    ? <Lastest title={ "Resutls" } array={ this.state.filtered } />
-    
-                            : !this.state.filtered 
-                            
+                {  typeof this.state.filtered === "object" && this.state.filtered.length > 0                          
+                    ? <Lastest title={ "Results" } array={ this.state.filtered } />    
+                            : !this.state.filtered                             
                                 ?  <div className="noResults">
                                          <h1>There are no results</h1>
-                                    </div>
-    
+                                    </div>    
                                 :  <>
                                         <Lastest title={ "Your List" } array={ this.state.myFavourites } />
                                    </>
                  }
+                 {this.state.myFavourites.length === 0 &&
+                 <div className="noFilmsInList">
+                     <h1>Your List is empty!</h1>
+                     <h2>Put some Titles here!</h2>
+                 </div>
+                }
 
                 <Footer />
             </div>        

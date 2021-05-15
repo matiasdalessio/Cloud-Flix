@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
 
 
-const Content = ({ movie, onClose, addToMyList, selectedProfile, userLogged , history }) => {
+const Content = ({ movie, onClose,profileSelected, addToMyList, selectedProfile, userLogged , history }) => {
 
   const [myList, setMyList] = useState({myList: selectedProfile.myList, fetching:false})
 
@@ -27,7 +27,9 @@ const Content = ({ movie, onClose, addToMyList, selectedProfile, userLogged , hi
     const remove = {movie, add:false}
     const sendedData = movieFounded ? remove : add
     const response = await addToMyList(sendedData, userLS, selectedProfile._id)
+    console.log(response)
       setMyList({myList: response.myList, fetching: false})
+      profileSelected(response)
     
   }
 
@@ -126,6 +128,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = {
   addToMyList :  profileActions.addToMyList,
+  profileSelected: profileActions.profileSelected
 }
 
 
