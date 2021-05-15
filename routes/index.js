@@ -44,11 +44,13 @@ router.route('/user/loginForced')
 router.route('/profile/:id')
 .get(getUserProfiles)
 .get(getSingleProfile)
-.delete(deleteProfile)
 .put(updateProfile)
 .post(createProfile)
 
-router.route('/profiles/mylist/:id')
+router.route('/profile/delete/:id')
+.put(deleteProfile)
+
+router.route('/profile/mylist/:id')
 .get(getAllListedAudivisuals)
 
 router.route('/profiles')

@@ -43,7 +43,7 @@ const SignUp = (props) =>{
             <div className='divContainerLogInEma'>
                 <h1 className='titleFormRegister'>Sign Up</h1>
                 <form>
-                    <input type='text' className='inputFormRegister' name='email' placeholder='Please, enter your email address' value={newUser.email} onChange={readInput}></input>
+                    <input type='text' className='inputFormRegister' name='email' placeholder='Please, enter your email adress' value={newUser.email} onChange={readInput}></input>
                     <input type='password' className='inputFormRegister' name='password' placeholder='Please, enter your password' value={newUser.password} onChange={readInput}></input>
                     <select className='inputFormRegister' name='country' value={newUser.country} onChange={readInput}>
                         <option>Select country</option>

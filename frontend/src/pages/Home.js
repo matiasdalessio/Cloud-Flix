@@ -21,8 +21,15 @@ class Home extends React.Component{
         filtered:[]
     }
     componentDidMount(){
-        this.props.fetchSeries()
+        this.props.fetchAll()
         .then( data =>{
+
+        this.setState({ ...this.state,
+            all: data,
+            series: data.filter( element => element.audiovisualType === "Serie"  ),
+            movies: data.filter( element => element.audiovisualType === "Movie"  )
+        })
+
             this.setState({ ...this.state,
             series: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )  })
         })
@@ -32,6 +39,7 @@ class Home extends React.Component{
             movies: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )})
 
             this.setState({ ...this.state, all:[...this.state.series, ...this.state.movies ] })
+
         })
        
     }
@@ -43,8 +51,8 @@ class Home extends React.Component{
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
 
-        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
-        ? this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 )
+        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().includes( item ) ).length > 0
+        ? this.state.all.filter( element => element.title.toLowerCase().trim().includes( item ) )
         : false
         })
     }
@@ -79,8 +87,7 @@ class Home extends React.Component{
     }
 }
 const mapDispatchToProps ={
-    fetchSeries: seriesAction.fetchSeries,
-    fetchMovies: seriesAction.fetchMovies
+    fetchAll: seriesAction.fetchAll,
 }
 
 export default connect(null, mapDispatchToProps) (Home)

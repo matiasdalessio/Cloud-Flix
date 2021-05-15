@@ -42,8 +42,8 @@ class Popular extends React.Component{
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
 
-        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 ).length > 0
-        ? this.state.all.filter( element => element.title.toLowerCase().trim().indexOf( item ) === 0 )
+        filtered: this.state.all.filter( element => element.title.toLowerCase().trim().includes( item ) ).length > 0
+        ? this.state.all.filter( element => element.title.toLowerCase().trim().includes( item )  )
         : false
         })
     }

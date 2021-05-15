@@ -8,13 +8,20 @@ const profileControllers= {
         var userId = req.params.id
         var error;
         var profileSaved;     
-            try{ 
-                profileSaved = new Profile({name, avatar, kids, userId})
-                await profileSaved.save()   
-                res.json({success: true, respuesta: profileSaved})        
-            } catch (e){
-                error= 'Something went wrong, try again'
-            } 
+        try{ 
+            profileSaved = new Profile({name, avatar, kids, userId})
+            await profileSaved.save()   
+            res.json({success: true, respuesta: profileSaved})        
+        } catch (e){
+            error= 'Something went wrong, try again'
+        } 
+    },
+    deleteProfile: async (req,res) => {
+        console.log(req.body)
+        const profileId = req.params.id
+        const deletedProfile = await Profile.findOneAndDelete({_id: profileId})
+        const selectedUserProfiles = await Profile.find({userId : req.body.userId})
+        res.json({success: true, respuesta: selectedUserProfiles})
     },
     getAllProfiles: async (req, res) => {
         const allProfiles = await Profile.find()
@@ -44,28 +51,20 @@ const profileControllers= {
         const modifiedProfile = await Profile.findOneAndUpdate({_id: profileId},req.body,{new:true})
         res.json({response: modifiedProfile, success: true})
     },
-    deleteProfile: async (req,res) => {
-        const profileId = req.params.id
-        const deletedProfile = await Profile.findOneAndDelete({_id: profileId})
-        res.json({response:deletedProfile, success:true})
-    },
     addToList: async (req, res) => {
         var {sendedData} = req.body
         var {movie} = sendedData
-        console.log(req.body)
         try {
             const addedToList = await Profile.findOneAndUpdate({_id: req.params.id}, sendedData.add ? {$push:{myList:{audiovisualId: movie._id}}} : {$pull:{myList: {audiovisualId: movie._id}}}, {new: true})
-            res.json({success: true, response: addedToList.myList})
+            res.json({success: true, response: addedToList})
         } catch(error) {
             console.log(error)
             res.json({success: false, response: 'Oops! the ID you enter was not founded'})
         }
     },
     getAllListedAudivisuals: async (req, res) => {
-        console.log(req.body)
         try {
             const audiovisualsListed = await Profile.find({_id: req.params.id}).populate({ path:"myList", populate:{path:"audiovisualId"}})
-            // populate({ path:"comments", populate:{ path:"user_id", select:{ "name":1 ,"last_name":1,"picture":1 } } })
             res.json({success: true, response: audiovisualsListed[0].myList})
         } catch(error) {
             console.log(error)

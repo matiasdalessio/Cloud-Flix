@@ -23,8 +23,36 @@
     box-sizing: border-box;
 }
 
+.divProfileAvatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .addButton{
-    color: red;
+    color: black;
+}
+.buttonBanner{
+    margin-top: 1rem;
+    min-width: 17rem;
+}
+.deleteIcon{
+    text-align: center;
+    z-index: 1000;
+    font-size: 35px;
+}
+
+.noFilmsInList{
+    width: 100%;
+    height: 56vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.noFilmsInList h1{
+    font-size: 6vw;
 }
 
 html {

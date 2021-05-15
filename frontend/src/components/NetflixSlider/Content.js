@@ -10,7 +10,7 @@ import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
 
 
 
-const Content = ({ rateMovie, movie, onClose, addToMyList, selectedProfile, userLogged, history }) => {
+const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, selectedProfile, userLogged, history }) => {
 
   const [myList, setMyList] = useState({ myList: selectedProfile.myList, fetching: false })
 
@@ -20,21 +20,27 @@ const Content = ({ rateMovie, movie, onClose, addToMyList, selectedProfile, user
     ...userData
   }
 
-  var movieFounded = selectedProfile.length !== 0 && myList.myList.some(movieAdded => movieAdded.audiovisualId === movie._id)
 
-  const sendMovieToList = async (movie) => {
-    setMyList({ ...myList, fetching: true })
-    const add = { movie, add: true }
-    const remove = { movie, add: false }
+
+  var movieFounded = selectedProfile.length !==0 && myList.myList.some(movieAdded => movieAdded.audiovisualId === movie._id)
+  
+  const sendMovieToList = async(movie) =>{
+    setMyList({...myList, fetching:true})
+    const add = {movie, add:true}
+    const remove = {movie, add:false}
     const sendedData = movieFounded ? remove : add
     const response = await addToMyList(sendedData, userLS, selectedProfile._id)
-    setMyList({ myList: response, fetching: false })
-
+    console.log(response)
+      setMyList({myList: response.myList, fetching: false})
+      profileSelected(response)
+    
   }
+
 
   const valor = (num) => {
     rateMovie( movie._id, userLS, num)
   }
+
 
   return (
 
@@ -127,26 +133,26 @@ const Content = ({ rateMovie, movie, onClose, addToMyList, selectedProfile, user
                     </div>
 
                   </div>
-                        {userLogged &&
+                        
                   <div className="buttons">
                     <NavLink to="/video">
-                    <p className="btn btn-hover" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
+                    <p className="btn btn-hover buttonBanner" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>
                     </p>
-                    </NavLink>
-
-                    <button className="favourite" onClick={() => !myList.fetching && sendMovieToList(movie)} ><FaPlus className={movieFounded ? "addButton" : ""}/> </button>
-                    
-
+                    </NavLink>                   
                     <Rating initialRating={ 3 } readonly={ !userLogged ? true : false  }
                       emptySymbol={ <FaRegStar /> }
-                      fullSymbol={ <FaStar onClick={valor} /> }
+                      fullSymbol={ <FaStar onClick={() => 3} /> }
                       fractions={ 2 }
                     />
                   </div>
-                  }
-
+                  {userLogged &&   
+                    <p className="btn btn-hover buttonBanner" onClick={() => !myList.fetching && sendMovieToList(movie)} >
+                        <i><FaPlus className={movieFounded ? "addButton" : ""}/> </i>
+                        <span>{movieFounded ? "Remove form list" : "Add to list"} </span>                        
+                    </p>
+                    }               
                 </div>
                 <button className="content__close" onClick={onClose}>
                   <IconCross />
@@ -191,7 +197,9 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = {
-  addToMyList: profileActions.addToMyList,
+
+  addToMyList :  profileActions.addToMyList,
+  profileSelected: profileActions.profileSelected,
   rateMovie: audiovisualActions.rateMovie
 }
 
