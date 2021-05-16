@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 
 const Comment = (props) => {
     const { userLogged, deleteComment, comment, setLegitimateUser, legitimateUser } = props
@@ -7,6 +7,7 @@ const Comment = (props) => {
         if (userLogged && (comment.userId === userLogged.id)) {
             setLegitimateUser(true)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [legitimateUser])
 
     return (

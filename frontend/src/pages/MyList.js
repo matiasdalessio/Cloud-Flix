@@ -18,7 +18,6 @@ class MyList extends React.Component{
     state={
         myFavourites:null,
         filtered:[],
-        profile: this.props.selectedProfile
     }
 
     componentDidMount(){
@@ -44,13 +43,13 @@ class MyList extends React.Component{
 
     render() {
 
-        if (this.state.myFavourites === null ) {
+        if (this.state.myFavourites === null || !this.props.selectedProfile ) {
             return <Loader/>
         } 
          
         return(
             <div>
-                <Header filter={ this.filter } />
+                <Header filter={ this.filter }  props={this.props.history}/>
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0                          
                     ? <div className="carouselBannerless">
                             <Lastest title={ "Results" } array={ this.state.filtered } /> 

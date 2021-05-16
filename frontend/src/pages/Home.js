@@ -6,7 +6,6 @@ import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
 import Loader from "../components/Loader"
-import audiovisualActions from "../redux/actions/audiovisualActions"
 
 
 class Home extends React.Component{
@@ -19,7 +18,8 @@ class Home extends React.Component{
         all:[],
         series:[],
         movies:[],
-        filtered:[]
+        filtered:[],
+        loading:true
     }
     componentDidMount(){
         this.props.fetchAll()
@@ -28,8 +28,20 @@ class Home extends React.Component{
         this.setState({ ...this.state,
             all: data,
             series: data.filter( element => element.audiovisualType === "Serie" && element.year > ( new Date().getFullYear() -3 )  ),
-            movies: data.filter( element => element.audiovisualType === "Movie" && element.year > ( new Date().getFullYear() -3 )  )
-            })
+            movies: data.filter( element => element.audiovisualType === "Movie" && element.year > ( new Date().getFullYear() -3 )  ),
+            loading:false
+        })
+
+            this.setState({ ...this.state,
+            series: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )  })
+        })
+        this.props.fetchMovies()
+        .then( data =>{
+            this.setState({ ...this.state,
+            movies: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )})
+
+            this.setState({ ...this.state, all:[...this.state.series, ...this.state.movies ] })
+
         })
        
     }
@@ -48,13 +60,13 @@ class Home extends React.Component{
     }
 
     render() {
-        if (this.state.all.length === 0) {
+        if (this.state.loading) {
                 return <Loader/>
         }
 
         return(
             <div>
-                <Header filter={ this.filter } />
+                <Header filter={ this.filter } props={this.props.history} />
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
                     ? <div className="carouselBannerless">

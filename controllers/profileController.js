@@ -17,7 +17,6 @@ const profileControllers= {
         } 
     },
     deleteProfile: async (req,res) => {
-        console.log(req.body)
         const profileId = req.params.id
         const deletedProfile = await Profile.findOneAndDelete({_id: profileId})
         const selectedUserProfiles = await Profile.find({userId : req.body.userId})

@@ -38,6 +38,7 @@ const Audiovisual = (props) => {
         toTop()
         fetchVideos()
         fetchSeasons()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const fetchVideos = async () => {
@@ -161,7 +162,6 @@ const mapStateToProps = state => {
         listAudiovisual: state.audiovisual.allAudiovisual,
         profile: state.profile.selectedProfile,
         userLogged: state.user.userLogged,
-        profile: state.profile.selectedProfile
     }
 }
 

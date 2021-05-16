@@ -23,38 +23,6 @@
     box-sizing: border-box;
 }
 
-.divProfileAvatar{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.addButton{
-    color: black;
-}
-.buttonBanner{
-    margin-top: 1rem;
-    min-width: 17rem;
-}
-.deleteIcon{
-    text-align: center;
-    z-index: 1000;
-    font-size: 35px;
-}
-
-.noFilmsInList{
-    width: 100%;
-    height: 56vh;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.noFilmsInList h1{
-    font-size: 6vw;
-}
-
 html {
     font-size: 16px;
 }
@@ -239,20 +207,32 @@ a.movie-item:hover {
 
 .hamburger-menu.active .hamburger::before {
     transform-origin: top left;
-    transform: rotate(45deg);
-    left: 6px;
+    transform: rotate(40deg);
+
 }
 
 .hamburger-menu.active .hamburger::after {
     transform-origin: bottom left;
-    transform: rotate(-45deg);
-    left: 6px;
+    transform: rotate(-40deg);
+
 }
 
 .hero-slide-item {
     padding-top: 40%;
     position: relative;
     overflow: hidden;
+}
+.swal-icon--error__line--left{
+    transform: rotate(45deg);
+    left: 6px;
+}
+.swal-icon--error__line--right{
+    transform: rotate(-45deg);
+    left: 6px;
+}
+.swal-icon--success__line--tip{
+    transform: rotate(45deg);
+    left: 2px;
 }
 
 .hero-slide-item-content {
@@ -664,26 +644,40 @@ footer .content {
   }
 
   /* SELECT PROFILE */
+
+  .divProfileSelection{
+    display: flex;
+    justify-content: center ;
+    align-items: center ;
+    height: 100vh;
+  }
   .containerProfiles{
-      position: relative;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100%;
+      flex-wrap: wrap;
+      width: 100vw;
       height: 100%;
-      top: 30vh;
-      left: 0vw;
+
 }
 .tittleProfiles{
-    color: var(--main-color);
-    font-size: 3rem;
+    cursor: default;
+    color: white;
+    font-size: 3.5vw;
 }
-  .profileOptions{
+.profileOptions{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+.deleteIcon{
+    color: var(--main-color);
+    text-align: center;
+    z-index: 1000;
+    font-size: 35px;
+    cursor: pointer;
 }
 .addAvatar{
     background-color: #222122;
@@ -699,6 +693,12 @@ footer .content {
 }
 .addIcon{
     font-size: 6rem;
+}
+.divProfileAvatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .profileAvatar{
     margin: 2vh 3vw;
@@ -746,6 +746,120 @@ footer .content {
     display: flex;
     align-items: center;
 }
+
+/* MYLIST */
+.noFilmsInList{
+    width: 100%;
+    height: 70vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.noFilmsInList h1{
+    font-size: 6vw;
+}
+
+.addButton{
+    color: black;
+}
+.buttonBanner{
+    margin-top: 1rem;
+    min-width: 17rem;
+}
+.buttonBannerRandom{
+    margin-top: 1rem;
+    min-width: 17rem;
+    max-width: 17rem;
+}
+
+/* DROPDOWN PROFILES */
+.divProfilesDropdown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userLogged{
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    margin-left: 1em;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.dropdown{
+    display: flex;
+}
+
+.dropdownMenu{
+    position: absolute;
+    width: 15vw !important;
+    background-color: black;
+    margin-top: 4em;
+    top: 2rem;
+    right: 3rem;
+    border-radius: 10px;
+}
+
+.logout{
+    font-size: 25px;
+    font-weight: bold;
+    width: 15vw;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E50913;
+    cursor: pointer;
+    border-radius: 0 0 10px 10px;
+}
+
+.settings{
+    font-size: 25px;
+    width: 15vw;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blanchedalmond;
+}
+
+.divAvatars{
+    cursor: pointer;
+    width: 15vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.avatarProfile, .avatarProfileSelected{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px 10px 10px 20px;
+}
+
+.nameProfile{
+    width: 7vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 
 
 
@@ -848,6 +962,39 @@ footer .content {
 
     .hamburger-menu {
         display: grid;
+    }
+    .dropdownMenu{
+        position: absolute;
+        width: 80% !important;
+        background-color: black;
+        margin-top: 4em;
+        top: 25rem;
+        right: 0rem;
+        border-radius: 10px;
+    }
+    .logout {
+        width: 80%;
+    }    
+    .settings{
+        width: 80%;
+    }
+    
+    .divAvatars{
+        width: 80%;
+    }
+    .nameProfile{
+        width: 80%;
+    }
+    .divProfilesDropdown{
+        width: 80%;
+    }
+
+    .logout{
+        font-size: 4vw;
+    }
+    
+    .settings{
+        font-size: 4vw;
     }
 
     .nav-menu {
