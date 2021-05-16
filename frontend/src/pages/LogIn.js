@@ -2,49 +2,58 @@ import React, { useState } from 'react'
 import Header from '../components/Header'
 import usersActions from '../redux/actions/usersActions.js'
 import {connect} from 'react-redux'
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
 import swal from 'sweetalert'
 
 const Login = (props) =>{
+
     const [userLog, setUserLog] = useState({email:'', password:''})
 
-    const readInput = e =>{
-        const campo= e.target.name
-        const valor= e.target.value
+    const readInput = (e) =>{
+        const field= e.target.name
+        const value= e.target.value
         setUserLog({
             ...userLog,
-            [campo]: valor
+            [field]: value
         })
     }   
+
     
-    const logInOk = async (e = null, userGoogle = null) => {
+    const send = async (e = null, userGoogle = null) => {
         e && e.preventDefault()
         let user = e ? userLog : userGoogle
         const response = await props.logUser(user)
         if (!response) {
-            return props.history.push('/serverdown')            
+            swal("It seems we have some issues with our server", "Please, try again in a few minutes", "error")         
         } else if (response.error) {
             swal(response.error, "Verify and try again!", "error")
+        } else if (response.premium){
+            props.history.push('/')
         } else {
-            return <Redirect to="/ProfileSelection"/>
-        }   
+            props.history.push('/pricing')
+        }
     }
-
+    
     const responseGoogle = (response) => {
         if (response.profileObj.email){
-            logInOk(null, {email: response.profileObj.email, password: "asd"+response.profileObj.googleId})
+            send(null, {email: response.profileObj.email, password: "asd"+response.profileObj.googleId, country: "null"})
         }
       }
+
+    const enterToSend = ((e) =>{
+      e.key === 'Enter' && send()    
+    })  
     return (<>
         <Header />
         <div className='siteContainerLogInEma' style={{backgroundImage:'url("https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2018/06/series-netflix.jpg")'}}>
             <div className='divContainerLogInEma'>
                 <h1 className='titleFormRegister'>Log In</h1>
                 <form>
-                    <input type='text' className='inputFormRegister' placeholder='Email' value={userLog.email} onChange={readInput} required></input>
-                    <input type='password' className='inputFormRegister' placeholder='Password' value={userLog.password} onChange={readInput} required></input>
-                    <p className='botonFormRegister' onClick={logInOk}>Log In</p>
+                    <input type='text' className='inputFormRegister' onKeyPress={(e)=> enterToSend(e)} placeholder='E-mail' value={userLog.email} name='email' onChange={(e) => readInput(e)} autoComplete='username' ></input>
+                    <input type='password' className='inputFormRegister' onKeyPress={(e)=> enterToSend(e)} placeholder='Password' value={userLog.password} name= 'password' onChange={(e) =>readInput(e)} autoComplete="current-password"></input>
+                    <p className='botonFormRegister' onClick={send}>Log In</p>
+                    
                 </form>
                 <GoogleLogin
                     clientId="706728189535-gkdltcou7njsjagcfhn30q0i25g7f30v.apps.googleusercontent.com"

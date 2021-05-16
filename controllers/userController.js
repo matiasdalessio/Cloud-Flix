@@ -24,7 +24,7 @@ const usersController= {
        }
        res.json({
            success: !error ? true : false,
-           respuesta: !error ? {token: respuesta, id:createdUser._id}: null,
+           respuesta: !error ? {token: respuesta, id:createdUser._id, premium: createdUser.premium}: null,
            error: error
        })        
     },
@@ -33,6 +33,7 @@ const usersController= {
         var respuesta;
         var error;
         const userExist = await User.findOne({email: email})
+        console.log(userExist)
         if (userExist) {
             if (!userExist.loggedWithGoogle && !country || userExist.loggedWithGoogle && country === "null") {
                 const passwordMatch = bcryptjs.compareSync(password, userExist.password)
@@ -52,7 +53,7 @@ const usersController= {
         }
         res.json({
             success: !error ? true : false,
-            respuesta:!error ? {token: respuesta, id:userExist._id} : null,
+            respuesta:!error ? {token: respuesta, id:userExist._id, premium: userExist.premium} : null,
             error: error
         })
     },

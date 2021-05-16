@@ -33,7 +33,6 @@ const profileActions = {
         }
     }, 
     createProfile:(newProfile, id) => {
-        console.log(newProfile)
         return async (dispatch, getstate) => {
             try {
                 const respuesta = await axios.post(`http://localhost:4000/api/profile/${id}`, {newProfile})
@@ -53,7 +52,6 @@ const profileActions = {
     }, 
     deleteProfile:( id, userLS) => {
         const userId= userLS.id
-        console.log("entro al delete")
         return async (dispatch, getstate) => {
             try {
                 const response = await axios.put(`http://localhost:4000/api/profile/delete/${id}`, {userId}, {
@@ -61,7 +59,6 @@ const profileActions = {
                     'Authorization': 'Bearer '+userLS.token
                     }
                 }) 
-                console.log(response.data.respuesta)
                 dispatch({
                     type: "USER_PROFILES",
                     payload: response.data.respuesta                    

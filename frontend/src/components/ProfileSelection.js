@@ -4,6 +4,7 @@ import profileActions from "../redux/actions/profileActions"
 import { MdAdd, MdDelete } from "react-icons/md";
 import swal from 'sweetalert'
 import Loader from "../components/Loader";
+import Pricing from "./Pricing";
 
 
 
@@ -32,13 +33,19 @@ class ProfileSelection extends React.Component{
         ...this.userData
     }
 
-    selectProfile = (profile) => {
-        this.props.profileSelected(profile)
-        // this.props.history.push('/')
+    selectProfile = async (profile) => {       
+        console.log('hola') 
+        if (this.props.selectedProfile.length > 0) {
+            this.props.profileSelected(profile)
+            await this.props.history.push('/')
+        } else {
+            this.props.profileSelected(profile)
+            await this.props.history.push('/')
+        }
     }
 
     createProfile = async () => {
-        this.setState({...this.state, creating:true})        
+        this.setState({...this.state, creating:true, newProfile:{...this.state.newProfile, name: '', avatar:'', kids: false }})        
     }
 
     readInput = ((e) => {
@@ -64,50 +71,39 @@ class ProfileSelection extends React.Component{
         let newProfile= this.state.newProfile
         const respuesta = await this.props.createProfile(newProfile, this.props.userLogged.id)
         if (!respuesta) {
-            return alert("oops")
+            return swal("It seems we have some issues with our server", "Please, try again in a few minutes", "error") 
         } else if (respuesta.error) {
             swal(respuesta.error, "Verify and try again!", "error")
         } else {
             this.props.profileSelected(respuesta)
             this.props.getUserProfiles(this.props.userLogged.id, this.userLS)
-            this.props.history.push('/')
+            this.setState({...this.state, creating: false})
+            
         }   
     }
-    options = (profileId)=> swal("Want to delete this profile?", {
-        buttons: {
-          Delete: {text: "Delete", value: "delete"},
-          cancel: "Cancel",
-        },
+    options = (profileId)=> swal("Want to delete this profile?", "", {
+        buttons: ["Cancel", "Delete"], 
+        dangerMode:true
       })
-      .then((value, willDelete) => {
-        switch (value) {         
-          case "delete":
-            swal({
-              title: "Your comment will be deleted...",
-              text: "Are you sure?",
-              icon: "warning",
-              buttons: ["Nope", "I'm Sure!"],
-              dangerMode: true,
-            })
-            .then((willDelete) => {
+        .then((willDelete) => {
               if (willDelete) {
                   this.props.deleteProfile(profileId, this.userLS)
-                  swal("Poof! Your comment has been deleted!", {
-                      icon: "success",
-                });
               } else {
-                swal("Okay! We'll keep it alive then");
+                return null
               }
-            });                
-            break           
-          default:           
-        }
-      })
+            });      
+
+            
     
     render() {
         this.props.userProfiles === null && <Loader/>
+
+        // ponerle ! para activar en this.props.userLogged.premium
+         if (this.props.userProfiles && this.props.userLogged.premium) { 
+             return <Pricing/>
+         }else {
         return(
-            <div>
+            <div className="divProfileSelection">
                 {this.state.creating 
                 ?<div className="containerProfiles">
                         <h1 className='h1AddProfile'>Add Profile (max 5)</h1>
@@ -141,7 +137,7 @@ class ProfileSelection extends React.Component{
                         </div>                      
                  </div>
                 :<div className="containerProfiles">
-                        <h1 className="tittleProfiles">Select Profile</h1>  
+                        <h1 className="tittleProfiles">Who's watching Now?</h1>  
                         <div className="profileOptions">                
                             {this.props.userProfiles.map(profile => {
                                 return  <div className="divProfileAvatar" key={profile._id}>
@@ -152,14 +148,17 @@ class ProfileSelection extends React.Component{
                                         </div>
                             })}
                             {this.props.userProfiles.length<= 4 &&
-                            <div onClick={() => this.createProfile()} className="addAvatar" >
-                                <MdAdd className="addIcon"/>
+                            <div>
+                                <div onClick={() => this.createProfile()} className="addAvatar" >
+                                    <MdAdd className="addIcon"/>
+                                </div>
+                                <MdDelete className="deleteIcon" style={{visibility:'hidden'}}/>
                             </div> }                                           
                         </div>                                                   
                  </div>                
                 }                    
             </div>        
-        )
+        )}
     }
 }
 const mapStateToProps = state => {

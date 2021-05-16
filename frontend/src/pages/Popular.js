@@ -58,7 +58,7 @@ class Popular extends React.Component{
             return(
                 <div>
 
-                <Header filter={ this.filter } />
+                <Header filter={ this.filter } props={this.props.history}/>
                     
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 

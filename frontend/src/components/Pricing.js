@@ -14,7 +14,7 @@ const Pricing = ()=>{
                 </div>
                 <div className='lugarDelBotonCard'>
                     <p className="btn btn-hover">                       
-                        <span>Select Plan</span>
+                        <span>mantain free</span>
                     </p>
                 </div>
             </div>
@@ -31,7 +31,7 @@ const Pricing = ()=>{
                 </div>
                 <div className='lugarDelBotonCard'>
                     <p className="btn btn-hover">                       
-                        <span>Select Plan</span>
+                        <span>Change to premium</span>
                     </p>
                 </div>
             </div>

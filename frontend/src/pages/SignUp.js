@@ -5,6 +5,7 @@ import usersActions from '../redux/actions/usersActions.js'
 import {connect} from 'react-redux'
 import { GoogleLogin } from 'react-google-login'; 
 import Header from '../components/Header'
+import swal from 'sweetalert'
 
 const SignUp = (props) =>{
     const [newUser, setNewUser] = useState({email: '', password:'', country:'', premium: false})
@@ -24,16 +25,32 @@ const SignUp = (props) =>{
             [campo]: valor
         })
     }
-    
-    const signUpOk = async (e = null, googleUser = null) => {
+    const send = async (e = null, googleUser = null) => {
         e && e.preventDefault()
         let user = e ? newUser : googleUser
-        props.loadUser(user)
-    }
+             const respuesta = await props.newUser(user)
+                console.log(respuesta)
+                 if (!respuesta) {
+                     return swal("It seems our servers have some issues","Please, try again in a few minutes", "error") 
+                 }else if (respuesta.message) {
+                     swal(respuesta.message,"", "error")                
+                 } else {
+                     switch(respuesta){
+                         case 'The E-mail is already in use':
+                             swal("The E-mail is already in use", "Try another one!", "error")
+                             break
+                         case 'There was an error in the register.':
+                             swal("There was an error in the register.", "Please verify all the required fields are completed.", "error")
+                             break
+                         default:
+                             return swal("Signed Up!", respuesta, "success")
+                     }
+                 }                     
+     }  
 
     const responseGoogle = (response) => {
-        const {email, googleId, premium} = response.profileObj
-        signUpOk(null, {email, password: "asd"+googleId, country: "Nothing", premium})         
+        const {email, googleId} = response.profileObj
+        send(null, {email, password: "asd"+googleId, country: "null"})         
       }
 
 
@@ -53,7 +70,7 @@ const SignUp = (props) =>{
                                 )
                             })} 
                     </select>
-                    <p className='botonFormRegister' value="Sign up!" onClick={signUpOk} >Sign Up</p>
+                    <p className='botonFormRegister' value="Sign up!" onClick={send} >Sign Up</p>
                 </form>
                 <GoogleLogin
                     clientId="706728189535-gkdltcou7njsjagcfhn30q0i25g7f30v.apps.googleusercontent.com"
@@ -71,7 +88,7 @@ const SignUp = (props) =>{
     )
 }
 const mapDispatchToProps = {
-    loadUser: usersActions.loadUser
+    newUser: usersActions.newUser
 }
 
 export default connect(null, mapDispatchToProps)(SignUp)

@@ -5,7 +5,7 @@ import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
 import audiovisualActions from '../../redux/actions/audiovisualActions';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
 
 
@@ -21,7 +21,6 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
   }
 
 
-
   var movieFounded = selectedProfile.length !==0 && myList.myList.some(movieAdded => movieAdded.audiovisualId === movie._id)
   
   const sendMovieToList = async(movie) =>{
@@ -30,7 +29,6 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
     const remove = {movie, add:false}
     const sendedData = movieFounded ? remove : add
     const response = await addToMyList(sendedData, userLS, selectedProfile._id)
-    console.log(response)
       setMyList({myList: response.myList, fetching: false})
       profileSelected(response)
     

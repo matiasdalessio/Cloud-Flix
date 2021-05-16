@@ -16,9 +16,9 @@ const ActorFilms = (props) => {
             setActorMovies(res)
         }
         fecthearActor()    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[actorName])
-
-    console.log(actorMovies)
+    
     if (actorMovies.length === 0) {
         return <Loader/>
     } else {

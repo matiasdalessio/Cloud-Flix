@@ -62,7 +62,7 @@ class Series extends React.Component {
 
                 return( 
                 <>
-                <Header filter={ this.filter } />
+                <Header filter={ this.filter }  props={this.props.history}/>
                 <div >
                         
                     {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 

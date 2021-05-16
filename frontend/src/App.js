@@ -66,7 +66,6 @@ class App extends React.Component{
           <Route path="/pricing" component={ Pricing } />
           <Route path="/video" component={ Video } />
           <Route path ="/actorFilms/:name" component={ ActorFilms } />
-
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
