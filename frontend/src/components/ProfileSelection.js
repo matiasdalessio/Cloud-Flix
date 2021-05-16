@@ -40,12 +40,11 @@ class ProfileSelection extends React.Component{
     }
 
     selectProfile = async (profile) => {       
-        console.log('hola') 
-        if (this.props.selectedProfile.length > 0) {
+        if (!localStorage.getItem('profile')) {
             this.props.profileSelected(profile)
-            await this.props.history.push('/')
         } else {
             this.props.profileSelected(profile)
+            await this.props.history.push('/')
         }
     }
 
