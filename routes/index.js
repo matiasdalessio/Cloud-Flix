@@ -10,7 +10,7 @@ const passport = require('passport')
 const rateControllers = require('../controllers/rateControllers')
 const commentController = require('../controllers/commentController')
 
-const { newUser, logIn, logInForced, selectPlanPremium } = userController
+const { newUser, logIn, logInForced, selectPremium } = userController
 const { getAllAudiovisuals, getSingleAudiovisual, addAudiovisual, deleteAudiovisual, updateAudiovisual, addOrRemoveRate, addComment, modifyOrRemoveComment } = audiovisualController
 const { getAllSeasons, addSeason, deleteSeason, modifySeason, getSinleSeason , seasonsBySeries  } = seasonController
 const {createProfile, getAllProfiles, getSingleProfile, updateProfile, deleteProfile, addToList, getUserProfiles, getAllListedAudivisuals}= profileController
@@ -77,6 +77,10 @@ router.route('/comment/:id')
 .post(passport.authenticate('jwt', {session: false}), commentToAdd)
 .delete(deleteComment)
 .put(modifyComment)
+
+router.route("/selectPremium")
+.put(passport.authenticate("jwt",{ session:false }), selectPremium )
+
 
 
 module.exports = router

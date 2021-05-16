@@ -27,20 +27,9 @@ class Home extends React.Component{
 
         this.setState({ ...this.state,
             all: data,
-            series: data.filter( element => element.audiovisualType === "Serie"  ),
-            movies: data.filter( element => element.audiovisualType === "Movie"  )
-        })
-
-            this.setState({ ...this.state,
-            series: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )  })
-        })
-        this.props.fetchMovies()
-        .then( data =>{
-            this.setState({ ...this.state,
-            movies: data.filter( element => element.year > ( new Date().getFullYear() -3 )  )})
-
-            this.setState({ ...this.state, all:[...this.state.series, ...this.state.movies ] })
-
+            series: data.filter( element => element.audiovisualType === "Serie" && element.year > ( new Date().getFullYear() -3 )  ),
+            movies: data.filter( element => element.audiovisualType === "Movie" && element.year > ( new Date().getFullYear() -3 )  )
+            })
         })
        
     }

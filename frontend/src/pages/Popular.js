@@ -30,11 +30,24 @@ class Popular extends React.Component{
         .then( data =>{
         this.setState({ ...this.state,
             all: data,
-            series: data.filter( element => element.audiovisualType === "Serie"  ),
-            movies: data.filter( element => element.audiovisualType === "Movie"  )
-        })
+            series: this.popularityCalc( data.filter( element => element.audiovisualType === "Serie"  )   )
+            .sort( ( a,b ) => b.averagePopularity - a.averagePopularity ),
+
+            movies: this.popularityCalc( data.filter( element => element.audiovisualType === "Movie"  ) )
+            .sort( ( a,b ) => b.averagePopularity - a.averagePopularity ),
+            
+            })
         })
     }
+
+        popularityCalc = (array)=>{
+           return array.map( element =>{
+            let accumulator = 0
+            element.rate.map( elementInt => accumulator = accumulator + elementInt.vote )
+            element.averagePopularity = accumulator / element.rate.length || 0
+            return element
+            })
+        }
 
     filter = (item)=>{
         item = item.toLowerCase().trim()

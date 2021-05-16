@@ -13,6 +13,7 @@ import MyList from "./pages/MyList"
 import Audiovisual from './components/Audiovisual';
 import usersActions from './redux/actions/usersActions';
 import './preloader.css'
+import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
 import ProfileSelection from './components/ProfileSelection';
 import Loader from "./components/Loader"

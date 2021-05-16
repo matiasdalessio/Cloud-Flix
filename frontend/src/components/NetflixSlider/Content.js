@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
 import './Content.scss';
 import Rating from "react-rating"
 import audiovisualActions from '../../redux/actions/audiovisualActions';
-import { Link, NavLink } from 'react-router-dom';
+import {  NavLink } from 'react-router-dom';
 import { FaPlayCircle, FaPlus ,FaRegStar, FaStar } from "react-icons/fa"
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, selectedProfile, userLogged, history }) => {
@@ -34,6 +34,11 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
   }
 
   const valor = (num) => {
+    if( !userLogged ){
+      toast("You must be logged to score",{ type:"error", position:"bottom-right" })
+      return null
+    }
+    
     rateMovie( movie._id, userLS, num)
   }
 
@@ -52,16 +57,6 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
           style={{ backgroundImage: `url(${movie.imageBackground})` }}
         />
       </div>
-      <div className="content__area">
-        <div className="content__area__container">
-          <div className="content__title">{movie.title}</div>
-          <div className="content-info" >
-            <div className="content__description">
-              {movie.sinopsis.length > 250
-                ? movie.sinopsis.slice(0, 249) + "..."
-                : movie.sinopsis}
-            </div>
-
               <div className="content__area">
                 <div className="content__area__container">
                   <div className="content__title">{movie.title}</div>
@@ -69,7 +64,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                   <div className="content-info" >
                     <div className="content__description">
                       { movie.sinopsis.length > 250 
-                      ? movie.sinopsis.slice( 0 , 249 ) + "..." 
+                      ? movie.sinopsis.slice( 0 , 228 ) + "..." 
                       : movie.sinopsis } 
                     </div>
 
@@ -91,6 +86,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                     <div className="director">
                     <h4>Director: { movie.director } </h4>
                     </div>
+                    
                     <div className="movie-infos">
                       <div className="movie-info">
                         <i className="bx bxs-star"></i>
@@ -113,6 +109,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                       fullSymbol={<FaStar />}
                       fractions={1}
                     />
+                     <ToastContainer />
                   </div>
                   {userLogged && 
                    <>  
@@ -130,12 +127,6 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
               </div>
             </div>
 
-          </div>          
-        </div>
-        <button className="content__close" onClick={onClose}>
-          <IconCross />
-        </button>
-      </div>
     </div>
 
   )
