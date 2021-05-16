@@ -9,7 +9,7 @@ const validatorUser = require('../config/validatorUser')
 const passport = require('passport')
 const rateControllers = require('../controllers/rateControllers')
 
-const { newUser, logIn, logInForced } = userController
+const { newUser, logIn, logInForced, selectPlanPremium } = userController
 const { getAllAudiovisuals, getSingleAudiovisual, addAudiovisual, deleteAudiovisual, updateAudiovisual, addOrRemoveRate, addComment, modifyOrRemoveComment } = audiovisualController
 const { getAllSeasons, addSeason, deleteSeason, modifySeason, getSinleSeason  } = seasonController
 const {createProfile, getAllProfiles, getSingleProfile, updateProfile, deleteProfile, addToList, getUserProfiles, getAllListedAudivisuals}= profileController

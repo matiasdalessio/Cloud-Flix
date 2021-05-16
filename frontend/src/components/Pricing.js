@@ -1,4 +1,5 @@
 const Pricing = ()=>{
+
     return(
         <div className="containerPricingCards">
             <div className='pricingCard'>
@@ -38,4 +39,5 @@ const Pricing = ()=>{
         </div>
     )
 }
+
 export default Pricing
