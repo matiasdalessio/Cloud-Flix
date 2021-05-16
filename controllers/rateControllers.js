@@ -10,7 +10,8 @@ const rateControllers = {
         var err;   
 
         try {
-            const rate = await Audiovisual.findOneAndUpdate({ _id: id }, { $push: { rate: {vote: numero, userId: userId}}},{new:true})
+            const rate = await Audiovisual.findOneAndUpdate({ _id: id },
+                { $push: { rate: {vote: numero, userId: userId}}},{new:true})
             response = rate
         } catch(error) {
             err = 'An unexpected error has occurred with our servers'

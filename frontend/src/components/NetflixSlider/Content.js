@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
@@ -20,8 +20,6 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
     ...userData
   }
 
-
-
   var movieFounded = selectedProfile.length !==0 && myList.myList.some(movieAdded => movieAdded.audiovisualId === movie._id)
   
   const sendMovieToList = async(movie) =>{
@@ -30,17 +28,19 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
     const remove = {movie, add:false}
     const sendedData = movieFounded ? remove : add
     const response = await addToMyList(sendedData, userLS, selectedProfile._id)
-    console.log(response)
       setMyList({myList: response.myList, fetching: false})
       profileSelected(response)
     
   }
 
-
   const valor = (num) => {
     rateMovie( movie._id, userLS, num)
   }
 
+  const rateNum = movie.rate.map(rate => rate.vote)
+  const rate = rateNum.length === 0 ? 0 : rateNum.reduce((a, b) => a + b)
+  const totalRate = rateNum.length === 0 ? 0 : (rate / rateNum.length).toFixed(2)
+  const porcentRate = rateNum.length === 0 ? 0 : Math.ceil( rate  / rateNum.length )
 
   return (
 
@@ -61,7 +61,6 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                 ? movie.sinopsis.slice(0, 249) + "..."
                 : movie.sinopsis}
             </div>
-            
 
               <div className="content__area">
                 <div className="content__area__container">
@@ -95,7 +94,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                     <div className="movie-infos">
                       <div className="movie-info">
                         <i className="bx bxs-star"></i>
-                        <span>9.5</span>
+                        <span>{totalRate}</span>
                       </div>
                       <div className="movie-info">
                         <span>{movie.audienceAge}</span>
@@ -108,18 +107,21 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>
                     </p>
-                    </NavLink>                   
-                    <Rating onClick={valor} initialRating={3} readonly={!userLogged ? true : false}
+                    </NavLink>                    
+                    <Rating onClick={valor} initialRating={porcentRate} readonly={!userLogged ? true : false}
                       emptySymbol={<FaRegStar />}
                       fullSymbol={<FaStar />}
                       fractions={1}
                     />
                   </div>
-                  {userLogged &&   
+                  {userLogged && 
+                   <>  
                     <p className="btn btn-hover buttonBanner" onClick={() => !myList.fetching && sendMovieToList(movie)} >
                         <i><FaPlus className={movieFounded ? "addButton" : ""}/> </i>
                         <span>{movieFounded ? "Remove form list" : "Add to list"} </span>                        
                     </p>
+                    <NavLink to={`/audiovisual/${movie._id}`}>Go</NavLink>
+                    </>
                     }               
                 </div>
                 <button className="content__close" onClick={onClose}>
