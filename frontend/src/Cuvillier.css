@@ -58,8 +58,8 @@ footer{
 }
 .divContainerLogInEma{
     background-color: #151515d3;
-    width: 20rem;
-    height: 27rem;
+    width: auto;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -411,3 +411,4 @@ footer{
        height: 20%;
    }
 }
+
