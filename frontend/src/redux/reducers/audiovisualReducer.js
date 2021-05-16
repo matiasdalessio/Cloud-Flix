@@ -1,19 +1,21 @@
 const initialState = {
-    movies: null
+    fallenServer: false
 }
 
 const audiovisualReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'LOAD_MOVIES':
+        case 'ERR':
             return {
                 ...state,
-                movies: action.payload
+                fallenServer: action.payload
             }
+            break
         case 'FILTER_ACTORS':
             return {
                 ...state,
                 movies: state.movies.filter(movie => {return (movie.cast === action.payload)})
             }
+            break
         default:
             return state
     }

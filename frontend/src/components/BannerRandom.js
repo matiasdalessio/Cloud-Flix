@@ -5,7 +5,8 @@ const BannerRandom = (props) => {
 
     let bannerRandom = Math.floor(Math.random() * (array.length));
     let selection = array[bannerRandom]
-
+    let rateNum = selection.rate.map(rate => rate.vote)
+    let rate = rateNum.length === 0 ? 0 : ((rateNum.reduce((a, b) => a + b)) / rateNum.length).toFixed(2)
 
     return (
         <>
@@ -19,7 +20,7 @@ const BannerRandom = (props) => {
                     <div className="movie-infos">
                         <div className="movie-info">
                             <i className="bx bxs-star"></i>
-                            <span>9.5</span>
+                            <span>{rate}</span>
                         </div>
                         <div className="movie-info">
                             <i className="bx bxs-time"></i>
@@ -48,4 +49,5 @@ const BannerRandom = (props) => {
         </>
     )
 }
+
 export default BannerRandom

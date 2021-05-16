@@ -86,6 +86,23 @@ const seasonControllers = {
             response: !err && response,
             err: err
         })
+    },
+
+    seasonsBySeries: async (req, res) => {
+        const id = req.params.id
+        var response;
+        var err;        
+        try {
+            const seasons = await Season.find({idAudiovisual: id})
+            response = seasons
+        } catch(error) {
+            err = 'An unexpected error has occurred with our servers'
+        }        
+        res.json({
+            success: !err ? true : false,
+            response: !err && response,
+            err: err
+        })
     }
 }
 

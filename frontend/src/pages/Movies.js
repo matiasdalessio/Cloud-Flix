@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom";
+import FallenServer from "../components/FallenServer";
+import seriesAction from "../redux/actions/seriesAction"
 
 class Movies extends React.Component {
 
@@ -16,18 +18,20 @@ class Movies extends React.Component {
         comedy: [],
         adventure: [],
         filtered: [],
-        cast:[]
+        cast: []
     }
 
     componentDidMount = async () => {
         var response = await this.props.fetchMovies()
-        this.setState({
-            loader: false,
-            movies: response,
-            action: response.filter(serie => serie.categories.includes("Action")),
-            comedy: response.filter(serie => serie.categories.includes("Comedy")),
-            adventure: response.filter(serie => serie.categories.includes("Adventure"))
-        })
+        if (response) {
+            this.setState({
+                loader: false,
+                movies: response,
+                action: response.filter(serie => serie.categories.includes("Action")),
+                comedy: response.filter(serie => serie.categories.includes("Comedy")),
+                adventure: response.filter(serie => serie.categories.includes("Adventure"))
+            })
+        }
     }
 
     toTop = () => {
@@ -59,12 +63,19 @@ class Movies extends React.Component {
             { name: "Adventure", movies: this.state.adventure }
         ]
 
-        if (this.state.loader) {
-
-
-            return <Loader />
+        if (this.props.errServer) {
+            return (
+                <>
+                    <Header filter={this.filter} />
+                    <FallenServer />
+                    <Footer />
+                </>
+            )
         }
-        else {
+
+        if (this.state.loader) {
+            return <Loader />
+        } else {
             return (
                 <>
                     <Header filter={this.filter} />
@@ -72,19 +83,19 @@ class Movies extends React.Component {
                     {   typeof this.state.filtered === "object" && this.state.filtered.length > 0
 
                         ? <div className="carouselBannerless">
-                                <Lastest title={ "Results" } array={ this.state.filtered } /> 
-                            </div> 
+                            <Lastest title={"Results"} array={this.state.filtered} />
+                        </div>
 
                         : !this.state.filtered
 
-                            ?   <div className="carouselBannerless"> 
-                                    <div className="noResultsFounded">
-                                        <h1 className="noResults">No results founded.</h1>
-                                    </div>
+                            ? <div className="carouselBannerless">
+                                <div className="noResultsFounded">
+                                    <h1 className="noResults">No results founded.</h1>
                                 </div>
+                            </div>
 
                             : <>
-                            <BannerRandom array={this.state.movies} />                            
+                                <BannerRandom array={this.state.movies} />
                                 <div className="seriesContainer">
                                     {
                                         titles.map((title, index) => {
@@ -104,10 +115,15 @@ class Movies extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        errServer: state.audiovisual.fallenServer
+    }
+}
 
 const mapDispatchToProps = {
-    fetchMovies: audiovisualActions.movies,
+    fetchMovies: seriesAction.fetchMovies,
     actorFilter: audiovisualActions.actorFilter
 }
 
-export default connect(null, mapDispatchToProps)(Movies)
+export default connect(mapStateToProps, mapDispatchToProps)(Movies)

@@ -10,8 +10,6 @@ import { MdSettings } from "react-icons/md";
 
 const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout, filter = null, actorFilter = null }) => {
 
-    console.log(profile)
-
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState(false)
 
