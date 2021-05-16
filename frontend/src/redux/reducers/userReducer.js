@@ -15,7 +15,7 @@ const userReducer = (state = initialState, action) => {
             localStorage.clear()
             return {
                 ...state,
-                userLogged: null
+                userLogged: null,
             }
         default:
             return state

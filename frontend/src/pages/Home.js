@@ -18,7 +18,8 @@ class Home extends React.Component{
         all:[],
         series:[],
         movies:[],
-        filtered:[]
+        filtered:[],
+        loading:true
     }
     componentDidMount(){
         this.props.fetchAll()
@@ -27,7 +28,8 @@ class Home extends React.Component{
         this.setState({ ...this.state,
             all: data,
             series: data.filter( element => element.audiovisualType === "Serie"  ),
-            movies: data.filter( element => element.audiovisualType === "Movie"  )
+            movies: data.filter( element => element.audiovisualType === "Movie"  ),
+            loading:false
         })
 
             this.setState({ ...this.state,
@@ -58,7 +60,7 @@ class Home extends React.Component{
     }
 
     render() {
-        if (this.state.all.length === 0) {
+        if (this.state.loading) {
                 return <Loader/>
         }
 

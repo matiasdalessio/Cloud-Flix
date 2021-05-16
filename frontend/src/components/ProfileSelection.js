@@ -24,13 +24,19 @@ class ProfileSelection extends React.Component{
             name: '',
             avatar: '',
             kids: false            
-        },       
+        }, 
+        loading: true      
     }
 
     userData = JSON.parse(localStorage.getItem('userLogged'))
     userLS= {
         token: localStorage.getItem('token'),
         ...this.userData
+    }
+
+    componentDidMount(){
+        this.props.getUserProfiles(this.userData.id, this.userLS)
+        this.setState({...this.state, loading:false})
     }
 
     selectProfile = async (profile) => {       
@@ -40,7 +46,6 @@ class ProfileSelection extends React.Component{
             await this.props.history.push('/')
         } else {
             this.props.profileSelected(profile)
-            await this.props.history.push('/')
         }
     }
 
@@ -96,7 +101,7 @@ class ProfileSelection extends React.Component{
             
     
     render() {
-        this.props.userProfiles === null && <Loader/>
+        this.state.loading && <Loader/>
 
         // ponerle ! para activar en this.props.userLogged.premium
          if (this.props.userProfiles && this.props.userLogged.premium) { 

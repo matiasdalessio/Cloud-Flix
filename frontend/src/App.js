@@ -45,9 +45,6 @@ class App extends React.Component{
   }
   
   render(){
-    if (localStorage.getItem('token') && !this.props.userLogged) {
-      return(<Loader/>)
-    }
 
   return (
     localStorage.getItem('token') && this.props.userLogged && this.props.selectedProfile.length === 0 && !localStorage.getItem('profile')

@@ -56,11 +56,14 @@ const usersActions ={
                     ...response.data.response,
                     token: userLS.token
                 }})
-            } catch(err) {                
-                if (err.respuesta === 401) {
-                    localStorage.clear()
-                }
-            }           
+            } catch(error) {
+                if (!error.response) {
+                    return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
+                } else if (error.response.status && error.response.status > 399 && error.response.status < 499) {
+                    swal("Invalid Token", "Please Log in again", "error")
+                    dispatch({type: 'LOGOUT_USER', payload: []})
+                } 
+            }         
         }
     }
 }
