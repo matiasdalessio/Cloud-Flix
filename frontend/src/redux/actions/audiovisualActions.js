@@ -26,7 +26,6 @@ const audiovisualActions = {
                 if (!data.success) {
 
                 } else {
-                    console.log(data.respuesta)
                     return  data.respuesta.filter( movie => movie.cast.includes(value) )
                 }
             } catch (error) {

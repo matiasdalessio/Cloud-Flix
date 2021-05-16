@@ -36,8 +36,11 @@ const Login = (props) =>{
             logInOk(null, {email: response.profileObj.email, password: "asd"+response.profileObj.googleId})
         }
       }
+
+      const filter = ()=>{}
+
     return (<>
-        <Header />
+        <Header  filter={ filter } />
         <div className='siteContainerLogInEma' style={{backgroundImage:'url("https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2018/06/series-netflix.jpg")'}}>
             <div className='divContainerLogInEma'>
                 <h1 className='titleFormRegister'>Log In</h1>

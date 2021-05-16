@@ -1,4 +1,8 @@
-const Pricing = ()=>{
+import usersActions from "../redux/actions/usersActions"
+import { connect } from "react-redux"
+
+const Pricing = ({ selectPlan })=>{
+
     return(
         <div className="containerPricingCards">
             <div className='pricingCard'>
@@ -31,11 +35,22 @@ const Pricing = ()=>{
                 </div>
                 <div className='lugarDelBotonCard'>
                     <p className="btn btn-hover">                       
-                        <span>Select Plan</span>
+                        <span onClick={ selectPlan }>Select Plan</span>
                     </p>
                 </div>
             </div>
         </div>
     )
 }
-export default Pricing
+
+const  mapStateToProps = state =>{
+    return{
+        userLogged: state.user.userLogged
+    }
+}
+
+const mapDispatchToProps ={
+    selectPlan:usersActions.selectPlan
+}
+
+export default connect(mapStateToProps, mapDispatchToProps ) (Pricing)

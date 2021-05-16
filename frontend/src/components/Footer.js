@@ -35,10 +35,10 @@ const Footer = ({ userLogged }) => {
                             <div className="row">
                                 <div className="col-3 col-md-6 col-sm-6 linksFooterResponsive">
                                     <div className="content">
-                                        <p><b>Flix</b></p>
+                                        <p><b>More info</b></p>
                                         <ul className="footer-menu">
                                             <li><NavLink to="/">About us</NavLink></li>
-                                            <li><NavLink to="/">Pricing plans</NavLink></li>
+                                            <li><NavLink to="/pricing">Pricing plans</NavLink></li>
                                             <li><NavLink to="/">Contacts</NavLink></li>
                                         </ul>
                                     </div>

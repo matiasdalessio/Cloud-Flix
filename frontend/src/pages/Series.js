@@ -35,10 +35,10 @@ class Series extends React.Component {
                 this.setState({
                     ...this.state,
                     series: data,
-                    action: data.filter(serie => serie.categories.includes("Action")),
-                    comedy: data.filter(serie => serie.categories.includes("Comedy")),
-                    scienceFiction: data.filter(serie => serie.categories.includes("Science Fiction")),
-                    crime: data.filter(serie => serie.categories.includes("Crime"))
+                    action: data.filter(serie => serie.categories.includes("Action") ),
+                    comedy: data.filter(serie => serie.categories.includes("Comedy") ),
+                    scienceFiction: data.filter(serie => serie.categories.includes("Science Fiction") ),
+                    crime: data.filter(serie => serie.categories.includes("Crime") )
                 })
             })
     }
@@ -56,6 +56,8 @@ class Series extends React.Component {
     }
 
     render() {
+        console.log( this.state.series )
+        console.log( this.props.userLogged )
              if( !this.state.action.length ){
                 return <Loader />
              }else{
@@ -103,9 +105,17 @@ class Series extends React.Component {
     }
 }
 
+const mapStateToprops = state =>{
+    return{
+        userLogged: state.user.userLogged
+    }
+}
+
 const mapDispatchToProps = {
     fetchSeries: seriesAction.fetchSeries
 }
 
 
-export default connect(null, mapDispatchToProps)(Series)
+
+
+export default connect(mapStateToprops, mapDispatchToProps)(Series)

@@ -9,6 +9,8 @@ import Loader from "./Loader"
 const ActorFilms = (props) => {
     var actorName = props.match.params.name    
     const [actorMovies, setActorMovies] = useState([])
+    const [ filtered, setFiltered ] = useState([])
+
 
     useEffect(()=> {
         var fecthearActor = async ()=>{
@@ -18,21 +20,52 @@ const ActorFilms = (props) => {
         fecthearActor()    
     },[actorName])
 
-    console.log(actorMovies)
+
+    const filter = (item) => {
+        item.length === 0
+            ? setFiltered([])
+            : setFiltered(
+                actorMovies.filter(serie => serie.title.toLowerCase().trim().includes(item) ).length > 0
+                ? actorMovies.filter(serie => serie.title.toLowerCase().trim().includes(item) )
+                : false
+            )
+    }
+
+
+
     if (actorMovies.length === 0) {
         return <Loader/>
     } else {
-
     return(
-        
         <div>
-            <Header />
-            <div className="carouselBannerless">    
-            {actorMovies.length !== 0 && <Lastest title={`Films of: ${actorName}`} array={actorMovies}/>}
-            </div>
+            <Header filter={ filter } />
+
+            {  typeof filtered === "object" && filtered.length > 0
+
+                ? <div className="carouselBannerless">
+                    <Lastest title={ "Results" } array={ filtered } /> 
+                  </div> 
+                
+                : !filtered
+
+                    ? <div className="carouselBannerless"> 
+                        <div className="noResultsFounded">
+                           <h1 className="noResults">No results founded.</h1>
+                        </div>
+                      </div>
+
+                    :  <div className="carouselBannerless">    
+                            {actorMovies.length !== 0 && <Lastest title={`Films of: ${actorName}`} array={actorMovies}/>}
+                        </div>
+
+            }
+
             <Footer/>
         </div>        
-    )}
+    )
+}
+
+
 }
 
 const mapStateToProps = (state) =>{

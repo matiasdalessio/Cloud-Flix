@@ -58,6 +58,17 @@ const usersController= {
     },
     logInForced: (req, res) => {
         res.json({success: true, response: {id: req.user._id}})
+    },
+    selectPremium: async (req,res)=>{
+        const { _id  } = req.user
+   
+        try {
+            const respuesta = await User.findOneAndUpdate( { _id }, { premium:true }, { new:true } )
+            res.json({ succes:true  })
+        } catch (error) {
+            console.log( error )
+            res.json({ success: false, error:"Han error has ocurred" })
+        }
     }
 }
 module.exports = usersController
