@@ -32,13 +32,17 @@ class Series extends React.Component {
     componentDidMount() {
         this.props.fetchSeries()
             .then(data => {
+
+            this.props.selectedProfile.kids 
+            ? this.setState({ ...this.state,  series: data.filter( element => element.audienceAge === "ATP" ) })
+            : this.setState({ ...this.state,  series: data })
+
                 this.setState({
                     ...this.state,
-                    series: data,
-                    action: data.filter(serie => serie.categories.includes("Action") ),
-                    comedy: data.filter(serie => serie.categories.includes("Comedy") ),
-                    scienceFiction: data.filter(serie => serie.categories.includes("Science Fiction") ),
-                    crime: data.filter(serie => serie.categories.includes("Crime") )
+                    action: this.state.series.filter(serie => serie.categories.includes("Action")  ),
+                    comedy: this.state.series.filter(serie => serie.categories.includes("Comedy") ),
+                    scienceFiction: this.state.series.filter(serie => serie.categories.includes("Science Fiction") ),
+                    crime: this.state.series.filter(serie => serie.categories.includes("Crime") )
                 })
             })
     }
@@ -56,8 +60,6 @@ class Series extends React.Component {
     }
 
     render() {
-        console.log( this.state.series )
-        console.log( this.props.userLogged )
              if( !this.state.action.length ){
                 return <Loader />
              }else{
@@ -90,8 +92,9 @@ class Series extends React.Component {
                                     <Lastest title={"Comedy"} array={this.state.comedy} />
 
                                     <Lastest title={"Science Fiction"} array={this.state.scienceFiction} />
-
-                                    <Lastest title={"Crime"} array={this.state.crime} />
+                                    
+                                    { this.state.crime.length && <Lastest title={"Crime"} array={this.state.crime} /> }
+                                    
                                 </div>
                             </>
                     }
@@ -107,7 +110,7 @@ class Series extends React.Component {
 
 const mapStateToprops = state =>{
     return{
-        userLogged: state.user.userLogged
+        selectedProfile: state.profile.selectedProfile
     }
 }
 

@@ -28,15 +28,18 @@ class Popular extends React.Component{
     componentDidMount(){
         this.props.fetchAll()
         .then( data =>{
-        this.setState({ ...this.state,
-            all: data,
-            series: this.popularityCalc( data.filter( element => element.audiovisualType === "Serie"  )   )
-            .sort( ( a,b ) => b.averagePopularity - a.averagePopularity ),
 
-            movies: this.popularityCalc( data.filter( element => element.audiovisualType === "Movie"  ) )
-            .sort( ( a,b ) => b.averagePopularity - a.averagePopularity ),
+            this.props.selectedProfile.kids 
+            ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "ATP" ) })
+            : this.setState({ ...this.state, all: data })
             
-            })
+            this.setState({ ...this.state,
+                series: this.popularityCalc( this.state.all.filter( element => element.audiovisualType === "Serie"  )   )
+                .sort( ( a,b ) => b.averagePopularity - a.averagePopularity ),
+    
+                movies: this.popularityCalc( this.state.all.filter( element => element.audiovisualType === "Movie"  ) )
+                .sort( ( a,b ) => b.averagePopularity - a.averagePopularity ),
+                })
         })
     }
 
@@ -62,12 +65,10 @@ class Popular extends React.Component{
     }
 
     render() {
-
         if( !this.state.all.length ){
             return <Loader />
         }
         else{
-
             return(
                 <div>
 
@@ -107,9 +108,15 @@ class Popular extends React.Component{
     }
 }
 
+const mapStateToProps = state =>{ 
+    return {
+        selectedProfile: state.profile.selectedProfile
+    }
+}
+
 
 const mapDispatchToProps ={
     fetchAll:seriesAction.fetchAll
 }
 
-export default connect(null,mapDispatchToProps)(Popular) 
+export default connect(mapStateToProps,mapDispatchToProps)(Popular) 

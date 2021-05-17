@@ -21,13 +21,17 @@ class Movies extends React.Component {
 
     componentDidMount = async () => {
         var response = await this.props.fetchMovies()
+
+        this.props.selectedProfile.kids 
+        ? this.setState({ ...this.state, loader: false, movies:response.filter( element => element.audienceAge === "ATP" ) })
+        :this.setState({ ...this.state, loader: false, movies:response  })
+        
         this.setState({
-            loader: false,
-            movies: response,
-            action: response.filter(serie => serie.categories.includes("Action")),
-            comedy: response.filter(serie => serie.categories.includes("Comedy")),
-            adventure: response.filter(serie => serie.categories.includes("Adventure"))
+            action: this.state.movies.filter(serie => serie.categories.includes("Action")),
+            comedy: this.state.movies.filter(serie => serie.categories.includes("Comedy")),
+            adventure: this.state.movies.filter(serie => serie.categories.includes("Adventure"))
         })
+
     }
 
     toTop = () => {
@@ -52,15 +56,15 @@ class Movies extends React.Component {
     }
 
     render() {
+        console.log(  )
         var titles = [
             { name: "Most Populars", movies: this.state.movies },
             { name: "Action", movies: this.state.action },
-            { name: "Comedy", movies: this.state.comedy },
+            { name: "Comedy", movies: this.state.comedy },  
             { name: "Adventure", movies: this.state.adventure }
         ]
 
         if (this.state.loader) {
-
 
             return <Loader />
         }
@@ -104,10 +108,16 @@ class Movies extends React.Component {
     }
 }
 
+const mapStateToProps = state =>{
+    return{
+        selectedProfile: state.profile.selectedProfile
+    }
+}
+
 
 const mapDispatchToProps = {
     fetchMovies: audiovisualActions.movies,
     actorFilter: audiovisualActions.actorFilter
 }
 
-export default connect(null, mapDispatchToProps)(Movies)
+export default connect(mapStateToProps, mapDispatchToProps)(Movies)
