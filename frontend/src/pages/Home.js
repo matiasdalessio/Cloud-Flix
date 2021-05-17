@@ -25,10 +25,10 @@ class Home extends React.Component{
     }
     componentDidMount(){
         this.welcome()
-        this.props.fetchAll()
+        this.props.fetchAll( this.props.history)
         .then( data =>{
 
-            this.props.selectedProfile.kids 
+            data && this.props.selectedProfile.kids 
             ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "PG" ) })
             : this.setState({ ...this.state, all: data })
 
@@ -46,12 +46,13 @@ class Home extends React.Component{
 
     welcome = () => {
         if (this.props.selectedProfile && this.props.greetings) {
-            toast.success(`WELCOME ${this.props.selectedProfile.name}` )
+            toast.success(`Welcome ${this.props.selectedProfile.name}`, {position:"bottom-right"} )
         }
     }
 
-    filter = (item)=>{
-        item = item.toLowerCase().trim()
+    filter = (e)=>{
+        e.preventDefault()
+        let item = e.target.value.toLowerCase().trim()
         item.length === 0 
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 

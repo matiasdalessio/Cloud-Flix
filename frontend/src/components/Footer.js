@@ -35,36 +35,27 @@ const Footer = ({ userLogged }) => {
                             <div className="row">
                                 <div className="col-3 col-md-6 col-sm-6 linksFooterResponsive">
                                     <div className="content">
-                                        <p><b>More info</b></p>
+                                        <p><b>Films by type</b></p>
                                         <ul className="footer-menu">
-                                            <li><NavLink to="/">About us</NavLink></li>
-                                            <li><NavLink to="/pricing">Pricing plans</NavLink></li>
-                                            <li><NavLink to="/">Contacts</NavLink></li>
+                                            <li><NavLink to="/movies">Movies</NavLink></li>
+                                            <li><NavLink to="/series">Series</NavLink></li>
+                                            {localStorage.getItem('token')
+                                            ? <li><NavLink to="/mylist" >Mylist</NavLink></li>
+                                            : null}
                                         </ul>
                                     </div>
                                 </div>
                                 <div className="col-3 col-md-6 col-sm-6 linksFooterResponsive">
                                     <div className="content">
-                                        <p><b>Browse</b></p>
+                                        <p><b>Pages of interest</b></p>
                                         <ul className="footer-menu">
                                         <li><NavLink to="/">Home</NavLink></li>
-                                            {/* <li>{ userLogged && <NavLink to="/">My profile</NavLink> }</li> */}
-                                            <li><NavLink to="/popular">Popular</NavLink></li>
-                                            <li><NavLink to="/movies">Movies</NavLink></li>
-                                            <li><NavLink to="/series">Series</NavLink></li>
+                                        <li><NavLink to="/popular">Popular</NavLink></li> 
+                                        {userLogged && <li><NavLink to="/pricing">Change Plan</NavLink></li>  }                                         
                                         </ul>
                                     </div>
                                 </div>
                                 <div className="col-3 col-md-6 col-sm-6">
-                                   {/*  <div className="content">
-                                        <p><b>Help</b></p>
-                                        <ul className="footer-menu">
-                                            <li><NavLink to="/">About us</NavLink></li>
-                                            <li><NavLink to="/">My profile</NavLink></li>
-                                            <li><NavLink to="/">Pricing plans</NavLink></li>
-                                            <li><NavLink to="/">Contacts</NavLink></li>
-                                        </ul>
-                                    </div> */}
                                 </div>
                                 <div className="col-3 col-md-6 col-sm-6 displayNoneResponsive">
                                     <div className="content">

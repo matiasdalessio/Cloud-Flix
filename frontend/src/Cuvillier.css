@@ -4,6 +4,11 @@
     background-repeat: no-repeat;
     margin-bottom: 10vh;
 }
+.carousel-prev, .carousel-next{
+    height: 85% !important;
+
+    width: 80px !important;
+}
 .section-header {
     margin: 0;
 }

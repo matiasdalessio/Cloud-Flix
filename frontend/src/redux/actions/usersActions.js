@@ -12,10 +12,9 @@ const usersActions ={
                 }
                 dispatch({
                     type: "LOG_USER",
-                    payload: respuesta.data.respuesta
-                    
-                })
-                return `Welcome ${respuesta.data.respuesta.firstName}!`               
+                    payload: respuesta.data.respuesta                    
+                }) 
+                return respuesta.data.respuesta            
             }catch(error) {
                 return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
             } 
@@ -44,7 +43,7 @@ const usersActions ={
             dispatch({type: 'LOGOUT_USER'})
         }
     },
-    loginForcedLS: (userLS) => {
+    loginForcedLS: (userLS, props) => {
         return async (dispatch, getState) => {
             try {
                 const response = await axios.get('http://localhost:4000/api/user/loginForced', {
@@ -58,7 +57,7 @@ const usersActions ={
                 }})
             } catch(error) {
                 if (!error.response) {
-                    return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
+                    return null
                 } else if (error.response.status && error.response.status > 399 && error.response.status < 499) {
                     swal("Invalid Token", "Please Log in again", "error")
                     dispatch({type: 'LOGOUT_USER', payload: []})
@@ -66,17 +65,19 @@ const usersActions ={
             }         
         }
     },
-    selectPlan:( )=>{
-        return (dispatch)=>{
-            fetch("http://localhost:4000/api/selectPremium",{
-                method:"PUT",
-                headers:{'Authorization': 'Bearer '+ localStorage.getItem("token") }
-            })
-            .then( data => data.json())
-            .then( data => console.log( data ))
-            .catch( err => dispatch({ type: 'ERR', payload: true }) )
+    selectPlan:( change)=>{
+        return async (dispatch, getState) => {
+            try {
+                const response = await axios.put('http://localhost:4000/api/selectPremium',{change}, {
+                    headers:{'Authorization': 'Bearer '+ localStorage.getItem("token") }
+            })   
+            dispatch({type: 'CHANGE_MEMBERTYPE', payload: response.data.response
+                })
+            } catch(error) {
+                return null
+            }  
         }
-    }
+    } 
 }
 
 export default usersActions

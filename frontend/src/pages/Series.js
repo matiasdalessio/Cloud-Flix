@@ -29,10 +29,10 @@ class Series extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchSeries()
+        this.props.fetchSeries(this.props.history)
             .then(data => {
 
-            this.props.selectedProfile.kids 
+            data && this.props.selectedProfile.kids 
             ? this.setState({ ...this.state, series: data.filter( element => element.audienceAge === "PG" ) })
             : this.setState({ ...this.state, series: data })
 
@@ -47,8 +47,9 @@ class Series extends React.Component {
         })
     }
 
-    filter = (item) => {
-        item = item.toLowerCase().trim()
+    filter = (e) => {
+        e.preventDefault()
+        let item = e.target.value.toLowerCase().trim()
         item.length === 0
             ? this.setState({ ...this.state, filtered: [] })
             : this.setState({...this.state,

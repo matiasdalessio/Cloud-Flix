@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import usersActions from "../redux/actions/usersActions"
@@ -10,7 +10,7 @@ import { MdSettings } from "react-icons/md";
 
 const Header = (props) => {
 
-    const { allProfiles, profileSelected, selectedProfile, unselectProfile, userLogout, filter = null } = props
+    const { allProfiles, profileSelected, selectedProfile, unselectProfile, userLogout, filter = null, userLogged} = props
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState(false)
 
@@ -34,19 +34,19 @@ const Header = (props) => {
                 <div className="container">
                     <div className="nav">
                         <Link to="/" className="logo">
-                            <i className='bx bx-movie-play bx-tada main-color'></i>Cl<FaPlayCircle className="playIcon" />ud<span className="main-color">Flix</span>
+                            <i className='bx bx-movie-play bx-tada main-color'></i>Cl<FaPlayCircle className="playIcon" />ud<span className="main-color">Flix</span>{(userLogged && userLogged.premium) ? <span className="spanPremiumHeader">Premium</span> : null}
                         </Link>
                         <ul className={visible ? "nav-menu active " : "nav-menu"} id="nav-menu">
                             <li>
                                 <div className="searchContainer">
-                                    <form role="search" >
+                                    <div role="search" >
                                         <label htmlFor="s">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                             </svg>
                                         </label>
-                                        <input type="text" disabled={ props.errServer ? true :false  }  onChange={e => filter(e.target.value)} placeholder="Search" className="" id="s" />
-                                    </form>
+                                        <input type="text"  onChange={filter} placeholder="Search" className="" id="s" />
+                                    </div>
                                 </div>
                             </li>
                             <li><Link to="/">Home</Link></li>
@@ -78,7 +78,7 @@ const Header = (props) => {
                                             <Link to="/ProfileSelection">         
                                                 <div className="settings" >
                                                     <MdSettings style={{ fontSize:'40px', color:'black' }}  />                                                
-                                                    <h6 style= {{color: 'black'}}>Manage Profiles</h6>
+                                                    <h6 style= {{color: 'black', textAlign:'center'}}>Manage Profiles</h6>
                                                 </div>
                                             </Link>
                                             <div onClick={logOut} className="logout">LOG OUT</div>

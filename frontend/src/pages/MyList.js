@@ -5,6 +5,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
+import { Link } from "react-router-dom"
 
 
 class MyList extends React.Component{
@@ -21,15 +22,17 @@ class MyList extends React.Component{
     }
 
     componentDidMount(){
-        this.props.getMoviesOnList(this.props.selectedProfile._id)
-        .then(data => this.setState({...this.state, myFavourites: data.map(audiovisual => {
+        this.props.getMoviesOnList(this.props.selectedProfile._id, this.props.history)
+        .then(data => data && this.setState({...this.state, myFavourites: data.map(audiovisual => {
             return audiovisual.audiovisualId
         })}))
 
     }
       
 
-    filter = (item)=>{
+    filter = (e)=>{
+        e.preventDefault()
+        let item = e.target.value.toLowerCase().trim()
         item.length === 0 
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 
@@ -60,18 +63,18 @@ class MyList extends React.Component{
                                             <h1 className="noResults">No results founded.</h1>
                                         </div>
                                     </div>  
-                                :  this.state.myFavourites.length !== 0 &&                                 
-                                    <div className="carouselBannerless">
-                                        <Lastest title={ "Your List" } array={ this.state.myFavourites } />
-                                   </div>
+                                :  this.state.myFavourites.length !== 0 
+                                    ?  <div className="carouselBannerless">
+                                            <Lastest title={ "Your List" } array={ this.state.myFavourites } />
+                                    </div>
+                                    :  <div className="noFilmsInList">
+                                            <h1>Your List is empty!</h1>
+                                            <h2>Put some Titles here!</h2>
+                                            <Link to="/" className="btn btn-hover">
+                                                <span>Back to Home</span>
+                                            </Link>
+                                    </div>                                   
                  }
-                 {this.state.myFavourites.length === 0 &&
-                 <div className="noFilmsInList">
-                     <h1>Your List is empty!</h1>
-                     <h2>Put some Titles here!</h2>
-                 </div>
-                }
-
                 <Footer />
             </div>        
         )

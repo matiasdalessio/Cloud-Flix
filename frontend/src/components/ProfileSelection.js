@@ -4,7 +4,7 @@ import profileActions from "../redux/actions/profileActions"
 import { MdAdd, MdDelete } from "react-icons/md";
 import swal from 'sweetalert'
 import Loader from "../components/Loader";
-import Pricing from "./Pricing";
+import usersActions from "../redux/actions/usersActions";
 
 
 
@@ -25,7 +25,7 @@ class ProfileSelection extends React.Component{
             avatar: '',
             kids: false            
         }, 
-        loading: true      
+        loading: true ,     
     }
 
     userData = JSON.parse(localStorage.getItem('userLogged'))
@@ -34,8 +34,8 @@ class ProfileSelection extends React.Component{
         ...this.userData
     }
 
-    componentDidMount(){
-        this.props.getUserProfiles(this.userData.id, this.userLS)
+    componentDidMount= async () =>{
+        await this.props.getUserProfiles(this.userData.id, this.userLS)
         this.setState({...this.state, loading:false})
     }
 
@@ -44,7 +44,7 @@ class ProfileSelection extends React.Component{
             this.props.profileSelected(profile)
         } else {
             this.props.profileSelected(profile)
-            await this.props.history.push('/')
+            this.props.history.push('/')
         }
     }
 
@@ -100,12 +100,10 @@ class ProfileSelection extends React.Component{
             
     
     render() {
-        this.state.loading && <Loader/>
-
-        // ponerle ! para activar en this.props.userLogged.premium
-         if (this.props.userProfiles && this.props.userLogged.premium) { 
-             return <Pricing/>
-         }else {
+        if (this.state.loading) {
+            return <Loader/>
+        } else{
+                     
         return(
             <div className="divProfileSelection">
                 {this.state.creating 
@@ -177,6 +175,7 @@ const mapDispatchToProps = {
     profileSelected:  profileActions.profileSelected,
     createProfile: profileActions.createProfile,
     deleteProfile: profileActions.deleteProfile,
+    selectPlan: usersActions.selectPlan
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileSelection)

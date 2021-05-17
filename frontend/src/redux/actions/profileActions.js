@@ -22,13 +22,13 @@ const profileActions = {
             } 
         }
     }, 
-    getMoviesOnList: (id) => {
+    getMoviesOnList: (id, props) => {
         return async () => {
            try {
-            const response = await axios.get(`http://localhost:4000/api/profile/mylist/${id}`,)     
+            const response = await axios.get(`http://localhost:4000/api/profile/mylist/${id}`,)   
             return  response.data.response
             } catch {
-               return alert("error")
+               return props.push('/serverdown') 
             }
         }
     }, 
@@ -83,7 +83,7 @@ const profileActions = {
                 
             })
             } catch {
-               return alert("error")
+               return null
             }
         }
     }, 

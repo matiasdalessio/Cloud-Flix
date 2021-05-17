@@ -26,10 +26,10 @@ class Popular extends React.Component{
     }
 
     componentDidMount(){
-        this.props.fetchAll()
+        this.props.fetchAll(this.props.history)
         .then( data =>{
 
-            this.props.selectedProfile.kids 
+            data && this.props.selectedProfile.kids 
             ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "PG" ) })
             : this.setState({ ...this.state, all: data })
             
@@ -53,8 +53,9 @@ class Popular extends React.Component{
             })
         }
 
-    filter = (item)=>{
-        item = item.toLowerCase().trim()
+    filter = (e)=>{
+        e.preventDefault()
+        let item = e.target.value.toLowerCase().trim()
         item.length === 0 
         ? this.setState({ ...this.state, filtered:[] })
         : this.setState({ ...this.state, 

@@ -23,20 +23,19 @@ class Movies extends React.Component {
     }
 
     componentDidMount = async () => {
-        var response = await this.props.fetchMovies()
+        var response = await this.props.fetchMovies(this.props.history)
 
-        this.props.selectedProfile && this.props.selectedProfile.kids 
+        response && this.props.selectedProfile.kids 
         ? this.setState({ ...this.state, movies:response.filter( element => element.audienceAge === "PG" ) })
         :this.setState({ ...this.state,  movies:response  })
 
         if (response) {
             this.setState({
                 loader: false,
-                movies: response,
-                action: response.filter(serie => serie.categories.includes("Action")),
-                comedy: response.filter(serie => serie.categories.includes("Comedy")),
-                adventure: response.filter(serie => serie.categories.includes("Adventure")),
-                crime: response.filter(serie => serie.categories.includes("Crime"))
+                action: this.state.movies.filter(serie => serie.categories.includes("Action")),
+                comedy: this.state.movies.filter(serie => serie.categories.includes("Comedy")),
+                adventure: this.state.movies.filter(serie => serie.categories.includes("Adventure")),
+                crime: this.state.movies.filter(serie => serie.categories.includes("Crime"))
             })
         }
     }
@@ -50,8 +49,9 @@ class Movies extends React.Component {
     }
 
 
-    filter = (item) => {
-        item = item.toLowerCase().trim()
+    filter = (e) => {
+        e.preventDefault()
+        let item = e.target.value.toLowerCase().trim()
         item.length === 0
             ? this.setState({ ...this.state, filtered: [] })
             : this.setState({ ...this.state,
@@ -70,7 +70,7 @@ class Movies extends React.Component {
             { name: "Crime", movies: this.state.crime }
         ]
 
-        if ( this.props.errServer || !this.state.movies ) {
+        if ( this.response || !this.state.movies ) {
             return (
                 <>
                     <Header filter={this.filter} props={this.props.history}/>
@@ -122,7 +122,6 @@ class Movies extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        errServer: state.audiovisual.fallenServer,
         selectedProfile: state.profile.selectedProfile,
     }
 }

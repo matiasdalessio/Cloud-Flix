@@ -25,7 +25,7 @@ const Carrousel = ()=>{
                                     <div className="movie-infos">
                                         <div className="movie-info">
                                             <i className="bx bxs-star"></i>
-                                            <span>8.5</span>
+                                            <span>4.5</span>
                                         </div>
                                         <div className="movie-info">
                                             <i className="bx bxs-time"></i>
@@ -67,7 +67,7 @@ const Carrousel = ()=>{
                                     <div className="movie-infos">
                                         <div className="movie-info">
                                             <i className="bx bxs-star"></i>
-                                            <span>9.0</span>
+                                            <span>3.5</span>
                                         </div>
                                         <div className="movie-info">
                                             <i className="bx bxs-time"></i>
@@ -109,7 +109,7 @@ const Carrousel = ()=>{
                                     <div className="movie-infos">
                                         <div className="movie-info">
                                             <i className="bx bxs-star"></i>
-                                            <span>7.3</span>
+                                            <span>4.0</span>
                                         </div>
                                         <div className="movie-info">
                                             <i className="bx bxs-time"></i>

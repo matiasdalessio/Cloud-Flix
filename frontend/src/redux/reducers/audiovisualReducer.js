@@ -1,14 +1,9 @@
 const initialState = {
-    fallenServer: false
+    
 }
 
 const audiovisualReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ERR':
-            return {
-                ...state,
-                fallenServer: action.payload
-            }
         case 'FILTER_ACTORS':
             return {
                 ...state,

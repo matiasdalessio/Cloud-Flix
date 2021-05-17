@@ -1,28 +1,28 @@
 
 const seriesAction = {
 
-    fetchSeries:()=>{
+    fetchSeries:(props)=>{
         return(dispatch)=>{
            return fetch("http://localhost:4000/api/audiovisuals")
             .then( data => data.json() )
             .then( data => data.respuesta.filter( element => element.audiovisualType === "Serie" ) )
-            .catch( err => dispatch({ type: 'ERR', payload: true }) )
+            .catch( err => props.push('/serverdown')  )
         }
     },
-    fetchMovies:()=>{
+    fetchMovies:(props)=>{
         return(dispatch)=>{
            return fetch("http://localhost:4000/api/audiovisuals")
             .then( data => data.json() )
             .then( data => data.respuesta.filter( element => element.audiovisualType === "Movie" ) )
-            .catch( err => dispatch({ type: 'ERR', payload: true }) )
+            .catch( err => props.push('/serverdown') )
         }
     },
-    fetchAll: ()=>{
+    fetchAll: (props)=>{
         return (dispatch)=>{
             return fetch("http://localhost:4000/api/audiovisuals")
             .then( data => data.json() )
             .then( data => data.respuesta  )
-            .catch( err => dispatch({ type: 'ERR', payload: true }) )
+            .catch( err => props.push('/serverdown')  )
         }
     }
 }

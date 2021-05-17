@@ -35,11 +35,11 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
 
   const valor = (num) => {
     if( !userLogged ){
-      toast.error("You must be logged to score")
+      toast.error("You must be logged to score", {position:"bottom-right"})
       return null
     }
     
-    rateMovie( movie._id, userLS, num)
+    rateMovie( movie._id, userLS, num, history)
   }
 
   const rateNum = movie.rate.map(rate => rate.vote)
@@ -98,19 +98,24 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                   </div>
                         
                   <div className="buttons">
-                    <NavLink to="/video">
+                    {userLogged && userLogged.premium 
+                    ?<NavLink  to="/video">
                     <p className="btn btn-hover buttonBanner" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>
                     </p>
-                    </NavLink>                    
+                    </NavLink> 
+                    :<p className="btn btn-hover buttonBanner" onClick={ ()=> toast.error("This content is only available for Premium users.", {position:"bottom-right"})}>
+                        <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
+                        <span>Watch now</span>
+                     </p> }                                       
                     <Rating onClick={valor} initialRating={porcentRate} 
                       emptySymbol={<FaRegStar />}
                       fullSymbol={<FaStar />}
                       fractions={1}
                     />
                      <ToastContainer
-                        position="top-right"
+                        
                         autoClose={5000}
                         hideProgressBar={false}
                         newestOnTop={false}
@@ -126,7 +131,6 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                         <i><FaPlus className={movieFounded ? "addButton" : ""}/> </i>
                         <span>{movieFounded ? "Remove form list" : "Add to list"} </span>                        
                     </p>
-                    <NavLink to={`/audiovisual/${movie._id}`}>Go</NavLink>
                     </>
                     }               
                 </div>

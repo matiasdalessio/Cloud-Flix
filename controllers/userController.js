@@ -33,7 +33,6 @@ const usersController= {
         var respuesta;
         var error;
         const userExist = await User.findOne({email: email})
-        console.log(userExist)
         if (userExist) {
             if (!userExist.loggedWithGoogle && !country || userExist.loggedWithGoogle && country === "null") {
                 const passwordMatch = bcryptjs.compareSync(password, userExist.password)
@@ -58,14 +57,13 @@ const usersController= {
         })
     },
     logInForced: (req, res) => {
-        res.json({success: true, response: {id: req.user._id}})
+        res.json({success: true, response: {id: req.user._id, premium: req.user.premium}})
     },
     selectPremium: async (req,res)=>{
-        const { _id  } = req.user
-   
+        const { _id  } = req.user 
         try {
-            const respuesta = await User.findOneAndUpdate( { _id }, { premium:true }, { new:true } )
-            res.json({ succes:true  })
+            const respuesta = await User.findOneAndUpdate( { _id }, req.body.change ? { premium:true } : {premium: false}, { new:true } )
+            res.json({ success:true, response:respuesta.premium })
         } catch (error) {
             console.log( error )
             res.json({ success: false, error:"Han error has ocurred" })

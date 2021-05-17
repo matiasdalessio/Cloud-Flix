@@ -5,7 +5,7 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
     switch (action.type){
         case 'LOG_USER': 
-            localStorage.setItem('userLogged', JSON.stringify({id: action.payload.id}))
+            localStorage.setItem('userLogged', JSON.stringify({id: action.payload.id, premium: action.payload.premium}))
             localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
@@ -16,6 +16,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userLogged: null,
+            }
+        case 'CHANGE_MEMBERTYPE':
+            return {
+                ...state,
+                userLogged: {...state.userLogged, premium: action.payload}
             }
         default:
             return state
