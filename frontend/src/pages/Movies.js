@@ -25,7 +25,7 @@ class Movies extends React.Component {
     componentDidMount = async () => {
         var response = await this.props.fetchMovies()
 
-        this.props.selectedProfile.kids 
+        this.props.selectedProfile && this.props.selectedProfile.kids 
         ? this.setState({ ...this.state, movies:response.filter( element => element.audienceAge === "PG" ) })
         :this.setState({ ...this.state,  movies:response  })
 
@@ -122,7 +122,8 @@ class Movies extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        errServer: state.audiovisual.fallenServer
+        errServer: state.audiovisual.fallenServer,
+        selectedProfile: state.profile.selectedProfile,
     }
 }
 

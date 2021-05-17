@@ -17,9 +17,10 @@ const Item = ({ movie }) => (
             'item--open': isActive,
           })}
         >
-          <div className="box">
+          {movie.premium && <div className="box">
             <div className="ribbon"><span>PREMIUM</span></div>
-          </div>
+          </div>}
+          
           <img src={movie.imageBanner} alt="" />
           <ShowDetailsButton  />
           {isActive && <Mark />}
