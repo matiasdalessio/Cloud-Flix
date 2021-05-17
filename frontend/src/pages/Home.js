@@ -6,7 +6,7 @@ import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
 import Loader from "../components/Loader"
-
+import FallenServer from "../components/ServerDown"
 
 class Home extends React.Component{
     toTop= () => {window.scroll({
@@ -23,10 +23,12 @@ class Home extends React.Component{
     componentDidMount(){
         this.props.fetchAll()
         .then( data =>{
+
             this.props.selectedProfile.kids 
-            ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "ATP" ) })
+            ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "PG" ) })
             : this.setState({ ...this.state, all: data })
 
+            this.state.all.length &&
             this.setState({ ...this.state,
             series: this.state.all.filter( element => element.audiovisualType === "Serie" && element.year > ( new Date().getFullYear() -3 )  ),
             movies: this.state.all.filter( element => element.audiovisualType === "Movie" && element.year > ( new Date().getFullYear() -3 )  )
@@ -47,6 +49,17 @@ class Home extends React.Component{
     }
 
     render() {
+        if ( this.props.errServer || !this.state.all ) {
+            return (
+                <>
+                    <Header filter={this.filter} props={this.props.history}/>
+                    <FallenServer />
+                    <Footer />
+                </>
+            )
+        }
+
+
         if (!this.state.all.length) {
                 return <Loader/>
         }
@@ -82,6 +95,7 @@ class Home extends React.Component{
 
 const mapStateToProps = state =>{
     return {
+        errServer: state.audiovisual.fallenServer,
         selectedProfile: state.profile.selectedProfile
     }
 }

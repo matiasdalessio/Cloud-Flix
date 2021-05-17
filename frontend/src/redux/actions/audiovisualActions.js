@@ -23,12 +23,12 @@ const audiovisualActions = {
                 var data = await response.json()
 
                 if (!data.success) {
-
+                    dispatch({ type: 'ERR', payload: true })
                 } else {
                     return  data.respuesta.filter( movie => movie.cast.includes(value) )
                 }
             } catch (error) {
-                console.log(error)
+                dispatch({ type: 'ERR', payload: true })
             }
         }
     },
@@ -44,7 +44,7 @@ const audiovisualActions = {
                     return response.data.response.rate
                 }
             } catch (error) {
-                console.log(error)
+                dispatch({ type: 'ERR', payload: true })
             }
 
         }

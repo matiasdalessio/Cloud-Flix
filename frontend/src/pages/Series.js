@@ -6,7 +6,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom"
-
+import FallenServer from "../components/ServerDown"
 
 class Series extends React.Component {
 
@@ -21,7 +21,6 @@ class Series extends React.Component {
 
     state = {
         series: [],
-        mostPopular: [],
         action: [],
         comedy: [],
         scienceFiction: [],
@@ -34,24 +33,25 @@ class Series extends React.Component {
             .then(data => {
 
             this.props.selectedProfile.kids 
-            ? this.setState({ ...this.state,  series: data.filter( element => element.audienceAge === "ATP" ) })
-            : this.setState({ ...this.state,  series: data })
+            ? this.setState({ ...this.state, series: data.filter( element => element.audienceAge === "PG" ) })
+            : this.setState({ ...this.state, series: data })
 
-                this.setState({
-                    ...this.state,
-                    action: this.state.series.filter(serie => serie.categories.includes("Action")  ),
-                    comedy: this.state.series.filter(serie => serie.categories.includes("Comedy") ),
-                    scienceFiction: this.state.series.filter(serie => serie.categories.includes("Science Fiction") ),
-                    crime: this.state.series.filter(serie => serie.categories.includes("Crime") )
-                })
+            this.state.series.length &&
+            this.setState({
+                ...this.state,
+                action: this.state.series.filter(serie => serie.categories.includes("Action")  ),
+                comedy: this.state.series.filter(serie => serie.categories.includes("Comedy") ),
+                scienceFiction: this.state.series.filter(serie => serie.categories.includes("Science Fiction") ),
+                crime: this.state.series.filter(serie => serie.categories.includes("Crime") )
             })
+        })
     }
 
     filter = (item) => {
+        item = item.toLowerCase().trim()
         item.length === 0
             ? this.setState({ ...this.state, filtered: [] })
-            : this.setState({
-                ...this.state,
+            : this.setState({...this.state,
 
                 filtered: this.state.series.filter(serie => serie.title.toLowerCase().trim().includes(item) ).length > 0
                     ? this.state.series.filter(serie => serie.title.toLowerCase().trim().includes(item) )
@@ -60,6 +60,16 @@ class Series extends React.Component {
     }
 
     render() {
+        if ( this.props.errServer || !this.state.series ) {
+            return (
+                <>
+                    <Header filter={this.filter} props={this.props.history}/>
+                    <FallenServer />
+                    <Footer />
+                </>
+            )
+        }
+
              if( !this.state.action.length ){
                 return <Loader />
              }else{
@@ -82,7 +92,6 @@ class Series extends React.Component {
                                         <h1 className="noResults">No results founded.</h1>
                                      </div>
                                 </div>
-
                             :
                             <>
                                 <BannerRandom array={this.state.series} />
@@ -110,15 +119,13 @@ class Series extends React.Component {
 
 const mapStateToprops = state =>{
     return{
+        errServer: state.audiovisual.fallenServer,
         selectedProfile: state.profile.selectedProfile
     }
 }
 
 const mapDispatchToProps = {
-    fetchSeries: seriesAction.fetchSeries
+    fetchSeries: seriesAction.fetchSeries,
 }
-
-
-
 
 export default connect(mapStateToprops, mapDispatchToProps)(Series)
