@@ -61,7 +61,7 @@ const Carrousel = ()=>{
                             <div className="overlay"></div>
                             <div className="hero-slide-item-content">
                                 <div className="item-content-wraper">
-                                    <div className="item-content-title">
+                                    <div style={{zIndex: '3'}} className="item-content-title">
                                         Wandavision
                                     </div>
                                     <div className="movie-infos">

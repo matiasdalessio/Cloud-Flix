@@ -1,6 +1,7 @@
 const initialState = {
     userProfiles:[],
-    selectedProfile:[]
+    selectedProfile:[],
+    greetings: false
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -16,16 +17,22 @@ const profileReducer = (state = initialState, action) => {
                 name: action.payload.name,
                 avatar: action.payload.avatar,
                 myList: action.payload.myList,
-                kids: action.payload.kids
+                kids: action.payload.kids,
             }))
             return {
                 ...state,
-                selectedProfile: action.payload
+                selectedProfile: action.payload,
+                greetings: true
             }
         case 'UNSELECT_PROFILE':
             return {
                 ...state,
                 selectedProfile: []
+            }
+        case 'BACK_WELCOME':
+            return {
+                ...state,
+                greetings: false
             }
         default:
             return state

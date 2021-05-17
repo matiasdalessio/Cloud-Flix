@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import usersActions from "../redux/actions/usersActions"
@@ -9,8 +9,6 @@ import { MdSettings } from "react-icons/md";
 
 
 const Header = (props) => {
-
-    console.log(props.props)
 
     const { allProfiles, profileSelected, selectedProfile, unselectProfile, userLogout, filter = null } = props
     const [visible, setVisible] = useState(false)
@@ -25,8 +23,8 @@ const Header = (props) => {
         unselectProfile()
     }
     const selectProfile = async (profile) => {   
-            profileSelected(profile)
-            return props.props.push('/forcedActualization')
+        profileSelected(profile)
+        return props.props.push('/forcedActualization')
    }
 
 
@@ -60,7 +58,7 @@ const Header = (props) => {
                                 : null}
                             {localStorage.getItem('token') ?
                                 <div className="dropdown">
-                                    <div onClick={menuDropdown}  className="userLogged" style={{ backgroundImage: `url(${selectedProfile.avatar})` }}></div>
+                                    <div onMouseDown={menuDropdown}  className="userLogged" style={{ backgroundImage: `url(${selectedProfile.avatar})` }}></div>
                                     <img style={{ width: '12px', height: '12px' }} src="/images/ordenar-abajo.png" alt="" />
                                     {
                                         dropdown && <div className="dropdownMenu">
