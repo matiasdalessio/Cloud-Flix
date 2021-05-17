@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom";
-import FallenServer from "../components/FallenServer";
+import FallenServer from "../components/ServerDown";
 import seriesAction from "../redux/actions/seriesAction"
 
 class Movies extends React.Component {
@@ -57,7 +57,6 @@ class Movies extends React.Component {
 
     render() {
         var titles = [
-            { name: "Most Populars", movies: this.state.movies },
             { name: "Action", movies: this.state.action },
             { name: "Comedy", movies: this.state.comedy },
             { name: "Adventure", movies: this.state.adventure }

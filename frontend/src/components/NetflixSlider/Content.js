@@ -35,7 +35,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
 
   const valor = (num) => {
     if( !userLogged ){
-      toast("You must be logged to score",{ type:"error", position:"bottom-right" })
+      toast.error("You must be logged to score")
       return null
     }
     
@@ -104,12 +104,21 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                       <span>Watch now</span>
                     </p>
                     </NavLink>                    
-                    <Rating onClick={valor} initialRating={porcentRate} readonly={!userLogged ? true : false}
+                    <Rating onClick={valor} initialRating={porcentRate} 
                       emptySymbol={<FaRegStar />}
                       fullSymbol={<FaStar />}
                       fractions={1}
                     />
-                     <ToastContainer />
+                     <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
                   </div>
                   {userLogged && 
                    <>  

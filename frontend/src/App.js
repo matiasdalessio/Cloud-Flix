@@ -62,7 +62,7 @@ class App extends React.Component{
           <Route path="/audiovisual/:id" component={ Audiovisual } />
           <Route path="/pricing" component={ Pricing } />
           <Route path="/video" component={ Video } />
-          <Route path ="/actorFilms/:name" component={ ActorFilms } />
+          <Route path ="/actorFilms/:name" component={ ActorFilms }/>
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
