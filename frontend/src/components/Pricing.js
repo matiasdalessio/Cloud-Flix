@@ -1,6 +1,7 @@
 import usersActions from "../redux/actions/usersActions"
 import { connect } from "react-redux"
 import React from "react"
+import { Link, NavLink } from "react-router-dom"
 
 const Pricing = ({ selectPlan, userLogged })=>{
 
@@ -20,14 +21,15 @@ const Pricing = ({ selectPlan, userLogged })=>{
                     <h3>Free</h3>
                 </div>
                 <div className='contenidoDelPaqueteCard'>
-                    <h4>Original</h4>
+                    <h4>Original Content</h4>
                     <h4>Swich plans anytime</h4>
-                    <h4 className='textoTachadoCards'>65+ top live</h4>
-                    <h4 className='textoTachadoCards'>Tv Channels</h4>
+                    <h4 className='textoTachadoCards'>65+ Films</h4>
+                    <h4 className='textoTachadoCards'>65+ Tv Programs</h4>
                 </div>
                 <div className='lugarDelBotonCard'>
-                    <p className="btn btn-hover">                       
-                        <span onClick={()=> changeMembertype(false)}>mantain free</span>
+                    <p className="btn btn-hover">      
+                    <NavLink className="social-item" to="/"></NavLink>     
+                     <span onClick={()=> changeMembertype(false)}><NavLink to="/">30 Days free</NavLink></span>
                     </p>
                 </div>
             </div>
@@ -37,14 +39,14 @@ const Pricing = ({ selectPlan, userLogged })=>{
                     <h3>$4.99</h3>
                 </div>
                 <div className='contenidoDelPaqueteCard'>
-                    <h4>Original</h4>
+                    <h4>Original Content</h4>
                     <h4>Swich plans anytime</h4>
-                    <h4>65+ top live</h4>
-                    <h4>Tv Channels</h4>
+                    <h4>65+ Films</h4>
+                    <h4>65+ Tv Programs</h4>
                 </div>
                 <div className='lugarDelBotonCard'>
                     <p className="btn btn-hover">         
-                        <span onClick={()=> changeMembertype(true)}>Change to premium</span>
+                    <span onClick={()=> changeMembertype(true)}><NavLink to="/">Change to premium</NavLink></span>
                     </p>
                 </div>
             </div>

@@ -50,7 +50,8 @@ const Footer = ({ userLogged }) => {
                                         <p><b>Pages of interest</b></p>
                                         <ul className="footer-menu">
                                         <li><NavLink to="/">Home</NavLink></li>
-                                        <li><NavLink to="/popular">Popular</NavLink></li>                                            
+                                        <li><NavLink to="/popular">Popular</NavLink></li> 
+                                        {userLogged && <li><NavLink to="/pricing">Change Plan</NavLink></li>  }                                         
                                         </ul>
                                     </div>
                                 </div>

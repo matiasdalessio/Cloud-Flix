@@ -860,6 +860,23 @@ footer .content {
     text-transform: uppercase;
 }
 
+/* SCROLLBAR */
+
+::-webkit-scrollbar {   
+    z-index: 10 !important; 
+    height: 20px;
+  }
+  ::-webkit-scrollbar-track{
+    background: var(--main-bg-color) ;
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--main-color);
+    border-radius: 50px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--main-color);
+  }
 
 
 

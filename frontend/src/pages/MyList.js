@@ -5,6 +5,7 @@ import Footer from "../components/Footer"
 import Header from "../components/Header"
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
+import { Link } from "react-router-dom"
 
 
 class MyList extends React.Component{
@@ -67,6 +68,9 @@ class MyList extends React.Component{
                                     :  <div className="noFilmsInList">
                                             <h1>Your List is empty!</h1>
                                             <h2>Put some Titles here!</h2>
+                                            <Link to="/" className="btn btn-hover">
+                                                <span>Back to Home</span>
+                                            </Link>
                                     </div>                                   
                  }
                 <Footer />

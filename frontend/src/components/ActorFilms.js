@@ -11,13 +11,19 @@ const ActorFilms = (props) => {
     const [actorMovies, setActorMovies] = useState([])
     const [ filtered, setFiltered ] = useState([])
 
+    const toTop= () => {window.scroll({
+        top:0,
+        left:0,
+        behavior:"smooth"
+    })}
 
     useEffect(()=> {
         var fecthearActor = async ()=>{
             let res = await props.filterFilms(actorName)
             setActorMovies(res)
         }
-        fecthearActor()    
+        fecthearActor()  
+        toTop()  
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[actorName])
 
