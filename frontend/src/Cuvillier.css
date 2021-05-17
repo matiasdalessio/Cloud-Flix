@@ -263,17 +263,18 @@ footer{
     margin: 0 9.5rem;
 }
 .containerCompVideo{
-    width: 98vw;
+    width: 99vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 5vh 0;
 }
 .containerVideo{
-    width: 70vw;
-    height: 30vh;
-    margin-top: 35vh;
+    width: 95%;
+    height: 45%;
+    margin-top: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
