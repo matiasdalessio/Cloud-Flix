@@ -6,7 +6,6 @@ import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
 import Loader from "../components/Loader"
-import audiovisualActions from "../redux/actions/audiovisualActions"
 
 
 class Home extends React.Component{
@@ -54,7 +53,7 @@ class Home extends React.Component{
 
         return(
             <div>
-                <Header filter={ this.filter } />
+                <Header filter={ this.filter } props={this.props.history}/>
                 {  typeof this.state.filtered === "object" && this.state.filtered.length > 0 
 
                     ? <div className="carouselBannerless">

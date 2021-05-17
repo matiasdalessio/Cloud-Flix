@@ -68,7 +68,7 @@ class Movies extends React.Component {
         if (this.props.errServer) {
             return (
                 <>
-                    <Header filter={this.filter} />
+                    <Header filter={this.filter} props={this.props.history}/>
                     <FallenServer />
                     <Footer />
                 </>
