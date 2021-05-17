@@ -34,6 +34,8 @@ footer{
 } 
 .content{
     padding-top: 2vh;
+    height: 100vh;
+    margin-bottom: 1em;
 }
 .btn:hover{
     cursor: pointer;

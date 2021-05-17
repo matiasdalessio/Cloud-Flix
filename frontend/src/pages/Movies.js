@@ -6,8 +6,8 @@ import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom";
-import FallenServer from "../components/ServerDown";
 import seriesAction from "../redux/actions/seriesAction"
+import ServerDown from "../components/ServerDown"
 
 class Movies extends React.Component {
 
@@ -17,6 +17,7 @@ class Movies extends React.Component {
         action: [],
         comedy: [],
         adventure: [],
+        crime:[],
         filtered: [],
         cast: []
     }
@@ -25,16 +26,20 @@ class Movies extends React.Component {
         var response = await this.props.fetchMovies()
 
         this.props.selectedProfile.kids 
-        ? this.setState({ ...this.state, loader: false, movies:response.filter( element => element.audienceAge === "PG" ) })
-        :this.setState({ ...this.state, loader: false, movies:response  })
+        ? this.setState({ ...this.state,  movies:response.filter( element => element.audienceAge === "PG" ) })
+        :this.setState({ ...this.state,  movies:response  })
         
-        this.state.movies.length &&
-        this.setState({
-            action: this.state.movies.filter(serie => serie.categories.includes("Action")),
-            comedy: this.state.movies.filter(serie => serie.categories.includes("Comedy")),
-            adventure: this.state.movies.filter(serie => serie.categories.includes("Adventure"))
-        })
-
+        if (response) {
+            this.setState({
+                loader: false,
+                movies: response,
+                action: response.filter(serie => serie.categories.includes("Action")),
+                comedy: response.filter(serie => serie.categories.includes("Comedy")),
+                adventure: response.filter(serie => serie.categories.includes("Adventure")),
+                crime: response.filter(serie => serie.categories.includes("Crime"))
+            })
+        }
+        
     }
 
     toTop = () => {
@@ -61,15 +66,16 @@ class Movies extends React.Component {
     render() {
         var titles = [
             { name: "Action", movies: this.state.action },
-            { name: "Comedy", movies: this.state.comedy },  
-            { name: "Adventure", movies: this.state.adventure }
+            { name: "Comedy", movies: this.state.comedy },
+            { name: "Adventure", movies: this.state.adventure },
+            { name: "Crime", movies: this.state.crime }
         ]
 
         if ( this.props.errServer || !this.state.movies ) {
             return (
                 <>
                     <Header filter={this.filter} props={this.props.history}/>
-                    <FallenServer />
+                    <ServerDown />
                     <Footer />
                 </>
             )
@@ -80,7 +86,7 @@ class Movies extends React.Component {
         } else {
             return (
                 <>
-                    <Header filter={this.filter} props={this.props.history}/>
+                    <Header filter={this.filter} />
 
                     {   typeof this.state.filtered === "object" && this.state.filtered.length > 0
 
@@ -112,15 +118,12 @@ class Movies extends React.Component {
             )
         }
 
-
-
     }
 }
 
 const mapStateToProps = state => {
     return {
-        errServer: state.audiovisual.fallenServer,
-        selectedProfile: state.profile.selectedProfile
+        errServer: state.audiovisual.fallenServer
     }
 }
 

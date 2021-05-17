@@ -6,7 +6,10 @@ import seriesAction from "../redux/actions/seriesAction"
 import { connect } from "react-redux"
 import Header from "../components/Header"
 import Loader from "../components/Loader"
-import FallenServer from "../components/ServerDown"
+import ServerDown from "../components/ServerDown"
+import { ToastContainer, toast } from 'react-toastify';
+import profileActions from "../redux/actions/profileActions"
+
 
 class Home extends React.Component{
     toTop= () => {window.scroll({
@@ -21,6 +24,7 @@ class Home extends React.Component{
         filtered:[]
     }
     componentDidMount(){
+        this.welcome()
         this.props.fetchAll()
         .then( data =>{
 
@@ -34,6 +38,16 @@ class Home extends React.Component{
             movies: this.state.all.filter( element => element.audiovisualType === "Movie" && element.year > ( new Date().getFullYear() -3 )  )
             })
         })
+    }
+
+    componentWillUnmount = () => {
+        this.props.backWelcome()
+    }
+
+    welcome = () => {
+        if (this.props.selectedProfile && this.props.greetings) {
+            toast.success(`WELCOME ${this.props.selectedProfile.name}` )
+        }
     }
 
     filter = (item)=>{
@@ -53,7 +67,7 @@ class Home extends React.Component{
             return (
                 <>
                     <Header filter={this.filter} props={this.props.history}/>
-                    <FallenServer />
+                    <ServerDown />
                     <Footer />
                 </>
             )
@@ -61,7 +75,7 @@ class Home extends React.Component{
 
 
         if (!this.state.all.length) {
-                return <Loader/>
+            return <Loader/>
         }
 
         return(
@@ -88,6 +102,16 @@ class Home extends React.Component{
                           </>
                 }
                 <Footer/>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
             </div>        
         )
     }
@@ -96,13 +120,15 @@ class Home extends React.Component{
 const mapStateToProps = state =>{
     return {
         errServer: state.audiovisual.fallenServer,
-        selectedProfile: state.profile.selectedProfile
+        selectedProfile: state.profile.selectedProfile,
+        greetings: state.profile.greetings
     }
 }
 
 const mapDispatchToProps ={
     fetchAll: seriesAction.fetchAll,
-    fetchMovies: seriesAction.fetchMovies
+    fetchMovies: seriesAction.fetchMovies,
+    backWelcome: profileActions.backWelcome
 }
 
 export default connect(mapStateToProps, mapDispatchToProps) (Home)

@@ -100,6 +100,11 @@ const profileActions = {
             dispatch({type: 'UNSELECT_PROFILE'})
         }
     },
+    backWelcome: () => {
+        return(dispatch, getstate) => {
+            dispatch({type: 'BACK_WELCOME'})
+        }
+    }
 }
 
 export default profileActions
