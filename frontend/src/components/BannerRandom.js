@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { FaPlus } from "react-icons/fa";
+import { FaPlayCircle, FaPlus } from "react-icons/fa";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import profileActions from "../redux/actions/profileActions";
 
 
@@ -71,12 +73,34 @@ const BannerRandom = (props) => {
                     <div className="item-content-description contentDescription">
                         {bannerRandom.movie.sinopsis}
                     </div>
-                    <div className="item-action">
-                        <p className="btn btn-hover buttonBannerRandom">
-                            <i className="bx bxs-right-arrow"></i>
-                            <span>Watch now</span>
-                        </p>
-                    </div>
+                    {userLogged && userLogged.premium 
+                    ?<NavLink  to="/video">
+                    <p className="btn btn-hover buttonBannerRandom" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
+                      <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
+                      <span>Watch now</span>
+                    </p>
+                    </NavLink> 
+                    : !bannerRandom.movie.premium
+                    ? <NavLink  to="/video">
+                    <p className="btn btn-hover buttonBannerRandom" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
+                      <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
+                      <span>Watch now</span>
+                    </p>
+                    </NavLink> 
+                    : <p className="btn btn-hover buttonBannerRandom" onClick={ ()=> toast.error("This content is only available for Premium users.", {position:"bottom-right"})}>
+                        <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
+                        <span>Watch now</span>
+                     </p> }  
+                     <ToastContainer
+                        
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />               
                     {userLogged &&   
                     <p className="btn btn-hover buttonBannerRandom " onClick={() => !myList.fetching && sendMovieToList(bannerRandom.movie)} >
                         <i><FaPlus className={movieFounded ? "addButton" : ""}/> </i>

@@ -60,7 +60,9 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
               <div className="content__area">
                 <div className="content__area__container">
                   <div className="content__title">{movie.title}</div>
-
+                  <div className="year">
+                     { <h1> {movie.year}</h1>}
+                    </div>
                   <div className="content-info" >
                     <div className="content__description">
                       { movie.sinopsis.length > 250 
@@ -75,7 +77,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                      
                     <div className="subtitles">
                     <h4>Subtitles: </h4>
-                     { movie.availableLanguages.map( (element, index) => <span key={index}>{ element }</span> ) }
+                     { movie.availableSubtitles.map( (element, index) => <span key={index}>{ element }</span> ) }
                     </div>
 
                     <div className="casting">
@@ -105,7 +107,14 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                       <span>Watch now</span>
                     </p>
                     </NavLink> 
-                    :<p className="btn btn-hover buttonBanner" onClick={ ()=> toast.error("This content is only available for Premium users.", {position:"bottom-right"})}>
+                    : !movie.premium
+                    ? <NavLink  to="/video">
+                    <p className="btn btn-hover buttonBanner" /*onClick={ ()=> history.push("/audiovisual"+ movie._id )  }*/>
+                      <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
+                      <span>Watch now</span>
+                    </p>
+                    </NavLink> 
+                    : <p className="btn btn-hover buttonBanner" onClick={ ()=> toast.error("This content is only available for Premium users.", {position:"bottom-right"})}>
                         <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                         <span>Watch now</span>
                      </p> }                                       

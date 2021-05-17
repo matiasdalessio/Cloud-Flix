@@ -25,6 +25,8 @@ class Popular extends React.Component{
         filtered:[]
     }
 
+    
+
     componentDidMount(){
         this.props.fetchAll(this.props.history)
         .then( data =>{

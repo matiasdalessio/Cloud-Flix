@@ -56,8 +56,8 @@ class Movies extends React.Component {
             ? this.setState({ ...this.state, filtered: [] })
             : this.setState({ ...this.state,
 
-                filtered: this.state.movies.filter(movie => movie.title.toLowerCase().trim().indexOf(item) === 0).length > 0
-                    ? this.state.movies.filter(movie => movie.title.toLowerCase().trim().indexOf(item) === 0)
+                filtered: this.state.movies.filter(movie => movie.title.toLowerCase().trim().includes(item) ).length > 0
+                    ? this.state.movies.filter(movie => movie.title.toLowerCase().trim().includes(item) )
                     : false
             })
     }
