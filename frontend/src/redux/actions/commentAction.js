@@ -17,19 +17,24 @@ const articulosActions = {
                     return response.data.response.comments
                 }
             } catch (error) {
-                console.log(error)
+                dispatch({ type: 'ERR', payload: true })
             }
         }
     },
 
     deleteComment: (id , idAudiovisual) => {
         return async (dispatch, getState) => {
-            var response = await axios.delete('http://localhost:4000/api/comment/' + idAudiovisual, {
+            try {
+                var response = await axios.delete('http://localhost:4000/api/comment/' + idAudiovisual, {
                 data: { idComment: id } 
             })
             if (response.data.success) {
-                return response.data.response.comments
+                return response.data.response.comments }
+
+            } catch (error) {
+                dispatch({ type: 'ERR', payload: true })
             }
+            
         }
     },
 }

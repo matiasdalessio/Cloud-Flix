@@ -6,7 +6,7 @@ import Loader from "../components/Loader"
 import { connect } from "react-redux"
 import seriesAction from "../redux/actions/seriesAction"
 import BannerRandom from "../components/BannerRandom"
-
+import FallenServer from "../components/ServerDown"
 
 class Popular extends React.Component{
 
@@ -30,9 +30,10 @@ class Popular extends React.Component{
         .then( data =>{
 
             this.props.selectedProfile.kids 
-            ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "ATP" ) })
+            ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "PG" ) })
             : this.setState({ ...this.state, all: data })
             
+            this.state.all.length &&
             this.setState({ ...this.state,
                 series: this.popularityCalc( this.state.all.filter( element => element.audiovisualType === "Serie"  )   )
                 .sort( ( a,b ) => b.averagePopularity - a.averagePopularity ),
@@ -65,6 +66,16 @@ class Popular extends React.Component{
     }
 
     render() {
+        if ( this.props.errServer || !this.state.all ) {
+            return (
+                <>
+                    <Header filter={this.filter} props={this.props.history}/>
+                    <FallenServer />
+                    <Footer />
+                </>
+            )
+        }
+
         if( !this.state.all.length ){
             return <Loader />
         }
@@ -110,6 +121,7 @@ class Popular extends React.Component{
 
 const mapStateToProps = state =>{ 
     return {
+        errServer: state.audiovisual.fallenServer,
         selectedProfile: state.profile.selectedProfile
     }
 }

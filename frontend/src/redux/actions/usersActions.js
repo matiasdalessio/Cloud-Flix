@@ -67,14 +67,14 @@ const usersActions ={
         }
     },
     selectPlan:( )=>{
-        return ()=>{
+        return (dispatch)=>{
             fetch("http://localhost:4000/api/selectPremium",{
                 method:"PUT",
                 headers:{'Authorization': 'Bearer '+ localStorage.getItem("token") }
             })
             .then( data => data.json())
             .then( data => console.log( data ))
-            .catch( err => console.log( err ))
+            .catch( err => dispatch({ type: 'ERR', payload: true }) )
         }
     }
 }

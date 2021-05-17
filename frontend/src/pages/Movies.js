@@ -25,9 +25,10 @@ class Movies extends React.Component {
         var response = await this.props.fetchMovies()
 
         this.props.selectedProfile.kids 
-        ? this.setState({ ...this.state, loader: false, movies:response.filter( element => element.audienceAge === "ATP" ) })
+        ? this.setState({ ...this.state, loader: false, movies:response.filter( element => element.audienceAge === "PG" ) })
         :this.setState({ ...this.state, loader: false, movies:response  })
         
+        this.state.movies.length &&
         this.setState({
             action: this.state.movies.filter(serie => serie.categories.includes("Action")),
             comedy: this.state.movies.filter(serie => serie.categories.includes("Comedy")),
@@ -46,10 +47,10 @@ class Movies extends React.Component {
 
 
     filter = (item) => {
+        item = item.toLowerCase().trim()
         item.length === 0
             ? this.setState({ ...this.state, filtered: [] })
-            : this.setState({
-                ...this.state,
+            : this.setState({ ...this.state,
 
                 filtered: this.state.movies.filter(movie => movie.title.toLowerCase().trim().indexOf(item) === 0).length > 0
                     ? this.state.movies.filter(movie => movie.title.toLowerCase().trim().indexOf(item) === 0)
@@ -58,14 +59,13 @@ class Movies extends React.Component {
     }
 
     render() {
-        console.log(  )
         var titles = [
             { name: "Action", movies: this.state.action },
             { name: "Comedy", movies: this.state.comedy },  
             { name: "Adventure", movies: this.state.adventure }
         ]
 
-        if (this.props.errServer) {
+        if ( this.props.errServer || !this.state.movies ) {
             return (
                 <>
                     <Header filter={this.filter} props={this.props.history}/>
