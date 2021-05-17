@@ -3,4 +3,11 @@
   padding-bottom: 4vh;
   overflow: hidden;
   position: relative;
+  margin-bottom: 4em;
+}
+
+@media only screen and (max-device-width : 550px) {
+  .slider-wrapper{
+    margin-bottom: 4em;
+  }
 }
