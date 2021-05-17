@@ -8,8 +8,9 @@ import audiovisualActions from "../redux/actions/audiovisualActions";
 import { MdSettings } from "react-icons/md";
 
 
-const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout, filter = null, actorFilter = null }) => {
+const Header = (props) => {
 
+    const { allProfiles, profileSelected, selectedProfile, unselectProfile, userLogout, filter = null } = props
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState(false)
 
@@ -17,12 +18,14 @@ const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout,
         setDropdown(!dropdown)
     }
 
-    /* const [ item, setItem ] = useState("") */
-
     const logOut = () => {
         userLogout()
         unselectProfile()
     }
+    const selectProfile = async (profile) => {   
+            profileSelected(profile)
+            return props.props.push('/forcedActualization')
+   }
 
 
     return (
@@ -55,24 +58,22 @@ const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout,
                                 : null}
                             {localStorage.getItem('token') ?
                                 <div className="dropdown">
-                                    <div onClick={menuDropdown} className="userLogged" style={{ backgroundImage: `url(${profile.avatar})` }}></div>
+                                    <div onClick={menuDropdown}  className="userLogged" style={{ backgroundImage: `url(${selectedProfile.avatar})` }}></div>
                                     <img style={{ width: '12px', height: '12px' }} src="/images/ordenar-abajo.png" alt="" />
                                     {
                                         dropdown && <div className="dropdownMenu">
                                             <div className="divAvatars">
-                                                {
-                                                    allProfiles && allProfiles.map(profiled =>
-                                                        <>
-                                                            <div
-                                                                className={profile._id === profiled._id ? "avatarProfileSelected" : "avatarProfile"}
-                                                                style={{ backgroundImage: `url(${profiled.avatar})` }}>
+                                                {allProfiles && allProfiles.map(mappedProfile =>{
+                                                    return  <div key={mappedProfile._id} className="divProfilesDropdown" onClick={() => selectProfile(mappedProfile)}>
+                                                                <div
+                                                                    className="avatarProfile"
+                                                                    style={selectedProfile._id === mappedProfile._id ? {display:'none'}:{ backgroundImage: `url(${mappedProfile.avatar})` }}>
+                                                                </div>
+                                                                <div className="nameProfile">
+                                                                    <p style={selectedProfile._id === mappedProfile._id ? {display:'none'}: null}>{mappedProfile.name}</p>
+                                                                </div>
                                                             </div>
-                                                            <div className="nameProfile">
-                                                                <p>{profiled.name}</p>
-                                                            </div>
-                                                        </>
-                                                    )
-                                                }
+                                                })}
                                             </div>          
                                             <Link to="/ProfileSelection">         
                                                 <div className="settings" >
@@ -104,15 +105,16 @@ const Header = ({ allProfiles, profile, userLogged, unselectProfile, userLogout,
 const mapStateToProps = state => {
     return {
         userLogged: state.user.userLogged,
-        profile: state.profile.selectedProfile,
-        allProfiles: state.profile.userProfiles
+        selectedProfile: state.profile.selectedProfile,
+        allProfiles: state.profile.userProfiles,
     }
 
 }
 const mapDispatchToProps = {
     userLogout: usersActions.userLogout,
     unselectProfile: profileActions.unselectProfile,
-    actorFilter: audiovisualActions.actorFilter
+    actorFilter: audiovisualActions.actorFilter,
+    profileSelected: profileActions.profileSelected
 
 }
 

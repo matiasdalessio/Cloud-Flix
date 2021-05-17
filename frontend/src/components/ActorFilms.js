@@ -18,6 +18,7 @@ const ActorFilms = (props) => {
             setActorMovies(res)
         }
         fecthearActor()    
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[actorName])
 
 

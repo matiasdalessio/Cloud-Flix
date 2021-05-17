@@ -16,7 +16,6 @@ import './preloader.css'
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
 import ProfileSelection from './components/ProfileSelection';
-import Loader from "./components/Loader"
 import profileActions from './redux/actions/profileActions';
 import Login from './pages/LogIn';
 import SignUp from './pages/SignUp';
@@ -46,17 +45,14 @@ class App extends React.Component{
   }
   
   render(){
-    if (localStorage.getItem('token') && !this.props.userLogged) {
-      return(<Loader/>)
-    }
 
   return (
-    localStorage.getItem('token') && this.props.userLogged && this.props.selectedProfile.length === 0 && !localStorage.getItem('profile')
+    localStorage.getItem('token') && this.props.userLogged && this.props.selectedProfile.length === 0 
       ?<ProfileSelection/>
       :<BrowserRouter>
         <Switch>
           <Route exact path="/" component={ Home } />
-          {!localStorage.getItem('token') && <Route path="/login" component={ Login } />}
+          {!this.props.userLogged && <Route path="/login" component={ Login } />}
           {!localStorage.getItem('token') && <Route path="/signup" component={ SignUp } />}
           <Route path="/movies" component={ Movies } />
           <Route path="/series" component={ Series }  />
@@ -66,8 +62,7 @@ class App extends React.Component{
           <Route path="/audiovisual/:id" component={ Audiovisual } />
           <Route path="/pricing" component={ Pricing } />
           <Route path="/video" component={ Video } />
-          <Route path ="/actorFilms/:name" component={ ActorFilms } />
-
+          <Route path ="/actorFilms/:name" component={ ActorFilms }/>
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

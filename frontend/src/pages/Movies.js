@@ -6,6 +6,8 @@ import Header from "../components/Header";
 import Lastest from "../components/Lastest"
 import Loader from "../components/Loader"
 import BannerRandom from "../components/BannerRandom";
+import FallenServer from "../components/ServerDown";
+import seriesAction from "../redux/actions/seriesAction"
 
 class Movies extends React.Component {
 
@@ -16,7 +18,7 @@ class Movies extends React.Component {
         comedy: [],
         adventure: [],
         filtered: [],
-        cast:[]
+        cast: []
     }
 
     componentDidMount = async () => {
@@ -58,37 +60,44 @@ class Movies extends React.Component {
     render() {
         console.log(  )
         var titles = [
-            { name: "Most Populars", movies: this.state.movies },
             { name: "Action", movies: this.state.action },
             { name: "Comedy", movies: this.state.comedy },  
             { name: "Adventure", movies: this.state.adventure }
         ]
 
-        if (this.state.loader) {
-
-            return <Loader />
-        }
-        else {
+        if (this.props.errServer) {
             return (
                 <>
                     <Header filter={this.filter} />
+                    <FallenServer />
+                    <Footer />
+                </>
+            )
+        }
+
+        if (this.state.loader) {
+            return <Loader />
+        } else {
+            return (
+                <>
+                    <Header filter={this.filter} props={this.props.history}/>
 
                     {   typeof this.state.filtered === "object" && this.state.filtered.length > 0
 
                         ? <div className="carouselBannerless">
-                                <Lastest title={ "Results" } array={ this.state.filtered } /> 
-                            </div> 
+                            <Lastest title={"Results"} array={this.state.filtered} />
+                        </div>
 
                         : !this.state.filtered
 
-                            ?   <div className="carouselBannerless"> 
-                                    <div className="noResultsFounded">
-                                        <h1 className="noResults">No results founded.</h1>
-                                    </div>
+                            ? <div className="carouselBannerless">
+                                <div className="noResultsFounded">
+                                    <h1 className="noResults">No results founded.</h1>
                                 </div>
+                            </div>
 
                             : <>
-                            <BannerRandom array={this.state.movies} />                            
+                                <BannerRandom array={this.state.movies} />
                                 <div className="seriesContainer">
                                     {
                                         titles.map((title, index) => {
@@ -108,15 +117,15 @@ class Movies extends React.Component {
     }
 }
 
-const mapStateToProps = state =>{
-    return{
+const mapStateToProps = state => {
+    return {
+        errServer: state.audiovisual.fallenServer,
         selectedProfile: state.profile.selectedProfile
     }
 }
 
-
 const mapDispatchToProps = {
-    fetchMovies: audiovisualActions.movies,
+    fetchMovies: seriesAction.fetchMovies,
     actorFilter: audiovisualActions.actorFilter
 }
 

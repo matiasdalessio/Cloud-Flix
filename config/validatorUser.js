@@ -19,7 +19,7 @@ const validatorUser = (req, res, next) => {
     })
     const validation = schema.validate(req.body, {abortEarly: true})
     if (validation.error) {
-        return res.json({success: false, error: validation.error.details})
+        return res.json({success: false, error: validation.error.details[0]})
     }
     next()
 }

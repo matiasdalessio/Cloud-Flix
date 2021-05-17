@@ -1,6 +1,6 @@
 .content {
   position: relative;
-  width: 99vw;
+  width: 100%;
   min-height: 90vh;
   margin-top: -40px;
 
@@ -133,5 +133,26 @@
   cursor: pointer;
 }
 
+@media only screen and (max-device-width : 550px) {
+  .content{
+    &__title{
+      font-size: 40px;
+    }
+    &__description{
+      font-size: 15px;
+    }
+    &__close{
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2em;
+  }
+
+}
 
 

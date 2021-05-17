@@ -2,20 +2,24 @@ import axios from 'axios'
 import swal from 'sweetalert'
 
 const usersActions ={
-    loadUser: (newUser) => {
-        return async (dispatch, getstate) => {
-            const response = await axios.post('http://localhost:4000/api/user/signup', newUser)
-            if(response.data.success){
-            dispatch({
-                type: 'LOG_USER',
-                payload: response.data.success ? response.data.respuesta : null 
-            })
-            } else {
-                response.data.errores.details.map((error)=>{ 
-                   return alert(error.message)
+    
+    newUser: (newUser) => {
+        return async (dispatch, getState) => {
+           try {
+                const respuesta = await axios.post('http://localhost:4000/api/user/signup', newUser)
+                if (!respuesta.data.success) {
+                    return respuesta.data.error
+                }
+                dispatch({
+                    type: "LOG_USER",
+                    payload: respuesta.data.respuesta
+                    
                 })
-            }       
-        } 
+                return `Welcome ${respuesta.data.respuesta.firstName}!`               
+            }catch(error) {
+                return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
+            } 
+        }
     },
     logUser: (userLog) => {
         return async (dispatch, getState) => {
@@ -29,7 +33,7 @@ const usersActions ={
                     payload: response.data.respuesta
                     
                 })
-                return `Welcome back, ${response.data.respuesta.firstName}!`
+                return response.data.respuesta
             }catch(error) {
                 return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
             } 
@@ -52,11 +56,14 @@ const usersActions ={
                     ...response.data.response,
                     token: userLS.token
                 }})
-            } catch(err) {                
-                if (err.respuesta === 401) {
-                    localStorage.clear()
-                }
-            }           
+            } catch(error) {
+                if (!error.response) {
+                    return swal("Failed to try to connect with server", "Please try again in a few minutes", "error")
+                } else if (error.response.status && error.response.status > 399 && error.response.status < 499) {
+                    swal("Invalid Token", "Please Log in again", "error")
+                    dispatch({type: 'LOGOUT_USER', payload: []})
+                } 
+            }         
         }
     },
     selectPlan:( )=>{

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import profileActions from '../../redux/actions/profileActions';
 import IconCross from './../Icons/IconCross';
@@ -28,22 +28,25 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
     const remove = {movie, add:false}
     const sendedData = movieFounded ? remove : add
     const response = await addToMyList(sendedData, userLS, selectedProfile._id)
-
-    setMyList({myList: response.myList, fetching: false})
-    profileSelected(response)
+      setMyList({myList: response.myList, fetching: false})
+      profileSelected(response)
     
   }
 
   const valor = (num) => {
     if( !userLogged ){
-      toast("You must be logged to score",{ type:"error", position:"bottom-right" })
+      toast.error("You must be logged to score")
       return null
     }
     
     rateMovie( movie._id, userLS, num)
   }
 
-  
+  const rateNum = movie.rate.map(rate => rate.vote)
+  const rate = rateNum.length === 0 ? 0 : rateNum.reduce((a, b) => a + b)
+  const totalRate = rateNum.length === 0 ? 0 : (rate / rateNum.length).toFixed(2)
+  const porcentRate = rateNum.length === 0 ? 0 : Math.ceil( rate  / rateNum.length )
+
   return (
 
     <div className="content">
@@ -87,6 +90,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                     <div className="movie-infos">
                       <div className="movie-info">
                         <i className="bx bxs-star"></i>
+                        <span>{totalRate}</span>
                       </div>
                       <div className="movie-info">
                         <span>{movie.audienceAge}</span>
@@ -99,19 +103,31 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                       <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                       <span>Watch now</span>
                     </p>
-                    </NavLink>                   
-                    <Rating onClick={valor} initialRating={3} 
+                    </NavLink>                    
+                    <Rating onClick={valor} initialRating={porcentRate} 
                       emptySymbol={<FaRegStar />}
                       fullSymbol={<FaStar />}
                       fractions={1}
                     />
-                     <ToastContainer />
+                     <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
                   </div>
-                  {userLogged &&   
+                  {userLogged && 
+                   <>  
                     <p className="btn btn-hover buttonBanner" onClick={() => !myList.fetching && sendMovieToList(movie)} >
                         <i><FaPlus className={movieFounded ? "addButton" : ""}/> </i>
                         <span>{movieFounded ? "Remove form list" : "Add to list"} </span>                        
                     </p>
+                    <NavLink to={`/audiovisual/${movie._id}`}>Go</NavLink>
+                    </>
                     }               
                 </div>
                 <button className="content__close" onClick={onClose}>

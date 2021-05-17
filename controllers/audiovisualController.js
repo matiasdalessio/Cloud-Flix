@@ -23,7 +23,7 @@ const audiovisualControllers = {
     addAudiovisual: async (req,res) => {
         console.log(req.body)
         try {
-            const audiovisualToAdd = new Audiovisual(req.body)
+            const audiovisualToAdd = new Audiovisual(req.body).populate({ path: "comments", populate: { path: "userId", select: { "email": 1 } } })
             await audiovisualToAdd.save()
             res.json({success: true, respuesta: audiovisualToAdd})
         } catch(error) { 

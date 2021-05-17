@@ -16,7 +16,7 @@ const audiovisualSchema = new mongoose.Schema({
     imageBanner: {type: String, required: true},
     imageBackground: {type: String, required: true},
     duration: {type: String},
-    comments:[{name:{type:String, required: true}, avatar:{type:String, required: true}, comment:{type:String, required: true}, userId:{type: mongoose.Types.ObjectId, ref: 'user', required:true}, default: 0}],
+    comments:[{name:{type:String}, avatar:{type:String}, comment:{type:String, required: true}, userId:{type: mongoose.Types.ObjectId, ref: 'user', required:true}, default: 0}],
 })
 
 const Audiovisual = mongoose.model('audiovisual',audiovisualSchema);

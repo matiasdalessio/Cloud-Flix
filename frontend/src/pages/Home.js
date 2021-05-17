@@ -24,7 +24,6 @@ class Home extends React.Component{
     componentDidMount(){
         this.props.fetchAll()
         .then( data =>{
-            
             this.props.selectedProfile.kids 
             ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "ATP" ) })
             : this.setState({ ...this.state, all: data })
@@ -34,9 +33,7 @@ class Home extends React.Component{
             movies: this.state.all.filter( element => element.audiovisualType === "Movie" && element.year > ( new Date().getFullYear() -3 )  )
             })
         })
-       
     }
-
 
     filter = (item)=>{
         item = item.toLowerCase().trim()
