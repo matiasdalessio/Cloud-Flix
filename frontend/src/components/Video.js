@@ -4,7 +4,14 @@ import { Player } from 'video-react';
 const Video = ()=>{
     return(
         <div className='containerCompVideo'>
-        <NavLink to="/"><h1>Back to Home</h1></NavLink>
+            
+            <NavLink to='/'>
+                <div className="item-action">
+                    <p className="btn btn-hover">
+                        <span>Back to Home</span>
+                    </p>
+                </div>
+            </NavLink>
         <div className='containerVideo'>
         <Player className='videoCompVideoPlayer'
         playsInline

@@ -129,7 +129,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                    <>  
                     <p className="btn btn-hover buttonBanner" onClick={() => !myList.fetching && sendMovieToList(movie)} >
                         <i><FaPlus className={movieFounded ? "addButton" : ""}/> </i>
-                        <span>{movieFounded ? "Remove form list" : "Add to list"} </span>                        
+                        <span>{movieFounded ? "Remove from list" : "Add to list"} </span>                        
                     </p>
                     </>
                     }               
