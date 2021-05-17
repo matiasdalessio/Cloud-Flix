@@ -10,8 +10,6 @@ import { MdSettings } from "react-icons/md";
 
 const Header = (props) => {
 
-    console.log(props.props)
-
     const { allProfiles, profileSelected, selectedProfile, unselectProfile, userLogout, filter = null } = props
     const [visible, setVisible] = useState(false)
     const [dropdown, setDropdown] = useState(false)
@@ -80,7 +78,7 @@ const Header = (props) => {
                                             <Link to="/ProfileSelection">         
                                                 <div className="settings" >
                                                     <MdSettings style={{ fontSize:'40px', color:'black' }}  />                                                
-                                                    <h6 style= {{color: 'black'}}>Manage Profiles</h6>
+                                                    <h6 style= {{color: 'black', textAlign:'center'}}>Manage Profiles</h6>
                                                 </div>
                                             </Link>
                                             <div onClick={logOut} className="logout">LOG OUT</div>

@@ -41,10 +41,12 @@ class ProfileSelection extends React.Component{
 
     selectProfile = async (profile) => {       
         if (!localStorage.getItem('profile')) {
-            this.props.profileSelected(profile)
+            swal(`Welcome ${profile.name}!`,"", "success" )
+            .then(this.props.profileSelected(profile))
         } else {
-            this.props.profileSelected(profile)
-            await this.props.history.push('/')
+            swal(`Welcome ${profile.name}!`,"", "success" )
+            .then(this.props.profileSelected(profile))
+            .then( this.props.history.push('/'))
         }
     }
 
@@ -102,9 +104,8 @@ class ProfileSelection extends React.Component{
     render() {
         this.state.loading && <Loader/>
 
-        // ponerle ! para activar en this.props.userLogged.premium
-         if (this.props.userProfiles && this.props.userLogged.premium) { 
-             return <Pricing/>
+         if (this.props.userProfiles && !this.props.userLogged.premium) { 
+             return <Pricing />
          }else {
         return(
             <div className="divProfileSelection">

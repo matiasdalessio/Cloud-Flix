@@ -28,7 +28,7 @@ const profileActions = {
             const response = await axios.get(`http://localhost:4000/api/profile/mylist/${id}`,)     
             return  response.data.response
             } catch {
-               return alert("error")
+               return null
             }
         }
     }, 
@@ -83,7 +83,7 @@ const profileActions = {
                 
             })
             } catch {
-               return alert("error")
+               return null
             }
         }
     }, 

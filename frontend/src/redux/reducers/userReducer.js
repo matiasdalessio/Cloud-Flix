@@ -17,6 +17,12 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 userLogged: null,
             }
+        case 'CHANGE_MEMBERTYPE':
+            console.log(action.payload)
+            return {
+                ...state,
+                userLogged: {...state.userLogged, premium: action.payload}
+            }
         default:
             return state
     }

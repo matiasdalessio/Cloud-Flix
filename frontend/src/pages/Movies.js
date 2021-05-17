@@ -58,7 +58,6 @@ class Movies extends React.Component {
     }
 
     render() {
-        console.log(  )
         var titles = [
             { name: "Action", movies: this.state.action },
             { name: "Comedy", movies: this.state.comedy },  

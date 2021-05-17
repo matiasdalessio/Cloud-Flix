@@ -16,23 +16,22 @@ const audiovisualActions = {
             }
         }
     },
-    filterFilms: (value) => {
+    filterFilms: (value, props) => {
         return async (dispatch, getState) => {
             try {
                 var response = await fetch("http://localhost:4000/api/audiovisuals")
                 var data = await response.json()
-
                 if (!data.success) {
-
+                    return data.respuesta.error
                 } else {
                     return  data.respuesta.filter( movie => movie.cast.includes(value) )
                 }
             } catch (error) {
-                console.log(error)
+                return props.push('/serverdown') 
             }
         }
     },
-    rateMovie: (id, info, num) => {
+    rateMovie: (id, info, num, props) => {
         return async (dispatch, getState) => {
             try {
                 var response = await axios.post('http://localhost:4000/api/rate/'+ id , { numero: num }, {
@@ -44,7 +43,7 @@ const audiovisualActions = {
                     return response.data.response.rate
                 }
             } catch (error) {
-                console.log(error)
+                return props.push('/serverdown') 
             }
 
         }

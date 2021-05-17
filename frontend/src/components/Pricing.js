@@ -1,7 +1,16 @@
 import usersActions from "../redux/actions/usersActions"
 import { connect } from "react-redux"
+import React from "react"
 
-const Pricing = ({ selectPlan })=>{
+const Pricing = ({ selectPlan, userLogged })=>{
+
+    
+     
+    const changeMembertype = (change) =>{
+       const membertype = !change ? false : true
+        selectPlan(membertype)
+    }
+
 
     return(
         <div className="containerPricingCards">
@@ -18,7 +27,7 @@ const Pricing = ({ selectPlan })=>{
                 </div>
                 <div className='lugarDelBotonCard'>
                     <p className="btn btn-hover">                       
-                        <span>mantain free</span>
+                        <span onClick={()=> changeMembertype(false)}>mantain free</span>
                     </p>
                 </div>
             </div>
@@ -34,8 +43,8 @@ const Pricing = ({ selectPlan })=>{
                     <h4>Tv Channels</h4>
                 </div>
                 <div className='lugarDelBotonCard'>
-                    <p className="btn btn-hover">                       
-                        <span onClick={ selectPlan }>Change to premium</span>
+                    <p className="btn btn-hover">         
+                        <span onClick={()=> changeMembertype(true)}>Change to premium</span>
                     </p>
                 </div>
             </div>

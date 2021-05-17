@@ -39,7 +39,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
       return null
     }
     
-    rateMovie( movie._id, userLS, num)
+    rateMovie( movie._id, userLS, num, history)
   }
 
   const rateNum = movie.rate.map(rate => rate.vote)

@@ -60,18 +60,15 @@ class MyList extends React.Component{
                                             <h1 className="noResults">No results founded.</h1>
                                         </div>
                                     </div>  
-                                :  this.state.myFavourites.length !== 0 &&                                 
-                                    <div className="carouselBannerless">
-                                        <Lastest title={ "Your List" } array={ this.state.myFavourites } />
-                                   </div>
+                                :  this.state.myFavourites.length !== 0 
+                                    ?  <div className="carouselBannerless">
+                                            <Lastest title={ "Your List" } array={ this.state.myFavourites } />
+                                    </div>
+                                    :  <div className="noFilmsInList">
+                                            <h1>Your List is empty!</h1>
+                                            <h2>Put some Titles here!</h2>
+                                    </div>                                   
                  }
-                 {this.state.myFavourites.length === 0 &&
-                 <div className="noFilmsInList">
-                     <h1>Your List is empty!</h1>
-                     <h2>Put some Titles here!</h2>
-                 </div>
-                }
-
                 <Footer />
             </div>        
         )

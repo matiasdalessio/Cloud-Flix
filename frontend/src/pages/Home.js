@@ -27,7 +27,7 @@ class Home extends React.Component{
             ? this.setState({ ...this.state, all: data.filter( element => element.audienceAge === "ATP" ) })
             : this.setState({ ...this.state, all: data })
 
-            this.setState({ ...this.state,
+            this.state.all && this.setState({ ...this.state,
             series: this.state.all.filter( element => element.audiovisualType === "Serie" && element.year > ( new Date().getFullYear() -3 )  ),
             movies: this.state.all.filter( element => element.audiovisualType === "Movie" && element.year > ( new Date().getFullYear() -3 )  )
             })
@@ -47,8 +47,10 @@ class Home extends React.Component{
     }
 
     render() {
-        if (!this.state.all.length) {
-                return <Loader/>
+        if (this.state.all && !this.state.all.length) {
+            return <Loader/>             
+        } else if (!this.state.all ){
+            this.props.history.push('/serverdown')
         }
 
         return(

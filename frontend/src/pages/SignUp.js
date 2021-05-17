@@ -14,7 +14,8 @@ const SignUp = (props) =>{
     useEffect(()=>{        
             axios.get('https://restcountries.eu/rest/v2/all')
             .then(response => setCountrySelect(response.data))
-            .catch(error => console.log(error))
+            .catch(error => props.history.push('/serverdown') )
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const readInput = e =>{
@@ -29,9 +30,8 @@ const SignUp = (props) =>{
         e && e.preventDefault()
         let user = e ? newUser : googleUser
              const respuesta = await props.newUser(user)
-                console.log(respuesta)
                  if (!respuesta) {
-                     return swal("It seems our servers have some issues","Please, try again in a few minutes", "error") 
+                    return props.history.push('/serverdown') 
                  }else if (respuesta.message) {
                      swal(respuesta.message,"", "error")                
                  } else {
@@ -43,7 +43,7 @@ const SignUp = (props) =>{
                              swal("There was an error in the register.", "Please verify all the required fields are completed.", "error")
                              break
                          default:
-                             return swal("Signed Up!", respuesta, "success")
+                             return props.history.push('/pricing')
                      }
                  }                     
      }  

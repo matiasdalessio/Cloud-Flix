@@ -42,7 +42,7 @@ const Audiovisual = (props) => {
     }, [])
 
     const fetchVideos = async () => {
-        const response = await props.fetchAudiovisuals()
+        const response = await props.movies()
         if (response) {
             const audioVisuals = response.find(audiovisual => audiovisual._id === props.match.params.id)
             setVideo(audioVisuals)
@@ -166,7 +166,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    fetchAudiovisuals: audiovisualActions.movies,
+    movies: audiovisualActions.movies,
     fetchComments: commentAction.fetchComments,
     deleteComment: commentAction.deleteComment,
     fetchSeasons: audiovisualActions.fetchSeasons

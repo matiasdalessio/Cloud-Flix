@@ -24,15 +24,12 @@ const Login = (props) =>{
         e && e.preventDefault()
         let user = e ? userLog : userGoogle
         const response = await props.logUser(user)
+        console.log(response)
         if (!response) {
-            swal("It seems we have some issues with our server", "Please, try again in a few minutes", "error")         
+            return props.history.push('/serverdown')          
         } else if (response.error) {
             swal(response.error, "Verify and try again!", "error")
-        } else if (response.premium){
-            props.history.push('/')
-        } else {
-            props.history.push('/pricing')
-        }
+        } 
     }
     
     const responseGoogle = (response) => {
