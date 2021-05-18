@@ -41,7 +41,11 @@
     justify-content: center;
 }
 
+
 .rating{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
     position: relative;
     top: 5em;
     left: -10.2em;
@@ -56,14 +60,25 @@
         left: -10.7em;
         font-size: 25px;
     }
-    
-    @media only screen and (max-width: 850px) {
-        .rating{
-            position: relative;
-            top: 6em;
-            left: -11.5em;
-            font-size: 20px;
-        }
         
+}
+@media only screen and (max-width: 850px) {
+    .rating{
+        position: relative;
+        top: 6em;
+        left: -11.5em;
+        font-size: 20px;
     }
+    
+}
+@media only screen and (max-width: 600px) {
+    .rating{
+        position: relative;
+        top: 11em;
+        left: -23em;
+        font-size: 10px;
+    }
+    .content__description {
+        display: none !important;
+      }
 }

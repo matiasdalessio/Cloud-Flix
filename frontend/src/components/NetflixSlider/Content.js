@@ -65,8 +65,8 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                     </div>
                   <div className="content-info" >
                     <div className="content__description">
-                      { movie.sinopsis.length > 250 
-                      ? movie.sinopsis.slice( 0 , 228 ) + "..." 
+                      { movie.sinopsis.length > 100 
+                      ? movie.sinopsis.slice( 0 , 180 ) + "..." 
                       : movie.sinopsis } 
                     </div>
 
@@ -92,10 +92,10 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                     <div className="movie-infos">
                       <div className="movie-info">
                         <i className="bx bxs-star"></i>
-                        <span>{totalRate}</span>
+                        <span>{totalRate===0 ? "Not rated yet" : totalRate}</span>
                       </div>
                       <div className="movie-info">
-                        <span>{movie.audienceAge}</span>
+                        <span>PG{movie.audienceAge}</span>
                       </div>
                   </div>
                         

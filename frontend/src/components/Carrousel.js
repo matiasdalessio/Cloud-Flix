@@ -19,7 +19,7 @@ const Carrousel = ()=>{
                             <div className="hero-slide-item-content">
                                 <div className="item-content-wraper">
                                     <div className="item-content-title">
-                                        Transformer
+                                        Transformers
                                     </div>
                                     <div className="movie-infos">
                                         <div className="movie-info">
@@ -53,7 +53,7 @@ const Carrousel = ()=>{
                             <div className="hero-slide-item-content">
                                 <div className="item-content-wraper">
                                     <div style={{zIndex: '3'}} className="item-content-title">
-                                        Wandavision
+                                        Wanda-Vision
                                     </div>
                                     <div className="movie-infos">
                                         <div className="movie-info">
