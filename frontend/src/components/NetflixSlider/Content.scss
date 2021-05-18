@@ -1,7 +1,7 @@
 .content {
   position: relative;
   width: 100%;
-  height: 50rem;
+  height: 52rem;
   margin-top: -40px;
 
   &__background,
@@ -101,7 +101,8 @@
 .buttons{
   display: flex;
   margin-top: 1rem;
-  align-items: center;
+  align-items: flex-start;
+  
 }
 
 .btn-borde {
@@ -150,7 +151,7 @@
   .buttons{
     display: flex;
    
-    justify-content: space-between;  
+    justify-content: flex-start;  
     margin-top: 0;  
   }
 }
@@ -171,7 +172,7 @@
   .buttons{
     display: flex;
    
-    justify-content: space-between;  
+    justify-content: flex-start;  
     margin-top: 0;  
   }
 }
@@ -190,7 +191,7 @@
   }
   .buttons{
     display: flex;   
-    justify-content: space-between;  
+    justify-content: flex-start;  
     margin-top: 0;  
   }
 }
@@ -207,10 +208,15 @@
       height: 30px;
     }
   }
+  .rating{
+    position: relative;
+    top: 8em;
+    left: -1.7em !important;
+    font-size: 15px;
+}
   .buttons{
     display: flex;   
     flex-direction: column;
-    justify-content: space-between;  
     margin-top: 0;  
   }
 }
