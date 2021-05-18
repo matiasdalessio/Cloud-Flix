@@ -66,7 +66,7 @@
     .rating{
         position: relative;
         top: 6em;
-        left: -11.5em;
+        left: -17.3em;
         font-size: 20px;
     }
     
@@ -75,7 +75,18 @@
     .rating{
         position: relative;
         top: 11em;
-        left: -23em;
+        left: -10em;
+        font-size: 10px;
+    }
+    .content__description {
+        display: none !important;
+      }
+}
+@media only screen and (max-width: 464) {
+    .rating{
+        position: relative;
+        top: 11em;
+        left: -10em !important;
         font-size: 10px;
     }
     .content__description {
