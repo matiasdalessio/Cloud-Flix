@@ -119,7 +119,7 @@ const Content = ({ rateMovie, movie, onClose, profileSelected,  addToMyList, sel
                                             <span>Watch now</span>
                                           </p>
                                     </NavLink> 
-                                    :<p className="btn btn-hover buttonBanner" onClick={ ()=> toast.error("This content is only available for registered users.", {position:"bottom-right"})}>
+                                    :<p className="btn btn-hover buttonBanner" onClick={ ()=> toast.error("This content is only available for premium users.", {position:"bottom-right"})}>
                                           <i className='circulePlay'><FaPlayCircle size={ 20 } /></i>
                                           <span>Watch now</span>
                                      </p>}                                       
