@@ -2,7 +2,7 @@ const Loader = ()=>{
 
  return (
     <div className="preloader">
-        <div className='logoLoader' style={{backgroundImage:'url("../images/logoCloudFlix.png")'}}></div>
+        <div className='logoLoader' style={{backgroundImage:'url("/images/logoCloudFlix.png")'}}></div>
         <div className="sk-cube-grid">
             <div className="sk-cube sk-cube1"></div>
             <div className="sk-cube sk-cube2"></div>

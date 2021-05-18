@@ -59,10 +59,11 @@ const BannerRandom = (props) => {
                             <i className="bx bxs-star"></i>
                             <span>{rate}</span>
                         </div>
+                        {bannerRandom.movie.duration ?
                         <div className="movie-info">
                             <i className="bx bxs-time"></i>
-                            <span>{bannerRandom.movie.duration} hs</span>
-                        </div>
+                             <span>{`${bannerRandom.movie.duration} hs`}</span> 
+                        </div>:null}
                         <div className="movie-info">
                             <span>HD</span>
                         </div>
