@@ -6,7 +6,7 @@ const usersActions ={
     newUser: (newUser) => {
         return async (dispatch, getState) => {
            try {
-                const respuesta = await axios.post('http://localhost:4000/api/user/signup', newUser)
+                const respuesta = await axios.post('https://cloud-flix.herokuapp.com/api/user/signup', newUser)
                 if (!respuesta.data.success) {
                     return respuesta.data.error
                 }
@@ -23,7 +23,7 @@ const usersActions ={
     logUser: (userLog) => {
         return async (dispatch, getState) => {
            try {
-                const response = await axios.post('http://localhost:4000/api/user/login', userLog)
+                const response = await axios.post('https://cloud-flix.herokuapp.com/api/user/login', userLog)
                 if (!response.data.success) {
                     return response.data
                 }
@@ -46,7 +46,7 @@ const usersActions ={
     loginForcedLS: (userLS, props) => {
         return async (dispatch, getState) => {
             try {
-                const response = await axios.get('http://localhost:4000/api/user/loginForced', {
+                const response = await axios.get('https://cloud-flix.herokuapp.com/api/user/loginForced', {
                 headers: {
                     'Authorization': 'Bearer '+ userLS.token
                 }
@@ -68,7 +68,7 @@ const usersActions ={
     selectPlan:( change)=>{
         return async (dispatch, getState) => {
             try {
-                const response = await axios.put('http://localhost:4000/api/selectPremium',{change}, {
+                const response = await axios.put('https://cloud-flix.herokuapp.com/api/selectPremium',{change}, {
                     headers:{'Authorization': 'Bearer '+ localStorage.getItem("token") }
             })   
             dispatch({type: 'CHANGE_MEMBERTYPE', payload: response.data.response

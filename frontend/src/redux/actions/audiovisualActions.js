@@ -5,7 +5,7 @@ const audiovisualActions = {
     movies: () => {
         return async (dispatch, getState) => {
             try {
-                var response = await fetch("http://localhost:4000/api/audiovisuals")
+                var response = await fetch("https://cloud-flix.herokuapp.com/api/audiovisuals")
                 var data = await response.json()
                 if (!data.success) {
                     dispatch({ type: 'ERR', payload: true })
@@ -20,7 +20,7 @@ const audiovisualActions = {
     filterFilms: (value, props) => {
         return async (dispatch, getState) => {
             try {
-                var response = await fetch("http://localhost:4000/api/audiovisuals")
+                var response = await fetch("https://cloud-flix.herokuapp.com/api/audiovisuals")
                 var data = await response.json()
                 if (!data.success) {
                     return data.respuesta.error
@@ -35,7 +35,7 @@ const audiovisualActions = {
     rateMovie: (id, info, num, props) => {
         return async (dispatch, getState) => {
             try {
-                var response = await axios.post('http://localhost:4000/api/rate/'+ id , { numero: num }, {
+                var response = await axios.post('https://cloud-flix.herokuapp.com/api/rate/'+ id , { numero: num }, {
                     headers: {
                         'Authorization': 'Bearer '+ info.token
                     }
@@ -53,7 +53,7 @@ const audiovisualActions = {
     fetchSeasons: (id) => {
         return async (dispatch, getState) => {
             try {
-                var response = await fetch("http://localhost:4000/api/audiovisual/season/" + id )
+                var response = await fetch("https://cloud-flix.herokuapp.com/api/audiovisual/season/" + id )
                 var data = await response.json()
                 if (!data.success) {
                     dispatch({ type: 'ERR', payload: true })

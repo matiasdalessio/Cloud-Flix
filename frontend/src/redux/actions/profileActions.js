@@ -6,7 +6,7 @@ const profileActions = {
     addToMyList: (sendedData, userLS, id) => {
         return async (dispatch, getstate) => {
             try {
-                const response = await axios.put(`http://localhost:4000/api/profile/addToList/${id}`, {sendedData}, {
+                const response = await axios.put(`https://cloud-flix.herokuapp.com/api/profile/addToList/${id}`, {sendedData}, {
                     headers: {
                     'Authorization': 'Bearer '+userLS.token
                     }
@@ -25,7 +25,7 @@ const profileActions = {
     getMoviesOnList: (id, props) => {
         return async () => {
            try {
-            const response = await axios.get(`http://localhost:4000/api/profile/mylist/${id}`,)   
+            const response = await axios.get(`https://cloud-flix.herokuapp.com/api/profile/mylist/${id}`,)   
             return  response.data.response
             } catch {
                return props.push('/serverdown') 
@@ -35,7 +35,7 @@ const profileActions = {
     createProfile:(newProfile, id) => {
         return async (dispatch, getstate) => {
             try {
-                const respuesta = await axios.post(`http://localhost:4000/api/profile/${id}`, {newProfile})
+                const respuesta = await axios.post(`https://cloud-flix.herokuapp.com/api/profile/${id}`, {newProfile})
                 if (!respuesta.data.success) {
                     return respuesta.data.error
                 }
@@ -54,7 +54,7 @@ const profileActions = {
         const userId= userLS.id
         return async (dispatch, getstate) => {
             try {
-                const response = await axios.put(`http://localhost:4000/api/profile/delete/${id}`, {userId}, {
+                const response = await axios.put(`https://cloud-flix.herokuapp.com/api/profile/delete/${id}`, {userId}, {
                     headers: {
                     'Authorization': 'Bearer '+userLS.token
                     }
@@ -72,7 +72,7 @@ const profileActions = {
     getUserProfiles: (id, userLS) => {
         return async (dispatch, getstate) => {
            try {
-            const response = await axios.get(`http://localhost:4000/api/profile/${id}`, {
+            const response = await axios.get(`https://cloud-flix.herokuapp.com/api/profile/${id}`, {
                 headers: {
                 'Authorization': 'Bearer '+userLS.token
                 }
