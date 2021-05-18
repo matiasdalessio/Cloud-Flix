@@ -299,9 +299,7 @@ footer{
 }
 
 button.video-react-big-play-button.video-react-big-play-button-left{
-    position: relative;
-    top: -42vh;
-    left: 47%;
+    display:none
 }
 
 @media only screen and (max-width: 850px) {
