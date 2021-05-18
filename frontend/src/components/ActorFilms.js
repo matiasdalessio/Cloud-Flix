@@ -17,6 +17,8 @@ const ActorFilms = (props) => {
         behavior:"smooth"
     })}
 
+    console.log(props)
+
     useEffect(()=> {
         var fecthearActor = async ()=>{
             let res = await props.filterFilms(actorName)
@@ -45,7 +47,7 @@ const ActorFilms = (props) => {
     } else {
     return(
         <div>
-            <Header filter={ filter } />
+            <Header filter={ filter } props={props.history}/>
 
             {  typeof filtered === "object" && filtered.length > 0
 

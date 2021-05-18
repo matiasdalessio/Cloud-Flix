@@ -32,9 +32,6 @@
     width: 60vw;
     z-index: 3;
 }
-
-
-
 .serverDown{
     height: 100vh;
     width: 100%;
@@ -42,4 +39,31 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.rating{
+    position: relative;
+    top: 5em;
+    left: -10.2em;
+    font-size: 30px;
+}
+
+
+@media only screen and (max-width: 1250px) {
+    .rating{
+        position: relative;
+        top: 5em;
+        left: -10.7em;
+        font-size: 25px;
+    }
+    
+    @media only screen and (max-width: 850px) {
+        .rating{
+            position: relative;
+            top: 6em;
+            left: -11.5em;
+            font-size: 20px;
+        }
+        
+    }
 }

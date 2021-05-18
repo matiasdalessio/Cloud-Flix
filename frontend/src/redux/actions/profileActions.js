@@ -23,6 +23,7 @@ const profileActions = {
         }
     }, 
     getMoviesOnList: (id, props) => {
+        console.log(id)
         return async () => {
            try {
             const response = await axios.get(`https://cloud-flix.herokuapp.com/api/profile/mylist/${id}`,)   

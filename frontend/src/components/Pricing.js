@@ -27,9 +27,8 @@ const Pricing = ({ selectPlan})=>{
                     <h4 className='textoTachadoCards'>65+ Tv Programs</h4>
                 </div>
                 <div className='lugarDelBotonCard'>
-                    <p className="btn btn-hover">      
-                    <NavLink className="social-item" to="/"></NavLink>     
-                     <span onClick={()=> changeMembertype(false)}><NavLink to="/">30 Days free</NavLink></span>
+                    <p className="btn btn-hover">         
+                     <span onClick={()=> changeMembertype(false)}><NavLink to="/">Free Membership</NavLink></span>
                     </p>
                 </div>
             </div>

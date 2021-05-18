@@ -25,7 +25,8 @@ class ProfileSelection extends React.Component{
             avatar: '',
             kids: false            
         }, 
-        loading: true ,     
+        loading: true ,
+        fetching: false     
     }
 
     userData = JSON.parse(localStorage.getItem('userLogged'))
@@ -72,6 +73,7 @@ class ProfileSelection extends React.Component{
     }
     send = async (e) => {
         e.preventDefault()
+        this.setState({...this.state, fetching:true})
         let newProfile= this.state.newProfile
         const respuesta = await this.props.createProfile(newProfile, this.props.userLogged.id)
         if (!respuesta) {
@@ -81,7 +83,7 @@ class ProfileSelection extends React.Component{
         } else {
             this.props.profileSelected(respuesta)
             this.props.getUserProfiles(this.props.userLogged.id, this.userLS)
-            this.setState({...this.state, creating: false})
+            this.setState({...this.state, creating: false, fetching:false})
             
         }   
     }
@@ -134,12 +136,13 @@ class ProfileSelection extends React.Component{
                             </div>
                         </div>
                         <div className='containerButtonsCreateProfile'>
-                            <button className='continueCreateProfile' onClick={this.send}>CONTINUE</button>
+                            <button className='continueCreateProfile' onClick={(e) => !this.state.fetching ? this.send(e) : null}>CONTINUE</button>
                             <button className='cancelCreateProfile' onClick={() => this.finishEdit()}>CANCEL</button>
                         </div>                      
                  </div>
                 :<div className="containerProfiles">
-                        <h1 className="tittleProfiles">Who's watching Now?</h1>  
+                        <h1 className="tittleProfiles">Who's watching Now?</h1>
+                        {!this.props.userProfiles.length && <h2 className="subTittleProfiles">Create a Profile!</h2>} 
                         <div className="profileOptions">                
                             {this.props.userProfiles.map(profile => {
                                 return  <div className="divProfileAvatar" key={profile._id}>

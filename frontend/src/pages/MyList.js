@@ -21,12 +21,14 @@ class MyList extends React.Component{
         filtered:[],
     }
 
-    componentDidMount(){
-        this.props.getMoviesOnList(this.props.selectedProfile._id, this.props.history)
-        .then(data => data && this.setState({...this.state, myFavourites: data.map(audiovisual => {
+    componentDidMount = async () => {      
+        const response = await this.props.getMoviesOnList(this.props.selectedProfile._id, this.props.history) 
+        console.log(response)  
+        response === "Oops! the ID you enter was not founded" 
+        ? this.props.history.push('/ForcedActualization')
+        : this.setState({...this.state, myFavourites: response.map(audiovisual => {
             return audiovisual.audiovisualId
-        })}))
-
+        })})
     }
       
 
