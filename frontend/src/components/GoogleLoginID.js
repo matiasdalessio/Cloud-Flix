@@ -1,2 +1,0 @@
-export const GoogleLoginID = '964647088396-7ih8rn3g4t8qvi6deo4daju42f6n2ur6.apps.googleusercontent.com'
-// export const GoogleLoginID = '964647088396-9mpm3qcnc13aubmludckjd8lg2bfr9s3.apps.googleusercontent.com'
