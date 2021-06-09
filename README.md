@@ -2,7 +2,7 @@
 
 https://cloud-flix.herokuapp.com/
 
-## Web Developed by:
+## Web-App Developed by:
 ### Emanuel Cuvillier
 ### Adriel Baez
 ### José Lopez Zaccaro
